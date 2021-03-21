@@ -8,11 +8,13 @@ abstract class Controller extends ApplicationComponent
   protected $module = '';
   protected $page = null;
   protected $view = '';
+  protected $manager = null;
 
   public function __construct(Application $app, $module, $action)
   {
     parent::__construct($app);
 
+    $this->manager = new Manager('PDO', PDOFactory::dbConnect());
     $this->page = new Page($app);
 
     $this->setModule($module);
