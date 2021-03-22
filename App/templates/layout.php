@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="fr">
     <head>
         <!-- Required meta tags -->
         <meta charset="utf-8">
@@ -16,7 +16,9 @@
         <link href="./vendor/components/font-awesome/css/fontawesome.css" rel="stylesheet">
         <link href="./vendor/components/font-awesome/css/brands.css" rel="stylesheet">
         <link href="./vendor/components/font-awesome/css/solid.css" rel="stylesheet">
-        {% block title %} {% endblock %}
+        <title>
+            <?= isset($title) ? $title : 'Blog Charlène Bennevault' ?>
+        </title>
      </head>
     <body>
         <header>
@@ -53,14 +55,15 @@
         <!-- Page Content -->
         <main class="my-5 pt-3">
             <div class="container my-5 pt-3">
-            {% block content %} {% endblock %}
+              <?php if ($user->hasFlash()) echo '<p style="text-align: center;">', $user->getFlash(), '</p>'; ?>  
+              <?= $content ?>
             </div>
         </main>
 
         <footer class="py-5 bg-light">
             <div class="container">
                 <div class="row m-0">
-                    {% block footer %} {% endblock %}
+                    Footer with link
                 </div>
                 <p class="m-0 text-center">Mentions Légales</p>
                 <p class="m-0 text-center">Copyright &copy; Your Website 2021</p>
