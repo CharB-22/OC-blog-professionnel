@@ -1,6 +1,6 @@
 <?php
 
-class Manager
+class Database
 {
 
   protected $db;
@@ -37,13 +37,11 @@ class Manager
     }
   }
 
-  public function createQuery($sql, $parameters = null)
+  public function createQuery($sql, $parameters)
   {
     if ($parameters)
     {
       $response = $this->checkConnection()->prepare($sql);
-      // Sort results into objects and not tables
-      $response->setFetchMode(PDO::FETCH_CLASS, get_called_class());
       $response->execute($parameters);
 
       return $response;
@@ -51,8 +49,6 @@ class Manager
     else
     {
       $response = $this->checkConnection()->query($sql);
-      $response->setFetchMode(PDO::FETCH_CLASS, get_called_class());
-
       return $response;
     }
   }
