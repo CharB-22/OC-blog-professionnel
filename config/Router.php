@@ -13,7 +13,10 @@
                         require "C:\MAMP\htdocs\blog-professionnel\App\View\Home.php";
                     }
 
- 
+                    if($_GET['route'] === 'bloglist')
+                    {
+                        require "C:\MAMP\htdocs\blog-professionnel\App\View\BlogList.php";
+                    }
 
                     if($_GET['route'] === 'post')
                     {

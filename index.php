@@ -1,7 +1,6 @@
 <?php
 require "C:\MAMP\htdocs\blog-professionnel\config\Router.php";
-require "vendor\autoload.php";
 
+$Application = new Router();
 
-$router = new Router();
-$router->run();
+$Application->run();

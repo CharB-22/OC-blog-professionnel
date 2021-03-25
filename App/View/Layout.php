@@ -10,7 +10,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Oswald:wght@300;400;500&display=swap" rel="stylesheet">
         <link rel="icon"  type="image/png"  href="public\images\code_icon.png">
         <!-- Customized CSS-->
-        <link type="text/css" href="./public/css/style.css" rel="stylesheet">
+        <link type="text/css" href="/public/css/style.css" rel="stylesheet">
         <!-- Bootstrap CSS -->
         <link href="../vendor\twbs\bootstrap\dist\css\bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
         <!-- FontAwesome library access-->

@@ -1,6 +1,6 @@
 <?php
 
-class Database
+abstract class Database
 {
 
   protected $db;
@@ -37,7 +37,7 @@ class Database
     }
   }
 
-  public function createQuery($sql, $parameters)
+  public function createQuery($sql, $parameters = null)
   {
     if ($parameters)
     {
