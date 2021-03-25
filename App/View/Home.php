@@ -14,7 +14,7 @@
     <div id="about" class="container my-5">
         <div class="row text-center">
             <div class="col-xs-12 col-md-6 py-4">
-                <img src="./public/images/photo_profil.jpg" class="img-thumbnail">  
+                <img src="Public\images\photo_profil.jpg" class="img-thumbnail">  
             </div>
             <div class="col-xs-12 col-md-6 p-4 d-flex align-items-center">
                 <p>Après 6 ans de carrière dans le eCommerce, j’ai décidé de franchir le pas et de me concentrer totalement sur l’aspect technique du web et me former au développement web. A travers la synergie de mon expertise commerciale et webmarketing et mes connaissances en développement, je souhaite apporter mon soutien aux entreprises qui souhaitent avoir un impact positif sur le monde.</p>
@@ -54,4 +54,4 @@
 
 <?php $content= ob_get_clean() ?>
 
-<?php require("App\View\Layout.php"); ?>
+<?php require("Layout.php"); ?>
