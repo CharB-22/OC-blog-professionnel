@@ -1,11 +1,5 @@
 <?php 
 
-require "C:\MAMP\htdocs\blog-professionnel\App\Model\Database.php";
-require "C:\MAMP\htdocs\blog-professionnel\App\Model\PostManager.php";
-require "C:\MAMP\htdocs\blog-professionnel\App\Model\CommentManager.php";
-
-$post = new PostManager();
-$data = $post->getPost($_GET['id']);
 $post = $data->fetch();
 
 $title = $post['title'];

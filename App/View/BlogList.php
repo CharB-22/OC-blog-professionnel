@@ -1,7 +1,5 @@
 <?php 
 
-require "C:\MAMP\htdocs\blog-professionnel\App\Model\Database.php";
-require "C:\MAMP\htdocs\blog-professionnel\App\Model\PostManager.php";
 
 $title = "Les Articles Publiés";
 ob_start() ?>
@@ -10,8 +8,6 @@ ob_start() ?>
 
 <!-- Blog Line -->
 <?php
-    $postManager = new PostManager();
-    $blogList = $postManager->getBlogList();
 
     while ($postManager = $blogList->fetch())
     {
