@@ -30,10 +30,8 @@ ob_start()
             </div>
           </div>
           <?php
-            $comments = new CommentManager;
-            $data = $comments->getCommentsPost($_GET['id']);
 
-            while ($comments = $data->fetch())
+            while ($comments = $comment->fetch())
             {
           ?>
           <div class="media mb-4">

@@ -24,6 +24,8 @@ class FrontendController
         $post = new PostManager();
         $data = $post->getPost($id);
 
+        $comments = new CommentManager;
+        $comment = $comments->getCommentsPost($_GET['id']);
         require "App\View\Article.php";
     }
 }
