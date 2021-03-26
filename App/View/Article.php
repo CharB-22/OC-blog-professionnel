@@ -45,11 +45,27 @@ ob_start()
             }
 
             ?>
-        </div>
+        </div>      
+        <div class="col-md-4 col-xs-12 px-3">
+          <h2>Ajouts Récents</h2>
+          <?php
+
+            while ($list = $blogList->fetch())
+            {
+
+          ?>
+          <div class="card mb-4">
+            <div class="card-body">
+              <h3 class="card-title"><?= htmlspecialchars($list['title']);?></h3>
+              <p class="card-text"><?= htmlspecialchars($list['excerpt']);?></p>
+              <a href="index.php?route=post&id=<?= htmlspecialchars($list['id']);?>" class="btn btn-primary">Lire l'article &rarr;</a>
+            </div>
+          </div>
 
 
-<?php 
-    $content= ob_get_clean();
-    require("Layout.php"); 
-?>
+  <?php
+      }
+      $content= ob_get_clean();
+      require("Layout.php"); 
+  ?>
 
