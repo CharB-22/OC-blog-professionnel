@@ -1,22 +1,20 @@
 <?php 
 
-$post = $data->fetch();
-
-$title = $post['title'];
+$title = $post->getTitle();
 ob_start() 
 
 ?>
       <h1 class="mt-5 mb-3">
-        <?= htmlspecialchars($post['title']);?> <small>by <?= htmlspecialchars($post['last_name']);?></small>
+        <?= htmlspecialchars($post->getTitle());?> <small>by <?= htmlspecialchars($post->getAuthorName());?> <?= htmlspecialchars($post->getAuthorLastName());?></small>
       </h1>
 
       <div class="row col">
         <div class="col-md-8 col-xs-12">
-          <p>Posted <?= htmlspecialchars($post['date_modification']);?></p>
+          <p>Posted <?= htmlspecialchars($post->getDateModification());?></p>
           <hr>
           <div>
-            <p class="lead"><?= htmlspecialchars($post['excerpt']);?></p>
-            <p><?= htmlspecialchars($post['content']);?></p>
+            <p class="lead"><?= htmlspecialchars($post->getExcerpt());?></p>
+            <p><?= htmlspecialchars($post->getContent());?></p>
           </div>
           <div class="card my-4">
             <h5 class="card-header">Leave a Comment:</h5>

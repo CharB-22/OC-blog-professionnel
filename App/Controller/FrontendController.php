@@ -1,6 +1,6 @@
 <?php
 
-require "C:\MAMP\htdocs\blog-professionnel\App\Model\Database.php";
+require "C:\MAMP\htdocs\blog-professionnel\App\Model\Manager.php";
 require "C:\MAMP\htdocs\blog-professionnel\App\Model\PostManager.php";
 require "C:\MAMP\htdocs\blog-professionnel\App\Model\CommentManager.php";
 
@@ -29,10 +29,12 @@ class FrontendController
 
     public function getPost($id)
     {
-        $data = $this->postManager->getPost($id);
-        $blogList = $this->postManager->getBlogList();
-
+        // To get the data for the main content
+        $post = $this->postManager->getPost($id);
         $comment = $this->commentManager->getCommentsPost($_GET['id']);
+
+        // To get the data for the sidebar
+        $blogList = $this->postManager->getBlogList();
 
         require "App\View\Article.php";
 

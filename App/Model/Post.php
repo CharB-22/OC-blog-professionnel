@@ -8,6 +8,13 @@ class Post
     protected $content;
     protected $dateModification;
     protected $authorId;
+    protected $authorName;
+    protected $authorLastName;
+
+    public function __construct(array $postData)
+    {
+        $this->hydrate($postData);
+    }
 
     public function hydrate(array $postData)
     {
@@ -53,6 +60,16 @@ class Post
         return $this->authorId;
     }
 
+    public function getAuthorName()
+    {
+        return $this->authorName;
+    }
+
+    public function getAuthorLastName()
+    {
+        return $this->authorLastName;
+    }
+
     public function setId($id)
     {
         // Must be a number AND be > 100
@@ -85,7 +102,7 @@ class Post
     public function setExcerpt($excerpt)
     {
         // Must be a string and the limit of caracters must not be over 255
-        if (is_string($excerpt) && strlen($excerpt) <= 100)
+        if (is_string($excerpt) && strlen($excerpt) <= 255)
         {
             $this->excerpt = $excerpt;
         } 
@@ -126,6 +143,34 @@ class Post
         else
         {
             trigger_error("Cet id n\'est pas un nombre entier ou ne donne pas les droits nécessaires.", E_USER_WARNING);
+            return;
+        }
+    }
+
+    public function setAuthorName($authorName)
+    {
+        // Must be an int AND give the valid rights (must be = 1)
+        if (is_string($authorName) && strlen($authorName) < 60)
+        {
+            $this->authorName = $authorName;
+        } 
+        else
+        {
+            trigger_error("Ce n\'est pas une chaîne de caractère ou le nom est trop long", E_USER_WARNING);
+            return;
+        }
+    }
+
+    public function setAuthorLastName($authorLastName)
+    {
+        // Must be an int AND give the valid rights (must be = 1)
+        if (is_string($authorLastName) && strlen($authorLastName) < 60)
+        {
+            $this->authorLastName = $authorLastName;
+        } 
+        else
+        {
+            trigger_error("Ce n\'est pas une chaîne de caractère ou le nom est trop long", E_USER_WARNING);
             return;
         }
     }

@@ -1,20 +1,23 @@
 <?php 
+require "Post.php";
 
 class PostManager extends Manager
 {
     public function getBlogList()
     {
-        $sql = "SELECT post.id, title, excerpt, content, date_modification, users.name, users.last_name FROM post JOIN users ON post.author = users.id";
+        $sql = "SELECT post.id AS id, title, excerpt, content, dateModification, username FROM post JOIN users ON post.authorId = users.id";
 
         return $this->createQuery($sql);
     }
 
     public function getPost($id)
     {
-        $sql = "SELECT title, excerpt, content, date_modification, users.name, users.last_name FROM post JOIN users ON post.author = users.id WHERE post.id = :id";
+        $sql = "SELECT title, excerpt, content, dateModification, users.name AS authorName, users.lastName AS authorLastName FROM post JOIN users ON post.authorId = users.id WHERE post.id = :id";
 
-        return $this->createQuery($sql, array('id' => $id));
+        $data = $this->createQuery($sql, array('id' => $id));
 
-        //$post = $data->fetch();
+        $postData = $data->fetch();
+
+        return new Post($postData);
     }
 }
