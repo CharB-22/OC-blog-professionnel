@@ -1,6 +1,6 @@
 <?php 
 
-class PostManager extends Database
+class PostManager extends Manager
 {
     public function getBlogList()
     {
@@ -14,5 +14,7 @@ class PostManager extends Database
         $sql = "SELECT title, excerpt, content, date_modification, users.name, users.last_name FROM post JOIN users ON post.author = users.id WHERE post.id = :id";
 
         return $this->createQuery($sql, array('id' => $id));
+
+        //$post = $data->fetch();
     }
 }
