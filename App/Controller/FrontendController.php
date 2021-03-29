@@ -6,33 +6,33 @@ require "C:\MAMP\htdocs\blog-professionnel\App\Model\CommentManager.php";
 
 class FrontendController
 {
-    protected $PostManager;
-    protected $CommentManager;
+    protected $postManager;
+    protected $commentManager;
 
     public function __construct()
     {
-        $this->PostManager = new PostManager();
-        $this->CommentManager = new CommentManager();    
+        $this->postManager = new PostManager();
+        $this->commentManager = new CommentManager();    
     }
 
-    public function home()
+    public function getHome()
     {
         require "App\View\Home.php";
     }
 
-    public function blogList()
+    public function getBlogList()
     {
         
-        $blogList = $this->PostManager->getBlogList();
+        $blogList = $this->postManager->getBlogList();
         require "App\View\BlogList.php";
     }
 
-    public function post($id)
+    public function getPost($id)
     {
-        $data = $this->PostManager->getPost($id);
-        $blogList = $this->PostManager->getBlogList();
+        $data = $this->postManager->getPost($id);
+        $blogList = $this->postManager->getBlogList();
 
-        $comment = $this->CommentManager->getCommentsPost($_GET['id']);
+        $comment = $this->commentManager->getCommentsPost($_GET['id']);
 
         require "App\View\Article.php";
 

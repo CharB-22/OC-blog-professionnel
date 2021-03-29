@@ -19,19 +19,19 @@
                 {
                     if($_GET['route'] === 'home')
                     {
-                        $this->frontendController->home();
+                        $this->frontendController->getHome();
                     }
 
                     if($_GET['route'] === 'bloglist')
                     {
-                        $this->frontendController->blogList();                        
+                        $this->frontendController->getBlogList();                        
                     }
 
                     if($_GET['route'] === 'post')
                     {
                         if(isset($_GET['id']) && $_GET['id'] > 0)
                         {
-                            $this->frontendController->post($_GET['id']); 
+                            $this->frontendController->getPost($_GET['id']); 
                         }
                         else
                         {
@@ -46,7 +46,7 @@
                 }
                 else 
                 {
-                    $this->frontendController->home();
+                    $this->frontendController->getHome();
                 }
             }
             catch(Exception $e)
