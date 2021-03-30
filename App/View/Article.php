@@ -47,14 +47,14 @@ ob_start()
           <h2>Ajouts Récents</h2>
           <?php
 
-            while ($list = $blogList->fetch())
+            foreach ($blogList as $post)
             {
           ?>
           <div class="card mb-4">
             <div class="card-body">
-              <h3 class="card-title"><?= htmlspecialchars($list['title']);?></h3>
-              <p class="card-text"><?= htmlspecialchars($list['excerpt']);?></p>
-              <a href="index.php?route=post&id=<?= htmlspecialchars($list['id']);?>" class="btn btn-primary">Lire l'article &rarr;</a>
+              <h3 class="card-title"><?= htmlspecialchars($post->getTitle());?></h3>
+              <p class="card-text"><?= htmlspecialchars($post->getExcerpt());?></p>
+              <a href="index.php?route=post&id=<?= htmlspecialchars($post->getId());?>" class="btn btn-primary">Lire l'article &rarr;</a>
             </div>
           </div>
           
