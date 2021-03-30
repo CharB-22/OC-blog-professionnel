@@ -1,8 +1,8 @@
 <?php
 
-require "C:\MAMP\htdocs\blog-professionnel\App\Model\Manager.php";
-require "C:\MAMP\htdocs\blog-professionnel\App\Model\PostManager.php";
-require "C:\MAMP\htdocs\blog-professionnel\App\Model\CommentManager.php";
+require "App\Model\Manager.php";
+require "App\Model\PostManager.php";
+require "App\Model\CommentManager.php";
 
 class FrontendController
 {
