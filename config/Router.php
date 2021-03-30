@@ -22,12 +22,13 @@
                         $this->frontendController->getHome();
                     }
 
-                    if($_GET['route'] === 'bloglist')
+                    
+                    elseif($_GET['route'] === 'bloglist')
                     {
                         $this->frontendController->getBlogList();                        
                     }
-
-                    if($_GET['route'] === 'post')
+                    
+                    elseif($_GET['route'] === 'post')
                     {
                         if(isset($_GET['id']) && $_GET['id'] > 0)
                         {
