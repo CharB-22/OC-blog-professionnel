@@ -30,7 +30,7 @@ class FrontendController
     {
         // To get the data for the main content
         $post = $this->postManager->getPost($id);
-        $comment = $this->commentManager->getCommentsPost($_GET['id']);
+        $commentsList = $this->commentManager->getCommentsPost($_GET['id']);
 
         // To get the data for the sidebar
         $blogList = $this->postManager->getBlogList();

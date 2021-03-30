@@ -1,15 +1,25 @@
 <?php
+require "Comment.php";
 
 class CommentManager extends Manager
 {
     public function getCommentsPost($id)
     {
-        $sql = "SELECT comment_content, comment_date, users.username
+        $commentsList = [];
+        
+        $sql = "SELECT commentContent, commentDate, users.username
         FROM comments
-        JOIN users ON comments.user_id = users.id
-        WHERE post_id = :id
-        AND comment_validation = 1";
+        JOIN users ON comments.userId = users.id
+        WHERE postId = :id
+        AND commentValidation = 1";
 
-        return $this->createQuery($sql, array("id"=>$id));
+        $response = $this->createQuery($sql, array("id"=>$id));
+
+        while ($commentData = $response->fetch())
+        {
+            $commentsList[] = new Comment($commentData);
+        }
+
+        return $commentsList;
     }
 }
