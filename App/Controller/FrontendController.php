@@ -21,9 +21,8 @@ class FrontendController
     }
 
     public function getBlogList()
-    {
-        
-        $blogList = $this->postManager->getBlogList();
+    {   
+        $postList = $this->postManager->getBlogList();
         require "App\View\BlogList.php";
     }
 

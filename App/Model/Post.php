@@ -72,8 +72,9 @@ class Post
 
     public function setId($id)
     {
-        // Must be a number AND be > 100
-        if (is_int($id) && $id > 0)
+        $id = (int) $id;
+
+        if ($id > 0)
         {
             $this->id = $id;
         }
@@ -136,7 +137,8 @@ class Post
     public function setAuthorId($authorId)
     {
         // Must be an int AND give the valid rights (must be = 1)
-        if (is_int($authorId) && $authorId === 1)
+        $authorId = (int) $authorId;
+        if ($authorId === 1)
         {
             $this->authorId = $authorId;
         } 
