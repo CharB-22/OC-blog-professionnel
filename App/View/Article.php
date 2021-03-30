@@ -28,29 +28,27 @@ ob_start()
             </div>
           </div>
           <?php
-
-            while ($comments = $comment->fetch())
+            foreach ($commentsList as $comment)
             {
           ?>
-          <div class="media mb-4">
-            <div class="media-body">
-              <h5 class="mt-0"><?= htmlspecialchars($comments['username']);?><small></small><?= htmlspecialchars($comments['comment_date']);?></h5>
-              <?= htmlspecialchars($comments['comment_content']);?>
+            <div class="media mb-4">
+              <div class="media-body">
+                <h5 class="mt-0"><?= htmlspecialchars($comment->getUserName());?><small><?= htmlspecialchars($comment->getCommentDate());?></small></h5>
+                <?= htmlspecialchars($comment->getCommentContent());?>
+              </div>
             </div>
-          </div>
-
           <?php
             }
+          ?>
+        </div>
 
-            ?>
-        </div>      
+        <!-- Sidebar -->   
         <div class="col-md-4 col-xs-12 px-3">
           <h2>Ajouts Récents</h2>
           <?php
 
             while ($list = $blogList->fetch())
             {
-
           ?>
           <div class="card mb-4">
             <div class="card-body">
@@ -59,11 +57,10 @@ ob_start()
               <a href="index.php?route=post&id=<?= htmlspecialchars($list['id']);?>" class="btn btn-primary">Lire l'article &rarr;</a>
             </div>
           </div>
-
-
-  <?php
-      }
-      $content= ob_get_clean();
-      require("Layout.php"); 
-  ?>
+          
+          <?php
+            }
+            $content= ob_get_clean();
+            require("Layout.php"); 
+          ?>
 
