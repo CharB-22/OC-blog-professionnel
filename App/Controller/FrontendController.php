@@ -35,7 +35,7 @@ class FrontendController
         $commentsList = $this->commentManager->getCommentsPost($_GET['id']);
 
         // To get the data for the sidebar
-        $blogList = $this->postManager->getBlogList();
+        $blogListSidebar = $this->postManager->getBlogListSidebar();
 
         require "App\View\PostView.php";
 

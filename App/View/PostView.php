@@ -47,7 +47,7 @@ ob_start()
           <h2>Ajouts Récents</h2>
           <?php
 
-            foreach ($blogList as $post)
+            foreach ($blogListSidebar as $post)
             {
           ?>
           <div class="card mb-4">
