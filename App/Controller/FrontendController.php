@@ -1,6 +1,6 @@
 <?php
 
-require "App\Model\View.php";
+require "App\View\View.php";
 require "App\Model\Manager.php";
 require "App\Model\PostManager.php";
 require "App\Model\CommentManager.php";
@@ -19,13 +19,15 @@ class FrontendController
     public function getHome()
     {
         $homeView = new View("Home");
-        $homeView->generateContent(array("title"=> "Mon blog professionnel"));
+        $homeView->render();
     }
 
     public function getBlogList()
     {   
         $postList = $this->postManager->getBlogList();
-        require "App\View\BlogList.php";
+
+        $blogListView = new View("BlogList");
+        $blogListView->render(array("postList"=> $postList));
     }
 
     public function getPost($id)
@@ -37,7 +39,8 @@ class FrontendController
         // To get the data for the sidebar
         $blogListSidebar = $this->postManager->getBlogListSidebar();
 
-        require "App\View\PostView.php";
+        $postView =  new View ("Post");
+        $postView->render(array("post"=>$post, "commentsList"=>$commentsList, "blogListSidebar"=>$blogListSidebar));
 
     }
 }
