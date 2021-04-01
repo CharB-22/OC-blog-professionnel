@@ -17,6 +17,7 @@ class PostManager extends Manager
         }
 
         return $postList;
+
     }
 
     public function getBlogListSidebar()

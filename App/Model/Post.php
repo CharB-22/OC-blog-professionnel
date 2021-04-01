@@ -1,6 +1,6 @@
 <?php
 
-class Post
+class Post extends AbstractEntity
 {
     protected $id;
     protected $title;
@@ -16,18 +16,7 @@ class Post
         $this->hydrate($postData);
     }
 
-    public function hydrate(array $postData)
-    {
-        foreach ($postData as $key => $value)
-        {
-          $method = 'set'.ucfirst($key);
-              
-          if (method_exists($this, $method))
-          {
-            $this->$method($value);
-          }
-        }    
-    }
+
 
     public function getId()
     {
@@ -130,7 +119,7 @@ class Post
 
     public function setDateModification($dateModification)
     {
-        // Check if the format is correct with a regex
+        
         $this->dateModification = $dateModification;
     }
 
