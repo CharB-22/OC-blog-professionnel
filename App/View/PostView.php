@@ -1,7 +1,6 @@
 <?php 
 
-$title = $post->getTitle();
-ob_start() 
+$this->title = $post->getTitle();
 
 ?>
       <h1 class="mt-5 mb-3">
@@ -60,7 +59,5 @@ ob_start()
           
           <?php
             }
-            $content= ob_get_clean();
-            require("Layout.php"); 
-          ?>
+
 
