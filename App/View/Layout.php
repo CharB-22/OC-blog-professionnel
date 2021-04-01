@@ -34,13 +34,13 @@
                         <a class="nav-link" href="index.php?route=home">Accueil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#about">About</a>
+                        <a class="nav-link" href="index.php?#about">About</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="index.php?route=bloglist">Blog</a>
                         </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#contact">Contact</a>
+                        <a class="nav-link" href="index.php?#contact">Contact</a>
                     </li>
                     </ul>
                 </div>
@@ -71,9 +71,8 @@
                 <p class="m-0 text-center">Copyright &copy; Your Website 2021</p>
             </div>
         </footer>
-
+        
         <!-- Bootstrap Bundle with Popper -->
-        <!--<script src="vendor\twbs\bootstrap\dist\js\bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
     </body>
 </html>

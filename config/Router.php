@@ -3,6 +3,14 @@
 
     class Router
     {
+
+        protected $frontendController;
+
+        public function __construct()
+        {
+            $this->frontendController = new FrontendController();
+        }
+
         public function run()
         {
             try
@@ -11,22 +19,20 @@
                 {
                     if($_GET['route'] === 'home')
                     {
-                        $frontendController = new FrontendController();
-                        $frontendController->home();
+                        $this->frontendController->getHome();
                     }
 
-                    if($_GET['route'] === 'bloglist')
+                    
+                    elseif($_GET['route'] === 'bloglist')
                     {
-                        $frontendController = new FrontendController();
-                        $frontendController->blogList();                        
+                        $this->frontendController->getBlogList();                        
                     }
-
-                    if($_GET['route'] === 'post')
+                    
+                    elseif($_GET['route'] === 'post')
                     {
                         if(isset($_GET['id']) && $_GET['id'] > 0)
                         {
-                            $frontendController = new FrontendController();
-                            $frontendController->post($_GET['id']); 
+                            $this->frontendController->getPost($_GET['id']); 
                         }
                         else
                         {
@@ -41,8 +47,7 @@
                 }
                 else 
                 {
-                    $frontendController = new FrontendController();
-                    $frontendController->home();
+                    $this->frontendController->getHome();
                 }
             }
             catch(Exception $e)
