@@ -1,6 +1,4 @@
-<?php $title = "Mon blog professionnel"; ?>
-
-<?php ob_start(); ?>
+<?php $this->title = "Mon blog professionnel"; ?>
 
 <div class="container"> 
     
@@ -51,7 +49,3 @@
         </form>
     </div>
 </div>
-
-<?php $content= ob_get_clean() ?>
-
-<?php require("Layout.php"); ?>
