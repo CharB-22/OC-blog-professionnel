@@ -1,8 +1,4 @@
-<?php 
-
-$this->title = $post->getTitle();
-
-?>
+<?php $this->title = $post->getTitle(); ?>
       <h1 class="mt-5 mb-3">
         <?= htmlspecialchars($post->getTitle());?> <small>by <?= htmlspecialchars($post->getAuthorName());?> <?= htmlspecialchars($post->getAuthorLastName());?></small>
       </h1>

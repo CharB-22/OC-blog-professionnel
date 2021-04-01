@@ -1,5 +1,4 @@
 <?php
-require "Comment.php";
 
 class CommentManager extends Manager
 {

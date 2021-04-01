@@ -1,10 +1,5 @@
 <?php
 
-require "App\View\View.php";
-require "App\Model\Manager.php";
-require "App\Model\PostManager.php";
-require "App\Model\CommentManager.php";
-
 class FrontendController
 {
     protected $postManager;
