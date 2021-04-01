@@ -7,7 +7,23 @@ class PostManager extends Manager
     {
         $postList = [];
         
-        $sql = "SELECT * FROM post";
+        $sql = "SELECT id, title, excerpt FROM post";
+
+        $response = $this->createQuery($sql);
+
+        while ($postData = $response->fetch())
+        {
+            $postList[] = new Post($postData);
+        }
+
+        return $postList;
+    }
+
+    public function getBlogListSidebar()
+    {
+        $postList = [];
+        
+        $sql = "SELECT id, title, excerpt FROM post LIMIT 5";
 
         $response = $this->createQuery($sql);
 

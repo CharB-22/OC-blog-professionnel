@@ -1,7 +1,6 @@
 <?php 
 
-$title = $post->getTitle();
-ob_start() 
+$this->title = $post->getTitle();
 
 ?>
       <h1 class="mt-5 mb-3">
@@ -47,7 +46,7 @@ ob_start()
           <h2>Ajouts Récents</h2>
           <?php
 
-            foreach ($blogList as $post)
+            foreach ($blogListSidebar as $post)
             {
           ?>
           <div class="card mb-4">
@@ -60,7 +59,5 @@ ob_start()
           
           <?php
             }
-            $content= ob_get_clean();
-            require("Layout.php"); 
-          ?>
+
 

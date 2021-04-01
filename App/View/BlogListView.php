@@ -1,7 +1,7 @@
 <?php 
 
-$title = "Les Articles Publiés";
-ob_start() ?>
+$this->title = "Les Articles Publiés";
+ ?>
 
 <h1 class="pt-5 mb-3">Articles Publiés</h1>
 
@@ -21,5 +21,3 @@ ob_start() ?>
     </div>
   <?php
     }
-    $content= ob_get_clean();
-    require("Layout.php"); ?>
