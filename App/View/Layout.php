@@ -34,13 +34,13 @@
                         <a class="nav-link" href="index.php?route=home">Accueil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php?#about">About</a>
+                        <a class="nav-link" href="index.php?route=home#about">About</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="index.php?route=bloglist">Blog</a>
                         </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php?#contact">Contact</a>
+                        <a class="nav-link" href="index.php?route=home#contact">Contact</a>
                     </li>
                     </ul>
                 </div>

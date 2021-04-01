@@ -1,5 +1,6 @@
 <?php
 
+
 class FrontendController
 {
     protected $postManager;
@@ -27,15 +28,24 @@ class FrontendController
 
     public function getPost($id)
     {
-        // To get the data for the main content
-        $post = $this->postManager->getPost($id);
-        $commentsList = $this->commentManager->getCommentsPost($_GET['id']);
+        //Check the validity of the id
 
-        // To get the data for the sidebar
-        $blogListSidebar = $this->postManager->getBlogListSidebar();
+        if(isset($id) && $id > 0)
+        {
+            // Get the data for the main content
+            $post = $this->postManager->getPost($id);
+            $commentsList = $this->commentManager->getCommentsPost($id);
 
-        $postView =  new View ("Post");
-        $postView->render(array("post"=>$post, "commentsList"=>$commentsList, "blogListSidebar"=>$blogListSidebar));
+            // Get the data for the sidebar
+            $blogListSidebar = $this->postManager->getBlogListSidebar();
 
+            //Send all data to the matching view :
+            $postView =  new View ("Post");
+            $postView->render(array("post"=>$post, "commentsList"=>$commentsList, "blogListSidebar"=>$blogListSidebar));           
+        }
+        else
+        {
+            echo 'Erreur: aucun identifiant de billet envoyé.';
+        }
     }
 }
