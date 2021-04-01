@@ -1,4 +1,5 @@
 <?php
+    require "App\Controller\FrontendController.php";
 
     class Router
     {
@@ -10,19 +11,22 @@
                 {
                     if($_GET['route'] === 'home')
                     {
-                        require "C:\MAMP\htdocs\blog-professionnel\App\View\Home.php";
+                        $frontendController = new FrontendController();
+                        $frontendController->home();
                     }
 
                     if($_GET['route'] === 'bloglist')
                     {
-                        require "C:\MAMP\htdocs\blog-professionnel\App\View\BlogList.php";
+                        $frontendController = new FrontendController();
+                        $frontendController->blogList();                        
                     }
 
                     if($_GET['route'] === 'post')
                     {
                         if(isset($_GET['id']) && $_GET['id'] > 0)
                         {
-                            require "C:\MAMP\htdocs\blog-professionnel\App\View\Article.php";
+                            $frontendController = new FrontendController();
+                            $frontendController->post($_GET['id']); 
                         }
                         else
                         {
@@ -37,7 +41,8 @@
                 }
                 else 
                 {
-                    require "C:\MAMP\htdocs\blog-professionnel\App\View\Home.php";
+                    $frontendController = new FrontendController();
+                    $frontendController->home();
                 }
             }
             catch(Exception $e)
