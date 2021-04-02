@@ -1,14 +1,15 @@
 <?php
-    require "App\Controller\FrontendController.php";
 
     class Router
     {
 
         protected $frontendController;
+        protected $backendController;
 
         public function __construct()
         {
             $this->frontendController = new FrontendController();
+            $this->backendController = new BackendController();
         }
 
         public function run()
@@ -28,8 +29,11 @@
                     case 'post':
                         $this->frontendController->getPost($_GET['id']);
                         break;
+                    case 'adminHome':
+                        $this->backendController->getAdminHome();
+                        break;
                     default:
-                        echo "Page Inconnue";
+                        $this->frontendController->getHome();
                         break;
                 }
             }
