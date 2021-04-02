@@ -2,7 +2,7 @@
 
 <div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
     <h1>Articles Publiés</h1>
-    <a href="#" class="btn btn-primary m-5">Créer un nouvel article</a>
+    <a href="index.php?route=adminCreatePost" class="btn btn-primary m-5">Créer un nouvel article</a>
 </div>
 
 <?php foreach ($postList as $post)

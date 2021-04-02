@@ -25,6 +25,12 @@ class BackendController
         $adminPostListView->render(array("postList" => $adminPostList));
     }
 
+    public function getAdminCreatePost()
+    {
+        $adminCreatePostView = new View("AdminCreatePost");
+        $adminCreatePostView->render();
+    }
+
     public function getCommentsToApprove()
     {
         $commentsToApprove = $this->commentManager->getCommentsToApprove();
