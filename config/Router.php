@@ -38,6 +38,9 @@
                     case 'adminCommentList':
                         $this->backendController->getCommentsToApprove();
                         break;
+                    case 'adminCreatePost':
+                        $this->backendController->getAdminCreatePost();
+                        break;
                     default:
                         $this->frontendController->getHome();
                         break;
