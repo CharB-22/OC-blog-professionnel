@@ -32,6 +32,9 @@
                     case 'adminHome':
                         $this->backendController->getAdminHome();
                         break;
+                    case 'adminPostList':
+                        $this->backendController->getAdminPostList();
+                        break;
                     default:
                         $this->frontendController->getHome();
                         break;

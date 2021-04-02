@@ -14,4 +14,12 @@ class BackendController
         $adminHomeView = new View("AdminHome");
         $adminHomeView->render();
     }
+
+    public function getAdminPostList()
+    {
+        $adminPostList = $this->postManager->getBlogList();
+
+        $adminPostListView = new View("AdminPostList");
+        $adminPostListView->render(array("postList" => $adminPostList));
+    }
 }
