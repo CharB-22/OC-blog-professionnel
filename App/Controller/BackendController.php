@@ -9,5 +9,9 @@ class BackendController
         $this->postManager = new PostManager();
     }
 
-
+    public function getAdminHome()
+    {
+        $adminHomeView = new View("AdminHome");
+        $adminHomeView->render();
+    }
 }
