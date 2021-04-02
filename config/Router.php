@@ -35,6 +35,9 @@
                     case 'adminPostList':
                         $this->backendController->getAdminPostList();
                         break;
+                    case 'adminCommentList':
+                        $this->backendController->getCommentsToApprove();
+                        break;
                     default:
                         $this->frontendController->getHome();
                         break;

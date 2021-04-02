@@ -3,10 +3,12 @@
 class BackendController
 {
     protected $postManager;
+    protected $commentManager;
 
     public function __construct()
     {
         $this->postManager = new PostManager();
+        $this->commentManager = new CommentManager();
     }
 
     public function getAdminHome()
@@ -21,5 +23,13 @@ class BackendController
 
         $adminPostListView = new View("AdminPostList");
         $adminPostListView->render(array("postList" => $adminPostList));
+    }
+
+    public function getCommentsToApprove()
+    {
+        $commentsToApprove = $this->commentManager->getCommentsToApprove();
+
+        $adminCommentListView = new View("AdminCommentList");
+        $adminCommentListView->render(array("commentsToApprove"=> $commentsToApprove)); 
     }
 }

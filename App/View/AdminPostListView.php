@@ -1,4 +1,4 @@
-<?php $title="Tous les articles"; ?>
+<?php $this->title="Tous les articles"; ?>
 
 <div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
     <h1>Articles Publiés</h1>
