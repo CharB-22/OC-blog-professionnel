@@ -15,8 +15,8 @@
             <p class="card-text"><?= htmlspecialchars($post->getExcerpt());?></p>
             <div class="d-flex flex-column flex-md-row">
                 <!-- To update with the correct route-->
-                <a href="index.php?route=post&id=<?= htmlspecialchars($post->getId());?>" class="btn btn-primary m-3">Modifier l'article</a>
-                <a href="index.php?route=post&id=<?= htmlspecialchars($post->getId());?>" class="btn btn-primary m-3">Supprimer l'article</a>
+                <a href="index.php?route=adminUpdatePost&id=<?= htmlspecialchars($post->getId());?>" class="btn btn-primary m-3">Modifier l'article</a>
+                <a href="index.php?route=adminUpdatePost&id=<?= htmlspecialchars($post->getId());?>" class="btn btn-primary m-3">Supprimer l'article</a>
             </div>
         </div>
     </div>

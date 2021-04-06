@@ -46,6 +46,33 @@ class BackendController
 
     }
 
+    public function getAdminUpdatePost($id)
+    {
+        
+        // If we have $POST data
+        if (isset($_POST['updatePost']))
+        {
+            $postToUpdate= $this->postManager->updatePost($id);
+
+            // Get the new data from the post
+            $postToUpdate = $this->postManager->getPost($id);
+
+            // Send the post data to the view
+            $adminCreatePostView = new View("AdminUpdatePost");
+            $adminCreatePostView->render(array("postToUpdate" => $postToUpdate, 'message' => $message));
+        }
+        else
+        {
+            // Get the data from the post
+            $postToUpdate = $this->postManager->getPost($id);
+
+            // Send the post data to the view
+            $adminCreatePostView = new View("AdminUpdatePost");
+            $adminCreatePostView->render(array("postToUpdate" => $postToUpdate));
+        }
+
+    }
+
     public function getCommentsToApprove()
     {
         $commentsToApprove = $this->commentManager->getCommentsToApprove();

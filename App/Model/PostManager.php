@@ -69,4 +69,28 @@ class PostManager extends Manager
         return $message = 'Le post a bien été créé';
         
     }
+
+    public function updatePost($id)
+    {
+        // Create the object with the new information
+        $postUpdated = new Post([
+            'id' => $id,
+            'title'=> $_POST['title'],
+            'excerpt' => $_POST['excerpt'],
+            'content' => $_POST['content']
+        ]);
+
+        // Update the db with this information
+        $sql = "UPDATE post SET title = :title, excerpt = :excerpt, content = :content, dateModification = NOW() WHERE id = :id";
+
+        $response = $this->createQuery($sql, array(
+            'id' => $postUpdated->getId(),
+            'title' => $postUpdated->getTitle(),
+            'excerpt' => $postUpdated->getExcerpt(),
+            'content' => $postUpdated->getContent()
+        ));
+
+        return $message = "L'article a bien été modifié";
+
+    }
 }

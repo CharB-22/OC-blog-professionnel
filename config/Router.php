@@ -41,6 +41,9 @@
                     case 'adminCreatePost':
                         $this->backendController->getAdminCreatePost();
                         break;
+                    case 'adminUpdatePost':
+                        $this->backendController->getAdminUpdatePost($_GET['id']);
+                        break;
                     default:
                         $this->frontendController->getHome();
                         break;
