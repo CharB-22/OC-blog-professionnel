@@ -59,7 +59,7 @@ class BackendController
 
             // Send the post data to the view
             $adminCreatePostView = new View("AdminUpdatePost");
-            $adminCreatePostView->render(array("postToUpdate" => $postToUpdate, 'message' => $message));
+            $adminCreatePostView->render(array("postToUpdate" => $postToUpdate));
         }
         else
         {
