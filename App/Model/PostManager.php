@@ -93,4 +93,15 @@ class PostManager extends Manager
         return $message = "L'article a bien été modifié";
 
     }
+
+    public function deletePost($id)
+    {
+        $postToDelete = new Post([
+            'id' => $id
+        ]);
+
+        $sql = "DELETE FROM post WHERE id = :id";
+
+        $response = $this->createQuery($sql, array('id' => $postToDelete->getId()));
+    }
 }

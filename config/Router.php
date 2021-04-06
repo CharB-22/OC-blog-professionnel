@@ -44,6 +44,9 @@
                     case 'adminUpdatePost':
                         $this->backendController->getAdminUpdatePost($_GET['id']);
                         break;
+                    case 'adminDeletePost':
+                        $this->backendController->getAdminDeletePost($_GET['id']);
+                        break;
                     default:
                         $this->frontendController->getHome();
                         break;

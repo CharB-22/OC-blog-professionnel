@@ -73,6 +73,30 @@ class BackendController
 
     }
 
+    public function getAdminDeletePost($id)
+    {
+        
+        // If we have $POST data
+        if (isset($_POST['deletePost']))
+        {
+            $postToUpdate= $this->postManager->deletePost($id);
+
+            // Send the post data to the view
+            $adminHomeView = new View("AdminHome");
+            $adminHomeView->render();
+        }
+        else
+        {
+            // Get the data from the post
+            $postToDelete = $this->postManager->getPost($id);
+
+            // Send the post data to the view
+            $adminCreatePostView = new View("AdminDeletePost");
+            $adminCreatePostView->render(array("postToDelete" => $postToDelete));
+        }
+
+    }
+
     public function getCommentsToApprove()
     {
         $commentsToApprove = $this->commentManager->getCommentsToApprove();
