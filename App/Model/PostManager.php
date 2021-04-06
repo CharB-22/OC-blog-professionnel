@@ -45,4 +45,28 @@ class PostManager extends Manager
 
         return new Post($postData);
     }
+
+    public function createPost()
+    {
+        // Create a Post object with the information from the form
+        $newPost = new Post([
+                'title'=> $_POST['title'],
+                'excerpt' => $_POST['excerpt'],
+                'content' => $_POST['content']
+            ]);
+
+        // Create the entry in the db with the entity information
+            
+        $sql = "INSERT INTO post(title, excerpt, content, dateModification, authorId) VALUES (:title, :excerpt, :content, NOW(), 1)";
+        
+        $response = $this->createQuery($sql, array(
+            'title' => $newPost->getTitle(),
+            'excerpt'=> $newPost->getExcerpt(), 
+            'content'=> $newPost->getContent(),
+            /*'authorId'=> 1*/)); // Implement dynamic authorId with Authentification
+        
+
+        return $message = 'Le post a bien été créé';
+        
+    }
 }

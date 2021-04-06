@@ -3,7 +3,7 @@
 <h1 class="text-center mb-3">Créer un nouvel article</h1>
 
 <div>
-    <form class="p-md-5 p-xs-3">
+    <form method="post" action="index.php?route=adminCreatePost" class="p-md-5 p-xs-3">
         <div class="row m-3">
             <label for="title" class="form-label">Titre</label>
             <input type="text" class="form-control" id="title" name="title" aria-describedby="postTitle">
@@ -16,6 +16,6 @@
             <label for="content" class="form-label">Contenu</label>
             <textarea class="form-control" id="content" name="content" aria-describedby="Content"></textarea>
         </div>
-        <button type="submit" class="btn btn-primary m-3">Créer</button>
+        <button type="submit" name="createPost" class="btn btn-primary m-3">Créer</button>
     </form>
 </div>

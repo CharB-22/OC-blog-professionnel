@@ -13,12 +13,14 @@ class BackendController
 
     public function getAdminHome()
     {
+        // Insert here authentification control
         $adminHomeView = new View("AdminHome");
         $adminHomeView->render();
     }
 
     public function getAdminPostList()
     {
+        // Insert here authentification control
         $adminPostList = $this->postManager->getBlogList();
 
         $adminPostListView = new View("AdminPostList");
@@ -27,8 +29,21 @@ class BackendController
 
     public function getAdminCreatePost()
     {
-        $adminCreatePostView = new View("AdminCreatePost");
-        $adminCreatePostView->render();
+        if (isset($_POST['createPost']))
+        {
+            
+            $postCreated = $this->postManager->createPost();
+
+            $adminCreatePostView = new View("AdminCreatePost");
+            $adminCreatePostView->render(array("message" => $postCreated));
+
+        }
+        else
+        {
+            $adminCreatePostView = new View("AdminCreatePost");
+            $adminCreatePostView->render();
+        }
+
     }
 
     public function getCommentsToApprove()
@@ -38,4 +53,5 @@ class BackendController
         $adminCommentListView = new View("AdminCommentList");
         $adminCommentListView->render(array("commentsToApprove"=> $commentsToApprove)); 
     }
+
 }
