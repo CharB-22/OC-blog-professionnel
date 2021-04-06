@@ -32,16 +32,36 @@ class FrontendController
 
         if(isset($id) && $id > 0)
         {
-            // Get the data for the main content
-            $post = $this->postManager->getPost($id);
-            $commentsList = $this->commentManager->getCommentsPost($id);
+            if(isset($_POST['createComment']))
+            {
+                $createdComment = $this->commentManager->createComment($id);
+                
+                // Get the data for the main content
+                $post = $this->postManager->getPost($id);
+                $commentsList = $this->commentManager->getCommentsPost($id);
 
-            // Get the data for the sidebar
-            $blogListSidebar = $this->postManager->getBlogListSidebar();
+                // Get the data for the sidebar
+                $blogListSidebar = $this->postManager->getBlogListSidebar();
 
-            //Send all data to the matching view :
-            $postView =  new View ("Post");
-            $postView->render(array("post"=>$post, "commentsList"=>$commentsList, "blogListSidebar"=>$blogListSidebar));           
+                //Send all data to the matching view :
+                $postView =  new View ("Post");
+                $postView->render(array("post"=>$post, "commentsList"=>$commentsList, "blogListSidebar"=>$blogListSidebar));
+
+            }
+            else
+            {
+                // Display the data of the post
+                // Get the data for the main content
+                $post = $this->postManager->getPost($id);
+                $commentsList = $this->commentManager->getCommentsPost($id);
+
+                // Get the data for the sidebar
+                $blogListSidebar = $this->postManager->getBlogListSidebar();
+
+                //Send all data to the matching view :
+                $postView =  new View ("Post");
+                $postView->render(array("post"=>$post, "commentsList"=>$commentsList, "blogListSidebar"=>$blogListSidebar));          
+            }
         }
         else
         {

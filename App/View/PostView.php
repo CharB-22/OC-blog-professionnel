@@ -14,11 +14,11 @@
           <div class="card my-4">
             <h5 class="card-header">Leave a Comment:</h5>
             <div class="card-body">
-              <form>
+              <form method="post" action="index.php?route=post&id=<?= htmlspecialchars($post->getId());?>">
                 <div class="form-group">
-                  <textarea class="form-control" rows="3"></textarea>
+                  <textarea class="form-control" id="content" name="content" rows="3"></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary">Envoyer</button>
+                <button type="submit" name="createComment" class="btn btn-primary">Envoyer</button>
               </form>
             </div>
           </div>

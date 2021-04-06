@@ -93,7 +93,9 @@ class Comment extends AbstractEntity
 
     public function setCommentValidation($commentValidation)
     {
-        if (is_bool($commentValidation))
+        $commentValidation = (int) $commentValidation;
+
+        if ($commentValidation >= 0)
         {
             return $this->commentValidation = $commentValidation;
         }

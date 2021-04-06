@@ -22,6 +22,28 @@ class CommentManager extends Manager
         return $commentsList;
     }
 
+    public function createComment($postId)
+    {
+        //Create a new Comment entity
+        $newComment = new Comment([
+            'postId' => $postId,
+            'commentContent' => $_POST["content"],
+            'commentValidation' => 0,
+            'userId' => 1 // to be dynamically determined with authentification
+        ]);
+
+        // Update this database with this new comment
+        $sql = "INSERT INTO comments (commentContent, commentDate, commentValidation, postId, userId)
+        VALUES (:commentContent, NOW(), :commentValidation, :postId, :userId)";
+
+        $response = $this->createQuery($sql, array(
+            'postId' => $newComment->getPostId(),
+            'commentContent' => $newComment->getCommentContent(),
+            'commentValidation' => $newComment->getCommentValidation(),
+            'userId' => $newComment->getUserId()
+        ));
+    }
+
     public function getCommentsToApprove()
     {
         $commentsToApprove = [];
