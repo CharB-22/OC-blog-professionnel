@@ -1,6 +1,6 @@
 <?php
 
-class Comment
+class Comment extends AbstractEntity
 {
     protected $commentId;
     protected $commentContent;
@@ -13,19 +13,6 @@ class Comment
     public function __construct(array $commentData)
     {
         $this->hydrate($commentData);
-    }
-
-    public function hydrate(array $commentData)
-    {
-        foreach ($commentData as $key => $value)
-        {
-          $method = 'set'.ucfirst($key);
-              
-          if (method_exists($this, $method))
-          {
-            $this->$method($value);
-          }
-        }    
     }
 
     public function getcommentId()
@@ -106,7 +93,9 @@ class Comment
 
     public function setCommentValidation($commentValidation)
     {
-        if (is_bool($commentValidation))
+        $commentValidation = (int) $commentValidation;
+
+        if ($commentValidation >= 0)
         {
             return $this->commentValidation = $commentValidation;
         }

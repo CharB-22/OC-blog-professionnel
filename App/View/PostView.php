@@ -1,9 +1,4 @@
-<?php 
-
-$title = $post->getTitle();
-ob_start() 
-
-?>
+<?php $this->title = $post->getTitle(); ?>
       <h1 class="mt-5 mb-3">
         <?= htmlspecialchars($post->getTitle());?> <small>by <?= htmlspecialchars($post->getAuthorName());?> <?= htmlspecialchars($post->getAuthorLastName());?></small>
       </h1>
@@ -19,11 +14,11 @@ ob_start()
           <div class="card my-4">
             <h5 class="card-header">Leave a Comment:</h5>
             <div class="card-body">
-              <form>
+              <form method="post" action="index.php?route=post&id=<?= htmlspecialchars($post->getId());?>">
                 <div class="form-group">
-                  <textarea class="form-control" rows="3"></textarea>
+                  <textarea class="form-control" id="content" name="content" rows="3"></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary">Envoyer</button>
+                <button type="submit" name="createComment" class="btn btn-primary">Envoyer</button>
               </form>
             </div>
           </div>
@@ -47,7 +42,7 @@ ob_start()
           <h2>Ajouts Récents</h2>
           <?php
 
-            foreach ($blogList as $post)
+            foreach ($blogListSidebar as $post)
             {
           ?>
           <div class="card mb-4">
@@ -60,7 +55,5 @@ ob_start()
           
           <?php
             }
-            $content= ob_get_clean();
-            require("Layout.php"); 
-          ?>
+
 

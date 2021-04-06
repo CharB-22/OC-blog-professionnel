@@ -1,8 +1,5 @@
 <?php
 
-require "App\Model\Manager.php";
-require "App\Model\PostManager.php";
-require "App\Model\CommentManager.php";
 
 class FrontendController
 {
@@ -17,25 +14,58 @@ class FrontendController
 
     public function getHome()
     {
-        require "App\View\Home.php";
+        $homeView = new View("Home");
+        $homeView->render();
     }
 
     public function getBlogList()
     {   
         $postList = $this->postManager->getBlogList();
-        require "App\View\BlogList.php";
+
+        $blogListView = new View("BlogList");
+        $blogListView->render(array("postList"=> $postList));
     }
 
     public function getPost($id)
     {
-        // To get the data for the main content
-        $post = $this->postManager->getPost($id);
-        $commentsList = $this->commentManager->getCommentsPost($_GET['id']);
+        //Check the validity of the id
 
-        // To get the data for the sidebar
-        $blogList = $this->postManager->getBlogList();
+        if(isset($id) && $id > 0)
+        {
+            if(isset($_POST['createComment']))
+            {
+                $createdComment = $this->commentManager->createComment($id);
+                
+                // Get the data for the main content
+                $post = $this->postManager->getPost($id);
+                $commentsList = $this->commentManager->getCommentsPost($id);
 
-        require "App\View\Article.php";
+                // Get the data for the sidebar
+                $blogListSidebar = $this->postManager->getBlogListSidebar();
 
+                //Send all data to the matching view :
+                $postView =  new View ("Post");
+                $postView->render(array("post"=>$post, "commentsList"=>$commentsList, "blogListSidebar"=>$blogListSidebar));
+
+            }
+            else
+            {
+                // Display the data of the post
+                // Get the data for the main content
+                $post = $this->postManager->getPost($id);
+                $commentsList = $this->commentManager->getCommentsPost($id);
+
+                // Get the data for the sidebar
+                $blogListSidebar = $this->postManager->getBlogListSidebar();
+
+                //Send all data to the matching view :
+                $postView =  new View ("Post");
+                $postView->render(array("post"=>$post, "commentsList"=>$commentsList, "blogListSidebar"=>$blogListSidebar));          
+            }
+        }
+        else
+        {
+            echo 'Erreur: aucun identifiant de billet envoyé.';
+        }
     }
 }
