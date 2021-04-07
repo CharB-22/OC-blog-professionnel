@@ -66,6 +66,10 @@ class BackendController
             $this->postManager->deletePost($_GET['id']);
             $this->getAdminPostList();
         }
+        else if (isset($_POST['cancelDelete']) && isset($_GET['id']))
+        {
+            $this->getAdminPostList();
+        }
         else
         {
             // Get the data from the post

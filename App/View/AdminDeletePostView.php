@@ -21,5 +21,6 @@
             </textarea>
         </div>
         <button type="submit" name="deletePost" class="btn btn-primary m-3">Confirmer suppression</button>
+        <button type="submit" name="cancelDelete" class="btn btn-primary m-3">Annuler</button>
     </form>
 </div>
