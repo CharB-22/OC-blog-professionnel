@@ -1,6 +1,6 @@
 <?php $this->title = "Modifier le post" ?>
 
-<h1 class="text-center mb-3">Modifier un article</h1>
+<h1 class="text-center mb-3">Confirmez la suppression</h1>
 
 <div>
     <form method="post" action="index.php?route=adminDeletePost&id=<?= htmlspecialchars($postToDelete->getId());?>" class="p-md-5 p-xs-3">

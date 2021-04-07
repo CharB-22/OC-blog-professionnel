@@ -1,6 +1,6 @@
 <?php
 
-class CommentManager extends Manager
+class CommentManager extends AbstractManager
 {
     public function getCommentsPost($id)
     {
@@ -44,11 +44,11 @@ class CommentManager extends Manager
         ));
     }
 
-    public function getCommentsToApprove()
+    public function getCommentsToManage()
     {
-        $commentsToApprove = [];
+        $commentsToManage = [];
 
-        $sql = "SELECT commentContent, commentDate, users.username
+        $sql = "SELECT comments.commentId, commentContent, commentDate, users.username
         FROM comments
         JOIN users ON comments.userId = users.id
         WHERE commentValidation = 0";
@@ -57,9 +57,30 @@ class CommentManager extends Manager
 
         while ($commentData = $response->fetch())
         {
-            $commentsToApprove[] = new Comment($commentData);
+            $commentsToManage[] = new Comment($commentData);
         }
 
-        return $commentsToApprove;
+        return $commentsToManage;
+    }
+
+    public function approveComment($commentId)
+    {
+
+        $sql = "UPDATE comments SET commentValidation = :commentValidation WHERE commentId = :commentId";
+
+        $response = $this->createQuery($sql, array(
+            'commentValidation' => 1,
+            'commentId' => $commentId
+        ));
+
+    }
+
+    public function deleteComment($commentId)
+    {
+        $sql = "DELETE FROM comments WHERE commentId = :commentId";
+
+        $response = $this->createQuery($sql, array(
+            'commentId' => $commentId
+        ));
     }
 }

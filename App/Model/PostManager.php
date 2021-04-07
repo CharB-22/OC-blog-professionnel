@@ -1,6 +1,6 @@
 <?php 
 
-class PostManager extends Manager
+class PostManager extends AbstractManager
 {
     public function getBlogList()
     {

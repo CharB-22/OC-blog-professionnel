@@ -15,7 +15,7 @@ class Comment extends AbstractEntity
         $this->hydrate($commentData);
     }
 
-    public function getcommentId()
+    public function getCommentId()
     {
         return $this->id;
     }

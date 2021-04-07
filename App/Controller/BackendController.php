@@ -30,65 +30,46 @@ class BackendController
     public function getAdminCreatePost()
     {
         if (isset($_POST['createPost']))
-        {
-            
+        {            
             $postCreated = $this->postManager->createPost();
-
-            $adminCreatePostView = new View("AdminCreatePost");
-            $adminCreatePostView->render(array("message" => $postCreated));
-
         }
-        else
-        {
+
+            // Display the form to create a Post
             $adminCreatePostView = new View("AdminCreatePost");
             $adminCreatePostView->render();
-        }
 
     }
 
-    public function getAdminUpdatePost($id)
+    public function getAdminUpdatePost()
     {
         
-        // If we have $POST data
-        if (isset($_POST['updatePost']))
+        // Manage the new data sent with the form
+        if (isset($_POST['updatePost']) && isset($_GET['id']))
         {
-            $postToUpdate= $this->postManager->updatePost($id);
+            $postToUpdate= $this->postManager->updatePost($_GET['id']);
 
-            // Get the new data from the post
-            $postToUpdate = $this->postManager->getPost($id);
+        }
 
-            // Send the post data to the view
-            $adminCreatePostView = new View("AdminUpdatePost");
-            $adminCreatePostView->render(array("postToUpdate" => $postToUpdate));
+        // Just display the elements
+        $postToUpdate = $this->postManager->getPost($_GET['id']);
+
+        $adminCreatePostView = new View("AdminUpdatePost");
+        $adminCreatePostView->render(array("postToUpdate" => $postToUpdate));
+
+    }
+
+    public function getAdminDeletePost()
+    {
+        
+        if (isset($_POST['deletePost']) && isset($_GET['id']))
+        {
+            $this->postManager->deletePost($_GET['id']);
+            $this->getAdminPostList();
         }
         else
         {
             // Get the data from the post
-            $postToUpdate = $this->postManager->getPost($id);
-
-            // Send the post data to the view
-            $adminCreatePostView = new View("AdminUpdatePost");
-            $adminCreatePostView->render(array("postToUpdate" => $postToUpdate));
-        }
-
-    }
-
-    public function getAdminDeletePost($id)
-    {
-        
-        // If we have $POST data
-        if (isset($_POST['deletePost']))
-        {
-            $postToUpdate= $this->postManager->deletePost($id);
-
-            // Send the post data to the view
-            $adminHomeView = new View("AdminHome");
-            $adminHomeView->render();
-        }
-        else
-        {
-            // Get the data from the post
-            $postToDelete = $this->postManager->getPost($id);
+            $postToDelete = $this->postManager->getPost($_GET['id']);
 
             // Send the post data to the view
             $adminCreatePostView = new View("AdminDeletePost");
@@ -97,12 +78,22 @@ class BackendController
 
     }
 
-    public function getCommentsToApprove()
+    public function getCommentsToManage()
     {
-        $commentsToApprove = $this->commentManager->getCommentsToApprove();
 
+        if (isset($_POST['approveComment']))
+        {
+            $this->commentManager->approveComment($_GET['commentId']);
+        }
+        else if(isset($_POST['deleteComment']))
+        {
+            $this->commentManager->deleteComment($_GET['commentId']);
+        }
+
+        $commentsToManage = $this->commentManager->getCommentsToManage();
         $adminCommentListView = new View("AdminCommentList");
-        $adminCommentListView->render(array("commentsToApprove"=> $commentsToApprove)); 
+        $adminCommentListView->render(array("commentsToManage"=> $commentsToManage)); 
+
     }
 
 }

@@ -26,12 +26,13 @@ class FrontendController
         $blogListView->render(array("postList"=> $postList));
     }
 
-    public function getPost($id)
+    public function getPost()
     {
         //Check the validity of the id
-
-        if(isset($id) && $id > 0)
+        if (isset ($_GET['id']) && $_GET['id'] > 0)
         {
+            $id = $_GET['id'];
+
             if(isset($_POST['createComment']))
             {
                 $createdComment = $this->commentManager->createComment($id);
@@ -42,26 +43,20 @@ class FrontendController
 
                 // Get the data for the sidebar
                 $blogListSidebar = $this->postManager->getBlogListSidebar();
-
-                //Send all data to the matching view :
-                $postView =  new View ("Post");
-                $postView->render(array("post"=>$post, "commentsList"=>$commentsList, "blogListSidebar"=>$blogListSidebar));
-
             }
-            else
-            {
-                // Display the data of the post
-                // Get the data for the main content
-                $post = $this->postManager->getPost($id);
-                $commentsList = $this->commentManager->getCommentsPost($id);
 
-                // Get the data for the sidebar
-                $blogListSidebar = $this->postManager->getBlogListSidebar();
+            // Display the Post content
+            // Get the data for the main content
+            $post = $this->postManager->getPost($id);
+            $commentsList = $this->commentManager->getCommentsPost($id);
 
-                //Send all data to the matching view :
-                $postView =  new View ("Post");
-                $postView->render(array("post"=>$post, "commentsList"=>$commentsList, "blogListSidebar"=>$blogListSidebar));          
-            }
+            // Get the data for the sidebar
+            $blogListSidebar = $this->postManager->getBlogListSidebar();
+
+            //Send all data to the matching view :
+            $postView =  new View ("Post");
+            $postView->render(array("post"=>$post, "commentsList"=>$commentsList, "blogListSidebar"=>$blogListSidebar));          
+
         }
         else
         {
