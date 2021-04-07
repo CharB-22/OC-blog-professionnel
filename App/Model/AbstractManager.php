@@ -1,6 +1,6 @@
 <?php
 
-abstract class Manager
+abstract class AbstractManager
 {
 
   protected $db;
