@@ -21,6 +21,7 @@ class BackendController
     public function getAdminPostList()
     {
         // Insert here authentification control
+        $message = "";
         $adminPostList = $this->postManager->getBlogList();
 
         $adminPostListView = new View("AdminPostList");
@@ -77,7 +78,13 @@ class BackendController
         if (isset($_POST['deletePost']) && isset($_GET['id']))
         {
             $this->postManager->deletePost($_GET['id']);
-            $this->getAdminPostList();
+            
+            $message = "Le post a été supprimé";
+
+            $adminPostList = $this->postManager->getBlogList();
+
+            $adminPostListView = new View("AdminPostList");
+            $adminPostListView->render(array("postList" => $adminPostList, "message" => $message));
         }
         else if (isset($_POST['cancelDelete']) && isset($_GET['id']))
         {
@@ -85,12 +92,11 @@ class BackendController
         }
         else
         {
-            // Get the data from the post
+            // Display the post to delete details.
             $postToDelete = $this->postManager->getPost($_GET['id']);
 
-            // Send the post data to the view
-            $adminCreatePostView = new View("AdminDeletePost");
-            $adminCreatePostView->render(array("postToDelete" => $postToDelete));
+            $adminDeletePostView = new View("AdminDeletePost");
+            $adminDeletePostView->render(array("postToDelete" => $postToDelete));
         }
 
     }

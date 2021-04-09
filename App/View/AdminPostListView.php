@@ -1,4 +1,13 @@
 <?php $this->title="Tous les articles"; ?>
+<?php 
+    if (!empty($message))
+    {
+        echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+                $message
+                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+             </div>";
+    }
+?>
 
 <div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
     <h1>Articles Publiés</h1>

@@ -10,15 +10,11 @@
         </div>
         <div class="row m-3">
             <label for="excerpt" class="form-label">Introduction</label>
-            <textarea class="form-control" id="excerpt" name="excerpt" rows="4" cols="50" aria-describedby="postExcerpt">
-                <?= htmlspecialchars($postToDelete->getExcerpt());?>
-            </textarea>
+            <textarea class="form-control" id="excerpt" name="excerpt" rows="4" cols="50" aria-describedby="postExcerpt"><?= htmlspecialchars($postToDelete->getExcerpt());?></textarea>
         </div>
         <div class="row m-3">
             <label for="content" class="form-label">Contenu</label>
-            <textarea class="form-control" id="content" name="content" rows="10" cols="50" aria-describedby="Content">
-                <?= htmlspecialchars($postToDelete->getContent());?>
-            </textarea>
+            <textarea class="form-control" id="content" name="content" rows="10" cols="50" aria-describedby="Content"><?= htmlspecialchars($postToDelete->getContent());?></textarea>
         </div>
         <button type="submit" name="deletePost" class="btn btn-primary m-3">Confirmer suppression</button>
         <button type="submit" name="cancelDelete" class="btn btn-primary m-3">Annuler</button>
