@@ -166,4 +166,33 @@ class Post extends AbstractEntity
         }
     }
 
+    public function isValid(&$message)
+    {
+        
+        if (empty($this->getTitle()))
+        {
+            $message = "Veuillez renseigner le titre.";
+        }
+
+        else if (empty($this->getExcerpt()))
+        {
+            $message = "Veuillez écrire une introduction.";
+        }
+
+        else if (empty($this->getContent()))
+        {
+            $message = "Veuillez écrire le corps de texte.";
+        }
+
+        if (empty($message))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+
+    }
+
 }
