@@ -65,20 +65,10 @@ class PostManager extends AbstractManager
             'content'=> $newPost->getContent(),
             /*'authorId'=> 1*/)); // Implement dynamic authorId with Authentification
         
-
-        return $message = 'Le post a bien été créé';
-        
     }
 
-    public function updatePost($id)
+    public function updatePost($postUpdated)
     {
-        // Create the object with the new information
-        $postUpdated = new Post([
-            'id' => $id,
-            'title'=> $_POST['title'],
-            'excerpt' => $_POST['excerpt'],
-            'content' => $_POST['content']
-        ]);
 
         // Update the db with this information
         $sql = "UPDATE post SET title = :title, excerpt = :excerpt, content = :content, dateModification = NOW() WHERE id = :id";
@@ -90,18 +80,13 @@ class PostManager extends AbstractManager
             'content' => $postUpdated->getContent()
         ));
 
-        return $message = "L'article a bien été modifié";
-
     }
 
     public function deletePost($id)
     {
-        $postToDelete = new Post([
-            'id' => $id
-        ]);
 
         $sql = "DELETE FROM post WHERE id = :id";
 
-        $response = $this->createQuery($sql, array('id' => $postToDelete->getId()));
+        $response = $this->createQuery($sql, array('id' => $id));
     }
 }
