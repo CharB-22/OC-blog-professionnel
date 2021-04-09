@@ -42,19 +42,32 @@ class BackendController
 
     public function getAdminUpdatePost()
     {
-        
+        $message = "";
         // Manage the new data sent with the form
         if (isset($_POST['updatePost']) && isset($_GET['id']))
         {
-            $postToUpdate= $this->postManager->updatePost($_GET['id']);
+            $postUpdated = new Post([
+                'id' => $_GET['id'],
+                'title'=> $_POST['title'],
+                'excerpt' => $_POST['excerpt'],
+                'content' => $_POST['content']
+            ]);
 
+            if ($postUpdated->isValid($message))
+            {
+                $postToUpdate= $this->postManager->updatePost($postUpdated);
+                $message = "Mise à jour réussie.";
+            }
+
+            $adminCreatePostView = new View("AdminUpdatePost");
+            $adminCreatePostView->render(array("postToUpdate" => $postUpdated, "message" => $message));
         }
 
         // Just display the elements
         $postToUpdate = $this->postManager->getPost($_GET['id']);
 
         $adminCreatePostView = new View("AdminUpdatePost");
-        $adminCreatePostView->render(array("postToUpdate" => $postToUpdate));
+        $adminCreatePostView->render(array("postToUpdate" => $postToUpdate, "message" => $message));
 
     }
 
