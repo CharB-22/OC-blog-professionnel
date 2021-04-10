@@ -125,18 +125,26 @@ class BackendController
     public function getCommentsToManage()
     {
 
+        $message = "";
         if (isset($_POST['approveComment']))
         {
-            $this->commentManager->approveComment($_GET['commentId']);
+            $commentApproved = new Comment([
+                'commentId' => $_GET['commentId'],
+                'commentValidation' => true
+            ]);
+
+            $this->commentManager->approveComment($commentApproved);
+            $message = "Le commentaire a été approuvé.";
         }
         else if(isset($_POST['deleteComment']))
         {
             $this->commentManager->deleteComment($_GET['commentId']);
+            $message = "Le commentaire a été supprimé.";
         }
 
         $commentsToManage = $this->commentManager->getCommentsToManage();
         $adminCommentListView = new View("AdminCommentList");
-        $adminCommentListView->render(array("commentsToManage"=> $commentsToManage)); 
+        $adminCommentListView->render(array("commentsToManage"=> $commentsToManage, "message" => $message)); 
 
     }
 

@@ -55,14 +55,14 @@ class CommentManager extends AbstractManager
         return $commentsToManage;
     }
 
-    public function approveComment($commentId)
+    public function approveComment($commentApproved)
     {
 
         $sql = "UPDATE comments SET commentValidation = :commentValidation WHERE commentId = :commentId";
 
         $response = $this->createQuery($sql, array(
-            'commentValidation' => 1,
-            'commentId' => $commentId
+            'commentValidation' => $commentApproved->getCommentValidation(),
+            'commentId' => $commentApproved->getCommentId()
         ));
 
     }
