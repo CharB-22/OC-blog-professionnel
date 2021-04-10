@@ -1,4 +1,13 @@
 <?php $this->title = $post->getTitle(); ?>
+<?php 
+    if (!empty($message))
+    {
+        echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+                $message
+                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+             </div>";
+    }
+?>
       <h1 class="mt-5 mb-3">
         <?= htmlspecialchars($post->getTitle());?> <small>by <?= htmlspecialchars($post->getAuthorName());?> <?= htmlspecialchars($post->getAuthorLastName());?></small>
       </h1>
@@ -16,7 +25,7 @@
             <div class="card-body">
               <form method="post" action="index.php?route=post&id=<?= htmlspecialchars($post->getId());?>">
                 <div class="form-group">
-                  <textarea class="form-control" id="content" name="content" rows="3"></textarea>
+                  <textarea class="form-control" id="content" name="content" rows="3" required></textarea>
                 </div>
                 <button type="submit" name="createComment" class="btn btn-primary">Envoyer</button>
               </form>
