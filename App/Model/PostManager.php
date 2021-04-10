@@ -46,15 +46,8 @@ class PostManager extends AbstractManager
         return new Post($postData);
     }
 
-    public function createPost()
+    public function createPost($newPost)
     {
-        // Create a Post object with the information from the form
-        $newPost = new Post([
-                'title'=> $_POST['title'],
-                'excerpt' => $_POST['excerpt'],
-                'content' => $_POST['content']
-            ]);
-
         // Create the entry in the db with the entity information
             
         $sql = "INSERT INTO post(title, excerpt, content, dateModification, authorId) VALUES (:title, :excerpt, :content, NOW(), 1)";

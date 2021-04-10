@@ -25,19 +25,38 @@ class BackendController
         $adminPostList = $this->postManager->getBlogList();
 
         $adminPostListView = new View("AdminPostList");
-        $adminPostListView->render(array("postList" => $adminPostList));
+        $adminPostListView->render(array("postList" => $adminPostList, "message"=>$message));
     }
 
     public function getAdminCreatePost()
     {
+        $message = "";
+
         if (isset($_POST['createPost']))
-        {            
-            $postCreated = $this->postManager->createPost();
+        {   
+            // Create a Post object with the information from the form
+            $newPost = new Post([
+                'title'=> $_POST['title'],
+                'excerpt' => $_POST['excerpt'],
+                'content' => $_POST['content']
+            ]);
+
+            if ($newPost->isValid($message))
+            {
+                $postToCreate = $this->postManager->createPost($newPost);
+                $message = "Le post a bien été créé";
+            }
+
+            $adminNewPostView = new View("AdminCreatePost");
+            $adminNewPostView->render(array("newPost" => $newPost, "message" => $message));
         }
 
+        else
+        {
             // Display the form to create a Post
             $adminCreatePostView = new View("AdminCreatePost");
-            $adminCreatePostView->render();
+            $adminCreatePostView->render(array("message" => $message));
+        }
 
     }
 
@@ -60,16 +79,18 @@ class BackendController
                 $message = "Mise à jour réussie.";
             }
 
-            $adminCreatePostView = new View("AdminUpdatePost");
-            $adminCreatePostView->render(array("postToUpdate" => $postUpdated, "message" => $message));
+            $adminUpdatePostView = new View("AdminUpdatePost");
+            $adminUpdatePostView->render(array("postToUpdate" => $postUpdated, "message" => $message));
         }
+        else
+        {
+            // Just display the elements
+            $postToUpdate = $this->postManager->getPost($_GET['id']);
 
-        // Just display the elements
-        $postToUpdate = $this->postManager->getPost($_GET['id']);
+            $adminCreatePostView = new View("AdminUpdatePost");
+            $adminCreatePostView->render(array("postToUpdate" => $postToUpdate, "message" => $message));
 
-        $adminCreatePostView = new View("AdminUpdatePost");
-        $adminCreatePostView->render(array("postToUpdate" => $postToUpdate, "message" => $message));
-
+        }
     }
 
     public function getAdminDeletePost()
