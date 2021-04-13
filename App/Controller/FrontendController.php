@@ -18,6 +18,18 @@ class FrontendController
         $homeView->render();
     }
 
+    public function register()
+    {
+        $registerView = new View("Register");
+        $registerView->render();
+    }
+
+    public function connect()
+    {
+        $connectView = new View("Connect");
+        $connectView->render();
+    }
+
     public function getBlogList()
     {   
         $postList = $this->postManager->getBlogList();
