@@ -20,16 +20,19 @@ class BackendController
 
     public function getAdminPostList()
     {
+
         // Insert here authentification control
         $message = "";
         $adminPostList = $this->postManager->getBlogList();
 
         $adminPostListView = new View("AdminPostList");
         $adminPostListView->render(array("postList" => $adminPostList, "message"=>$message));
+    
     }
 
     public function getAdminCreatePost()
     {
+        $newPost = null;
         $message = "";
 
         if (isset($_POST['createPost']))
@@ -55,7 +58,7 @@ class BackendController
         {
             // Display the form to create a Post
             $adminCreatePostView = new View("AdminCreatePost");
-            $adminCreatePostView->render(array("message" => $message));
+            $adminCreatePostView->render(array("newPost" => $newPost, "message" => $message));
         }
 
     }
@@ -130,7 +133,7 @@ class BackendController
         {
             $commentApproved = new Comment([
                 'commentId' => $_GET['commentId'],
-                'commentValidation' => true
+                'commentValidation' => 1
             ]);
 
             $this->commentManager->approveComment($commentApproved);
