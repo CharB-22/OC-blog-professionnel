@@ -149,5 +149,31 @@ class Comment extends AbstractEntity
         }
     }
 
+    public function isValid(&$message, &$alert)
+    {
+        
+        if (empty($this->getCommentContent()))
+        {
+            $message = "Veuillez écrire un message.";
+            $alert = "danger";
+        }
+
+        /*else if (empty($this->getUserId()))
+        {
+            $message = "Vous devez d'abord vous identifiez.";
+        }*/
+
+
+        if (empty($message) && empty($alert))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+
+    }
+
 
 }

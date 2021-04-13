@@ -29,6 +29,8 @@ class FrontendController
     public function getPost()
     {
         $message = "";
+        $alert = "";
+
         //Check the validity of the id
         if (isset ($_GET['id']) && $_GET['id'] > 0)
         {
@@ -43,8 +45,14 @@ class FrontendController
                     'commentValidation' => 0,
                     'userId' => 1 // to be dynamically determined with authentification
                 ]);
-                $createdComment = $this->commentManager->createComment($newComment);
-                $message = "Merci pour votre commentaire. Il sera vérifié dans les plus brefs délais.";
+                
+
+                if ($newComment->isValid($message, $alert))
+                {
+                    $createdComment = $this->commentManager->createComment($newComment);
+                    $message = "Merci pour votre commentaire. Il sera vérifié dans les plus brefs délais.";
+                    $alert = "success";   
+                }
                 // Get the data for the main content
                 $post = $this->postManager->getPost($id);
                 $commentsList = $this->commentManager->getCommentsPost($id);
@@ -63,7 +71,7 @@ class FrontendController
 
             //Send all data to the matching view :
             $postView =  new View ("Post");
-            $postView->render(array("post"=>$post, "commentsList"=>$commentsList, "blogListSidebar"=>$blogListSidebar, "message" => $message));          
+            $postView->render(array("post"=>$post, "commentsList"=>$commentsList, "blogListSidebar"=>$blogListSidebar, "message" => $message, "alert" => $alert));          
 
         }
         else

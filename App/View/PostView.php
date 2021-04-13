@@ -1,8 +1,9 @@
 <?php $this->title = $post->getTitle(); ?>
-<?php 
+<?php
+
     if (!empty($message))
     {
-        echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+        echo "<div class='alert alert-". $alert . " alert-dismissible fade show' role='alert'>
                 $message
                 <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
              </div>";
@@ -25,7 +26,7 @@
             <div class="card-body">
               <form method="post" action="index.php?route=post&id=<?= htmlspecialchars($post->getId());?>">
                 <div class="form-group">
-                  <textarea class="form-control" id="content" name="content" rows="3" required></textarea>
+                  <textarea class="form-control" id="content" name="content" rows="3"></textarea>
                 </div>
                 <button type="submit" name="createComment" class="btn btn-primary">Envoyer</button>
               </form>
