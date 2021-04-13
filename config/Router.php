@@ -52,6 +52,11 @@
                         case 'adminUserList':
                             $this->backendController->getAdminUserList();
                             break;
+                        case 'register':
+                            $this->frontendController->register();
+                            break;
+                        case 'connect':
+                            $this->frontendController->connect();
                         default:
                             echo "Cette page n'existe pas";
                             break;
