@@ -9,6 +9,12 @@ class User extends AbstractEntity
     protected $username;
     protected $password;
     protected $role;
+    protected $roleUser;
+
+    public function __construct(array $userData)
+    {
+        $this->hydrate($userData);
+    }
 
     public function getUserId()
     {
@@ -45,13 +51,18 @@ class User extends AbstractEntity
         return $this->role;
     }
 
+    public function getRoleUser()
+    {
+        return $this->roleUser;
+    }
+
     public function setUserId($id)
     {
         $id = (int) $id;
 
         if ($id > 0)
         {
-            $this->id = $id;
+            $this->userId = $id;
         }
 
         else
@@ -113,6 +124,19 @@ class User extends AbstractEntity
         }
     }
 
+    public function setUsername($userName)
+    {
+        if (is_string($userName) && strlen($userName) <= 60)
+        {
+            $this->username = $userName;
+        } 
+        else
+        {
+            trigger_error("Ce n\'est pas une chaîne de caractère ou il y a trop de caractères", E_USER_WARNING);
+            return;
+        }
+    }
+
     public function setRole($role)
     {
         $role = (int) $role;
@@ -120,6 +144,19 @@ class User extends AbstractEntity
         if ($role == 1 OR $role == 2)
         {
             $this->role = $role;
+        }
+    }
+
+    public function setRoleUser($roleUser)
+    {
+        if (is_string($roleUser)) // add later a regular expression 
+        {
+            $this->roleUser = $roleUser;
+        } 
+        else
+        {
+            trigger_error("Cela ne respecte pas le format", E_USER_WARNING);
+            return;
         }
     }
 }

@@ -1,5 +1,5 @@
-<?php $this->title="Tous les articles"; ?>
-<?php 
+<?php $this->title="Tous les articles";
+ 
     if (!empty($message))
     {
         echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>

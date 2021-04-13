@@ -4,11 +4,13 @@ class BackendController
 {
     protected $postManager;
     protected $commentManager;
+    protected $userManager;
 
     public function __construct()
     {
         $this->postManager = new PostManager();
         $this->commentManager = new CommentManager();
+        $this->userManager = new UserManager();
     }
 
     public function getAdminHome()
@@ -151,4 +153,11 @@ class BackendController
 
     }
 
+    public function getAdminUserList()
+    {
+        $userList = $this->userManager->getUserList();
+
+        $userListView = new View("AdminUserList");
+        $userListView->render(array("userList" => $userList));
+    }
 }

@@ -49,7 +49,9 @@
                         case 'adminDeletePost':
                             $this->backendController->getAdminDeletePost();
                             break;
-    
+                        case 'adminUserList':
+                            $this->backendController->getAdminUserList();
+                            break;
                         default:
                             echo "Cette page n'existe pas";
                             break;
