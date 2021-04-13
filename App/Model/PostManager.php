@@ -1,6 +1,6 @@
 <?php 
 
-class PostManager extends Manager
+class PostManager extends AbstractManager
 {
     public function getBlogList()
     {
@@ -44,5 +44,42 @@ class PostManager extends Manager
         $postData = $response->fetch();
 
         return new Post($postData);
+    }
+
+    public function createPost($newPost)
+    {
+        // Create the entry in the db with the entity information
+            
+        $sql = "INSERT INTO post(title, excerpt, content, dateModification, authorId) VALUES (:title, :excerpt, :content, NOW(), 1)";
+        
+        $response = $this->createQuery($sql, array(
+            'title' => $newPost->getTitle(),
+            'excerpt'=> $newPost->getExcerpt(), 
+            'content'=> $newPost->getContent(),
+            /*'authorId'=> 1*/)); // Implement dynamic authorId with Authentification
+        
+    }
+
+    public function updatePost($postUpdated)
+    {
+
+        // Update the db with this information
+        $sql = "UPDATE post SET title = :title, excerpt = :excerpt, content = :content, dateModification = NOW() WHERE id = :id";
+
+        $response = $this->createQuery($sql, array(
+            'id' => $postUpdated->getId(),
+            'title' => $postUpdated->getTitle(),
+            'excerpt' => $postUpdated->getExcerpt(),
+            'content' => $postUpdated->getContent()
+        ));
+
+    }
+
+    public function deletePost($id)
+    {
+
+        $sql = "DELETE FROM post WHERE id = :id";
+
+        $response = $this->createQuery($sql, array('id' => $id));
     }
 }

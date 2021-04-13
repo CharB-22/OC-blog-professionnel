@@ -15,7 +15,7 @@ class Comment extends AbstractEntity
         $this->hydrate($commentData);
     }
 
-    public function getcommentId()
+    public function getCommentId()
     {
         return $this->id;
     }
@@ -93,7 +93,9 @@ class Comment extends AbstractEntity
 
     public function setCommentValidation($commentValidation)
     {
-        if (is_bool($commentValidation))
+        $commentValidation = (int) $commentValidation;
+
+        if ($commentValidation >= 0)
         {
             return $this->commentValidation = $commentValidation;
         }
@@ -146,4 +148,6 @@ class Comment extends AbstractEntity
             return;
         }
     }
+
+
 }

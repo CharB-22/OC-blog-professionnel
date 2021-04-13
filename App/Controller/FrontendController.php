@@ -26,12 +26,34 @@ class FrontendController
         $blogListView->render(array("postList"=> $postList));
     }
 
-    public function getPost($id)
+    public function getPost()
     {
+        $message = "";
         //Check the validity of the id
-
-        if(isset($id) && $id > 0)
+        if (isset ($_GET['id']) && $_GET['id'] > 0)
         {
+            $id = $_GET['id'];
+
+            if(isset($_POST['createComment']))
+            {
+                        //Create a new Comment entity
+                $newComment = new Comment([
+                    'postId' => $_GET['id'],
+                    'commentContent' => $_POST["content"],
+                    'commentValidation' => 0,
+                    'userId' => 1 // to be dynamically determined with authentification
+                ]);
+                $createdComment = $this->commentManager->createComment($newComment);
+                $message = "Merci pour votre commentaire. Il sera vérifié dans les plus brefs délais.";
+                // Get the data for the main content
+                $post = $this->postManager->getPost($id);
+                $commentsList = $this->commentManager->getCommentsPost($id);
+
+                // Get the data for the sidebar
+                $blogListSidebar = $this->postManager->getBlogListSidebar();
+            }
+
+            // Display the Post content
             // Get the data for the main content
             $post = $this->postManager->getPost($id);
             $commentsList = $this->commentManager->getCommentsPost($id);
@@ -41,7 +63,8 @@ class FrontendController
 
             //Send all data to the matching view :
             $postView =  new View ("Post");
-            $postView->render(array("post"=>$post, "commentsList"=>$commentsList, "blogListSidebar"=>$blogListSidebar));           
+            $postView->render(array("post"=>$post, "commentsList"=>$commentsList, "blogListSidebar"=>$blogListSidebar, "message" => $message));          
+
         }
         else
         {
