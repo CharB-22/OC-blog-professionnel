@@ -5,11 +5,13 @@ class FrontendController
 {
     protected $postManager;
     protected $commentManager;
+    protected $userManager;
 
     public function __construct()
     {
         $this->postManager = new PostManager();
-        $this->commentManager = new CommentManager();    
+        $this->commentManager = new CommentManager();
+        $this->userManager = new UserManager();   
     }
 
     public function getHome()
@@ -20,8 +22,41 @@ class FrontendController
 
     public function register()
     {
-        $registerView = new View("Register");
-        $registerView->render();
+        $message = "";
+        $newUser = null;
+
+        if (isset($_POST['createUser']))
+        {
+            // Create user entity
+            $newUser = new User(
+                [
+                    'name' => $_POST['name'],
+                    'lastName' => $_POST['lastName'],
+                    'email' => $_POST['userEmail'],
+                    'username' => $_POST['username'],
+                    'password' => $_POST['userPassword'],
+                    'role' => 2
+                ]
+                );
+            
+            
+            if ($newUser->isValid($message))
+            {
+                $userToCreate = $this->userManager->createUser($newUser);
+                $message = "Votre compte a bien été créé. Vous pouvez maintenant laisser des commentaires.";
+            }
+
+            $registerView = new View("Register");
+            $registerView->render(array("userInformation"=> $newUser, "message" => $message));
+
+        }
+
+        else
+        {
+            $registerView = new View("Register");
+            $registerView->render(array("userInformation"=> $newUser, "message" => $message));
+        }
+        
     }
 
     public function connect()

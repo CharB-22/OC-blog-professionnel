@@ -159,4 +159,42 @@ class User extends AbstractEntity
             return;
         }
     }
+
+    public function isValid(&$message)
+    {
+        
+        if (empty($this->getLastName()))
+        {
+            $message = "Veuillez renseigner votre nom de famille.";
+        }
+
+        else if (empty($this->getName()))
+        {
+            $message = "Veuillez renseignez votre prénom.";
+        }
+
+        else if (empty($this->getEmail()))
+        {
+            $message = "Veuillez renseigner votre email.";
+        }
+
+        else if (empty($this->getUsername()))
+        {
+            $message = "Veuillez créer un nom d'utilisateur.";
+        }
+        else if (empty($this->getPassword()))
+        {
+            $message = "Veuillez créer un mot de passe.";
+        }
+
+        if (empty($message))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+
+    }
 }

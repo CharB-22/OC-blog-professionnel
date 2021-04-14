@@ -11,6 +11,6 @@
             <label for="userPassword" class="form-label">Mot de passe</label>
             <input type="password" class="form-control" id="userPassword" name="userPassword" aria-describedby="userPassword">
         </div>
-        <button type="submit" class="btn btn-primary m-3"><a href="Admin.php?p=admin">Se Connecter</a></button>
+        <button type="submit" class="btn btn-primary m-3">Se Connecter</button>
     </form>
 </div>
