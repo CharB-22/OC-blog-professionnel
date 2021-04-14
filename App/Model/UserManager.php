@@ -33,4 +33,19 @@ class UserManager extends AbstractManager
             'role' => $newUser->getRole()
         ));
     }
+
+    public function userExists($userCredentials)
+    {
+        // Check first if username is in database
+        $sql = "SELECT username, password FROM users WHERE username = :username AND password = :password";
+
+        $response = $this->createQuery($sql, array(
+            'username' => $userCredentials->getUsername(),
+            'password' => $userCredentials->getPassword()
+        ));
+
+        $existingUser = $response->fetch();
+
+        return $existingUser;
+    }
 }

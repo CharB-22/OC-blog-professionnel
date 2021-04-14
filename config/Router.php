@@ -57,6 +57,7 @@
                             break;
                         case 'connect':
                             $this->frontendController->connect();
+                            break;
                         default:
                             echo "Cette page n'existe pas";
                             break;

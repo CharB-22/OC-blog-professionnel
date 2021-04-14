@@ -61,8 +61,34 @@ class FrontendController
 
     public function connect()
     {
-        $connectView = new View("Connect");
-        $connectView->render();
+        $userCredentials = null;
+        $message = "";
+
+        if (isset($_POST['connect']))
+        {
+            
+            $userCredentials = new User([
+                "username" => $_POST["username"],
+                "password" => $_POST["userPassword"]    
+            ]);
+
+            $userExists = $this->userManager->userExists($userCredentials);
+
+           if ($userExists === false)
+           {
+               $message = "Les identifiants sont incorrects";
+           }
+           else
+           {
+               // inscrit les informations dans la session
+               $message = "Vous êtes bien un utilisateur reconnu";
+           }
+
+
+        }
+
+            $connectView = new View("Connect");
+            $connectView->render(array("userInformation"=> $userCredentials, "message" => $message));
     }
 
     public function getBlogList()
