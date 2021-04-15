@@ -69,10 +69,10 @@
                 if (isset($_SESSION["id"]))
                 {
             ?>
-                <form method="post" action="index.php?route=disconnect" class="text-center">
+                <div class="text-center">
                     <p>Vous êtes connecté en tant que <?= htmlspecialchars($_SESSION['name'])?> <?= htmlspecialchars($_SESSION['lastName'])  ?></p>
-                    <button type="submit" name="disconnect" class="btn btn-primary m-3">Se Déconnecter</button>
-                </form>
+                    <a href="index.php?route=disconnect" type="button" class="btn btn-primary">Se déconnecter</a>
+                </div>
             <?php
             }
             else

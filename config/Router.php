@@ -60,6 +60,7 @@
                             break;
                         case 'disconnect':
                             $this->frontendController->disconnect();
+                            break;
                         default:
                             echo "Cette page n'existe pas";
                             break;
