@@ -86,17 +86,28 @@ class FrontendController
                if ($checkPassword)
                {
                    session_start();
-                   $_SESSION['id'] = $userExists['id'];
+                   $_SESSION['id'] = $userExists['userId'];
+                   $_SESSION['name'] = $userExists['name'];
+                   $_SESSION['lastName'] = $userExists['lastName'];
                    $_SESSION['username'] = $userExists['username'];
-                   $message = "Vous êtes connecté";
+
+                   // Renvoyer sur la page principale
+                   $homeView = new View("Home");
+                   $homeView->render();
+               }
+
+               else
+               {
+                   $message = "Les identifiants sont incorrects.";
                }
                
            }
-
         }
-
+        else
+        {
             $connectView = new View("Connect");
             $connectView->render(array("userInformation"=> $userCredentials, "message" => $message));
+        }
     }
 
     public function getBlogList()
@@ -124,7 +135,7 @@ class FrontendController
                     'postId' => $_GET['id'],
                     'commentContent' => $_POST["content"],
                     'commentValidation' => 0,
-                    'userId' => 1 // to be dynamically determined with authentification
+                    'userId' => $_SESSION['id'] // to be dynamically determined with authentification
                 ]);
                 
 

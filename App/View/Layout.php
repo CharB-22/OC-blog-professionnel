@@ -63,10 +63,28 @@
 
         <footer class="py-5 bg-light">
             <div class="container">
-                <div class="row m-0">
-                    <div class="col-xs-12 col-md-6 d-flex justify-content-xs-center justify-content-md-end"><a href="index.php?route=register">S'inscrire</a></div>
-                    <div class="col-xs-12 col-md-6 d-flex justify-content-xs-center justify-content-md-start"><a href="index.php?route=connect">Se connecter</a></div>
-                </div>
+
+            <?php 
+            // Footer changed if you are connected or not
+                if (isset($_SESSION["id"]))
+                {
+            ?>
+                <form method="post" action="index.php?route=home" class="text-center">
+                    <p>Vous êtes connecté en tant que <?= htmlspecialchars($_SESSION['name'])?> <?= htmlspecialchars($_SESSION['lastName'])  ?></p>
+                    <button type="submit" name="disconnect" class="btn btn-primary m-3">Se Déconnecter</button>
+                </form>
+            <?php
+            }
+            else
+            {
+            ?>
+            <div class="row m-0">
+                <div class="col-xs-12 col-md-6 d-flex justify-content-xs-center justify-content-md-end"><a href="index.php?route=register">S'inscrire</a></div>
+                <div class="col-xs-12 col-md-6 d-flex justify-content-xs-center justify-content-md-start"><a href="index.php?route=connect">Se connecter</a></div>
+            </div>
+            <?php
+            }
+            ?>
                 <p class="m-0 text-center">Mentions Légales</p>
                 <p class="m-0 text-center">Copyright &copy; Your Website 2021</p>
             </div>
