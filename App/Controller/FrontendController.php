@@ -110,6 +110,22 @@ class FrontendController
         }
     }
 
+    public function disconnect()
+    {
+        if (isset($_POST["disconnect"]))
+        {
+            session_start();
+
+            // Suppression des variables de session et de la session
+            $_SESSION = array();
+            session_destroy();
+    
+            // Page de confirmation de la déconnexion
+            $disconnectView = new View("Disconnect");
+            $disconnectView->render();
+        }
+    }
+
     public function getBlogList()
     {   
         $postList = $this->postManager->getBlogList();

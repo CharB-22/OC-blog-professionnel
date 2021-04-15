@@ -158,10 +158,10 @@ class Comment extends AbstractEntity
             $alert = "danger";
         }
 
-        /*else if (empty($this->getUserId()))
+        else if (empty($this->getUserId()))
         {
-            $message = "Vous devez d'abord vous identifiez.";
-        }*/
+            $message = "Vous devez vous identifiez pour laisser un commentaire.";
+        }
 
 
         if (empty($message) && empty($alert))

@@ -58,6 +58,8 @@
                         case 'connect':
                             $this->frontendController->connect();
                             break;
+                        case 'disconnect':
+                            $this->frontendController->disconnect();
                         default:
                             echo "Cette page n'existe pas";
                             break;
