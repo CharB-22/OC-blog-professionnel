@@ -1,4 +1,6 @@
-<?php $this->title = "Se connecter"; 
+<?php 
+
+$this->title = "Se connecter"; 
 
 if (!empty($message))
 {

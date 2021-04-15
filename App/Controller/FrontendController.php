@@ -34,7 +34,7 @@ class FrontendController
                     'lastName' => $_POST['lastName'],
                     'email' => $_POST['userEmail'],
                     'username' => $_POST['username'],
-                    'password' => $_POST['userPassword'],
+                    'password' => password_hash($_POST['userPassword'], PASSWORD_DEFAULT),
                     'role' => 2
                 ]
                 );
@@ -74,16 +74,24 @@ class FrontendController
 
             $userExists = $this->userManager->userExists($userCredentials);
 
+            // Check validity password
+            $checkPassword = password_verify($userCredentials->getPassword(), $userExists["password"]);
+
            if ($userExists === false)
            {
                $message = "Les identifiants sont incorrects";
            }
            else
            {
-               // inscrit les informations dans la session
-               $message = "Vous êtes bien un utilisateur reconnu";
+               if ($checkPassword)
+               {
+                   session_start();
+                   $_SESSION['id'] = $userExists['id'];
+                   $_SESSION['username'] = $userExists['username'];
+                   $message = "Vous êtes connecté";
+               }
+               
            }
-
 
         }
 
