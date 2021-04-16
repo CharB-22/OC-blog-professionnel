@@ -246,10 +246,27 @@ class BackendController
         {
             if ($_SESSION["roleId"] == 1)
             {
-                $userList = $this->userManager->getUserList();
+                $message = "";
 
+                if (isset($_POST['updateRole']))
+                {
+                    $userToUpdate = new User([
+                        'userId' => $_GET['userId'],
+                        'roleId' => 1
+                    ]);
+        
+                    $this->userManager->updateStatus($userToUpdate);
+                    $message = "Le statut est devenu administrateur.";
+                }
+                else if(isset($_POST['deleteUser']))
+                {
+                    $this->userManager->deleteUser($_GET['userId']);
+                    $message = "L'utilisateur a bien été supprimé.";
+                }
+
+                $userList = $this->userManager->getUserList();
                 $userListView = new View("AdminUserList");
-                $userListView->render(array("userList" => $userList));
+                $userListView->render(array("userList" => $userList, "message" => $message));
             }
 
             else

@@ -46,4 +46,20 @@ class UserManager extends AbstractManager
 
         return $userExists;
     }
+
+    public function updateStatus($userToUpdate)
+    {
+        $sql = "UPDATE users SET roleId = 1 WHERE userId = :userId";
+        $response = $this->createQuery($sql, array(
+            'userId' => $userToUpdate->getUserId()
+        ));
+    }
+
+    public function deleteUser($userId)
+    {
+        $sql = "DELETE FROM users WHERE userId = :userId";
+        $response = $this->createQuery($sql, array(
+            'userId' => $userId
+        ));
+    }
 }
