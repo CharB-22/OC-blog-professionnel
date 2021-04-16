@@ -206,7 +206,7 @@ class BackendController
             if ($_SESSION["roleId"] == 1)
             {
                 $message = "";
-                
+
                 if (isset($_POST['approveComment']))
                 {
                     $commentApproved = new Comment([
@@ -241,9 +241,24 @@ class BackendController
 
     public function getAdminUserList()
     {
-        $userList = $this->userManager->getUserList();
+        if (isset($_SESSION["id"]) && isset ($_SESSION["roleId"]))
+        {
+            if ($_SESSION["roleId"] == 1)
+            {
+                $userList = $this->userManager->getUserList();
 
-        $userListView = new View("AdminUserList");
-        $userListView->render(array("userList" => $userList));
+                $userListView = new View("AdminUserList");
+                $userListView->render(array("userList" => $userList));
+            }
+
+            else
+            {
+                echo "Vous n\'avez pas les droits suffisants";
+            }
+        }
+        else
+        {
+            echo "Veuillez vous identifier.";
+        }
     }
 }
