@@ -111,35 +111,51 @@ class BackendController
 
     public function getAdminUpdatePost()
     {
-        $message = "";
-        // Manage the new data sent with the form
-        if (isset($_POST['updatePost']) && isset($_GET['id']))
+        if (isset($_SESSION["id"]) && isset ($_SESSION["roleId"]))
         {
-            $postUpdated = new Post([
-                'id' => $_GET['id'],
-                'title'=> $_POST['title'],
-                'excerpt' => $_POST['excerpt'],
-                'content' => $_POST['content']
-            ]);
-
-            if ($postUpdated->isValid($message))
+            if ($_SESSION["roleId"] == 1)
             {
-                $postToUpdate= $this->postManager->updatePost($postUpdated);
-                $message = "Mise à jour réussie.";
+                $message = "";
+
+                // Manage the new data sent with the form
+                if (isset($_POST['updatePost']) && isset($_GET['id']))
+                {
+                    $postUpdated = new Post([
+                        'id' => $_GET['id'],
+                        'title'=> $_POST['title'],
+                        'excerpt' => $_POST['excerpt'],
+                        'content' => $_POST['content']
+                    ]);
+
+                    if ($postUpdated->isValid($message))
+                    {
+                        $postToUpdate= $this->postManager->updatePost($postUpdated);
+                        $message = "Mise à jour réussie.";
+                    }
+
+                    $adminUpdatePostView = new View("AdminUpdatePost");
+                    $adminUpdatePostView->render(array("postToUpdate" => $postUpdated, "message" => $message));
+                }
+                else
+                {
+                    // Just display the elements
+                    $postToUpdate = $this->postManager->getPost($_GET['id']);
+
+                    $adminCreatePostView = new View("AdminUpdatePost");
+                    $adminCreatePostView->render(array("postToUpdate" => $postToUpdate, "message" => $message));
+                }
             }
 
-            $adminUpdatePostView = new View("AdminUpdatePost");
-            $adminUpdatePostView->render(array("postToUpdate" => $postUpdated, "message" => $message));
+            else
+            {
+                echo "Vous n\'avez pas les droits suffisants";
+            }
         }
         else
         {
-            // Just display the elements
-            $postToUpdate = $this->postManager->getPost($_GET['id']);
-
-            $adminCreatePostView = new View("AdminUpdatePost");
-            $adminCreatePostView->render(array("postToUpdate" => $postToUpdate, "message" => $message));
-
+            echo "Veuillez vous identifier.";
         }
+
     }
 
     public function getAdminDeletePost()
