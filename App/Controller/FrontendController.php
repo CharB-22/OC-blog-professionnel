@@ -43,12 +43,17 @@ class FrontendController
             if ($newUser->isValid($message))
             {
                 $userToCreate = $this->userManager->createUser($newUser);
-                $message = "Votre compte a bien été créé. Vous pouvez maintenant laisser des commentaires.";
+                $message = "Votre compte a bien été créé. Vous pouvez maintenant vous connecter.";
+                        
+                // Redirect customer to the connexion page to start session
+                $connectView = new View("Connect");
+                $connectView->render(array("message" => $message));
             }
-
-            $registerView = new View("Register");
-            $registerView->render(array("userInformation"=> $newUser, "message" => $message));
-
+            else
+            {
+                $registerView = new View("Register");
+                $registerView->render(array("userInformation"=> $newUser, "message" => $message));
+            }
         }
 
         else
