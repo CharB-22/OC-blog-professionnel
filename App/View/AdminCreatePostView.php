@@ -25,5 +25,6 @@
             <textarea class="form-control" id="content" name="content" aria-describedby="Content"><?= $newPost != null? htmlspecialchars($newPost->getContent()) : null ?></textarea>
         </div>
         <button type="submit" name="createPost" class="btn btn-primary m-3">Créer</button>
+        <a href="index.php?route=adminPostList" type="button" class="btn btn-primary">Retour à la liste de posts</a>
     </form>
 </div>
