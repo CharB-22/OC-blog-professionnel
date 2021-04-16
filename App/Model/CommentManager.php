@@ -74,4 +74,13 @@ class CommentManager extends AbstractManager
             'commentId' => $commentId
         ));
     }
+
+    public function deletePostComments($postId)
+    {
+        $sql = "DELETE FROM comments WHERE postId = :postId";
+
+        $response = $this->createQuery($sql, array(
+            'postId' => $postId
+        ));
+    }
 }

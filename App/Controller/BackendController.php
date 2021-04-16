@@ -165,6 +165,7 @@ class BackendController
             {
                 if (isset($_POST['deletePost']) && isset($_GET['id']))
                 {
+                    $this->commentManager->deletePostComments($_GET['id']);
                     $this->postManager->deletePost($_GET['id']);
                     
                     $message = "Le post a été supprimé";
