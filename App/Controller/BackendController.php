@@ -37,47 +37,76 @@ class BackendController
 
     public function getAdminPostList()
     {
+        if (isset($_SESSION["id"]) && isset ($_SESSION["roleId"]))
+        {
+            if ($_SESSION["roleId"] == 1)
+            {
+                $message = "";
+                $adminPostList = $this->postManager->getBlogList();
 
-        // Insert here authentification control
-        $message = "";
-        $adminPostList = $this->postManager->getBlogList();
+                $adminPostListView = new View("AdminPostList");
+                $adminPostListView->render(array("postList" => $adminPostList, "message"=>$message));
+            }
 
-        $adminPostListView = new View("AdminPostList");
-        $adminPostListView->render(array("postList" => $adminPostList, "message"=>$message));
-    
+            else
+            {
+                echo "Vous n\'avez pas les droits suffisants";
+            }
+        }
+        else
+        {
+            echo "Veuillez vous identifier.";
+        }
+
     }
 
     public function getAdminCreatePost()
     {
-        $newPost = null;
-        $message = "";
-
-        if (isset($_POST['createPost']))
-        {   
-            // Create a Post object with the information from the form
-            $newPost = new Post([
-                'title'=> $_POST['title'],
-                'excerpt' => $_POST['excerpt'],
-                'content' => $_POST['content']
-            ]);
-
-            if ($newPost->isValid($message))
+        if (isset($_SESSION["id"]) && isset ($_SESSION["roleId"]))
+        {
+            if ($_SESSION["roleId"] == 1)
             {
-                $postToCreate = $this->postManager->createPost($newPost);
-                $message = "Le post a bien été créé";
+
+                $newPost = null;
+                $message = "";
+        
+                if (isset($_POST['createPost']))
+                {   
+                    // Create a Post object with the information from the form
+                    $newPost = new Post([
+                        'title'=> $_POST['title'],
+                        'excerpt' => $_POST['excerpt'],
+                        'content' => $_POST['content'],
+                        'authorId' => $_SESSION['id']
+                    ]);
+        
+                    if ($newPost->isValid($message))
+                    {
+                        $postToCreate = $this->postManager->createPost($newPost);
+                        $message = "Le post a bien été créé";
+                    }
+        
+                    $adminNewPostView = new View("AdminCreatePost");
+                    $adminNewPostView->render(array("newPost" => $newPost, "message" => $message));
+                }
+        
+                else
+                {
+                    // Display the form to create a Post
+                    $adminCreatePostView = new View("AdminCreatePost");
+                    $adminCreatePostView->render(array("newPost" => $newPost, "message" => $message));
+                }
             }
 
-            $adminNewPostView = new View("AdminCreatePost");
-            $adminNewPostView->render(array("newPost" => $newPost, "message" => $message));
+            else
+            {
+                echo "Vous n\'avez pas les droits suffisants";
+            }
         }
-
         else
         {
-            // Display the form to create a Post
-            $adminCreatePostView = new View("AdminCreatePost");
-            $adminCreatePostView->render(array("newPost" => $newPost, "message" => $message));
+            echo "Veuillez vous identifier.";
         }
-
     }
 
     public function getAdminUpdatePost()
