@@ -95,10 +95,22 @@ class FrontendController
                    $_SESSION['name'] = $userExists['name'];
                    $_SESSION['lastName'] = $userExists['lastName'];
                    $_SESSION['username'] = $userExists['username'];
+                   $_SESSION['roleId'] = $userExists['roleId'];
 
-                   // Renvoyer sur la page principale
-                   $homeView = new View("Home");
-                   $homeView->render();
+
+                   if ($_SESSION['roleId'] == 1)
+                   {
+                        // In the case the user is an administrator, redirect to the Admin Home
+                        $AdminHomeView = new View("AdminHome");
+                        $AdminHomeView->render();
+                   }
+                   else
+                   {
+                        // Redirect to the homepage
+                        $homeView = new View("Home");
+                        $homeView->render();
+                   }
+
                }
 
                else

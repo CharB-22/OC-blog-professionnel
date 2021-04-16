@@ -15,9 +15,24 @@ class BackendController
 
     public function getAdminHome()
     {
-        // Insert here authentification control
-        $adminHomeView = new View("AdminHome");
-        $adminHomeView->render();
+        if (isset($_SESSION["id"]) && isset ($_SESSION["roleId"]))
+        {
+            if ($_SESSION["roleId"] == 1)
+            {
+                // Insert here authentification control
+                $adminHomeView = new View("AdminHome");
+                $adminHomeView->render();
+            }
+
+            else
+            {
+                echo "Vous n\'avez pas les droits suffisants";
+            }
+        }
+        else
+        {
+            echo "Veuillez vous identifier.";
+        }
     }
 
     public function getAdminPostList()
