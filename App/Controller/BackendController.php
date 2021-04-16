@@ -201,28 +201,42 @@ class BackendController
 
     public function getCommentsToManage()
     {
-
-        $message = "";
-        if (isset($_POST['approveComment']))
+        if (isset($_SESSION["id"]) && isset ($_SESSION["roleId"]))
         {
-            $commentApproved = new Comment([
-                'commentId' => $_GET['commentId'],
-                'commentValidation' => 1
-            ]);
+            if ($_SESSION["roleId"] == 1)
+            {
+                $message = "";
+                
+                if (isset($_POST['approveComment']))
+                {
+                    $commentApproved = new Comment([
+                        'commentId' => $_GET['commentId'],
+                        'commentValidation' => 1
+                    ]);
+        
+                    $this->commentManager->approveComment($commentApproved);
+                    $message = "Le commentaire a été approuvé.";
+                }
+                else if(isset($_POST['deleteComment']))
+                {
+                    $this->commentManager->deleteComment($_GET['commentId']);
+                    $message = "Le commentaire a été supprimé.";
+                }
+        
+                $commentsToManage = $this->commentManager->getCommentsToManage();
+                $adminCommentListView = new View("AdminCommentList");
+                $adminCommentListView->render(array("commentsToManage"=> $commentsToManage, "message" => $message));
+            }
 
-            $this->commentManager->approveComment($commentApproved);
-            $message = "Le commentaire a été approuvé.";
+            else
+            {
+                echo "Vous n\'avez pas les droits suffisants";
+            }
         }
-        else if(isset($_POST['deleteComment']))
+        else
         {
-            $this->commentManager->deleteComment($_GET['commentId']);
-            $message = "Le commentaire a été supprimé.";
+            echo "Veuillez vous identifier.";
         }
-
-        $commentsToManage = $this->commentManager->getCommentsToManage();
-        $adminCommentListView = new View("AdminCommentList");
-        $adminCommentListView->render(array("commentsToManage"=> $commentsToManage, "message" => $message)); 
-
     }
 
     public function getAdminUserList()
