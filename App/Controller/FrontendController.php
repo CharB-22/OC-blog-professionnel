@@ -22,99 +22,111 @@ class FrontendController
 
     public function register()
     {
-        $message = "";
-        $newUser = null;
-
-        if (isset($_POST['createUser']))
+        if (!isset($_SESSION["id"]))
         {
-            // Create user entity
-            $newUser = new User(
-                [
-                    'name' => $_POST['name'],
-                    'lastName' => $_POST['lastName'],
-                    'email' => $_POST['userEmail'],
-                    'username' => $_POST['username'],
-                    'password' => password_hash($_POST['userPassword'], PASSWORD_DEFAULT),
-                    'role' => 2
-                ]
-                );
-            
-            
-            if ($newUser->isValid($message))
+            $message = "";
+            $newUser = null;
+    
+            if (isset($_POST['createUser']))
             {
-                $userToCreate = $this->userManager->createUser($newUser);
-                $message = "Votre compte a bien été créé. Vous pouvez maintenant vous connecter.";
-                        
-                // Redirect customer to the connexion page to start session
-                $connectView = new View("Connect");
-                $connectView->render(array("message" => $message));
-            }
-            else
-            {
-                $registerView = new View("Register");
-                $registerView->render(array("userInformation"=> $newUser, "message" => $message));
-            }
+                // Create user entity
+                $newUser = new User(
+                    [
+                        'name' => $_POST['name'],
+                        'lastName' => $_POST['lastName'],
+                        'email' => $_POST['userEmail'],
+                        'username' => $_POST['username'],
+                        'password' => password_hash($_POST['userPassword'], PASSWORD_DEFAULT),
+                        'role' => 2
+                    ]
+                    );
+                    if ($newUser->isValid($message))
+                    {
+                        $userToCreate = $this->userManager->createUser($newUser);
+                        $message = "Votre compte a bien été créé. Vous pouvez maintenant vous connecter.";
+                                
+                        // Redirect customer to the connexion page to start session
+                        $connectView = new View("Connect");
+                        $connectView->render(array("message" => $message));
+                    }
+                    else
+                    {
+                        $registerView = new View("Register");
+                        $registerView->render(array("userInformation"=> $newUser, "message" => $message));
+                    }
+                }
+        
+                else
+                {
+                    $registerView = new View("Register");
+                    $registerView->render(array("userInformation"=> $newUser, "message" => $message));
+                }
         }
-
         else
         {
-            $registerView = new View("Register");
-            $registerView->render(array("userInformation"=> $newUser, "message" => $message));
+            echo "Vous êtes déjà identifié.";
         }
         
     }
 
     public function connect()
     {
-        $userCredentials = null;
-        $message = "";
-
-        if (isset($_POST['connect']))
+        if (!isset($_SESSION["id"]))
         {
-            
-            $userCredentials = new User([
-                "username" => $_POST["username"],
-                "password" => $_POST["userPassword"]    
-            ]);
-
-            $userExists = $this->userManager->userExists($userCredentials);
-
-            // Check validity password
-            $checkPassword = password_verify($userCredentials->getPassword(), $userExists["password"]);
-
-           if ($userExists === false)
-           {
-               $message = "Les identifiants sont incorrects";
-           }
-           else
-           {
-               if ($checkPassword)
+            $userCredentials = null;
+            $message = "";
+    
+            if (isset($_POST['connect']))
+            {
+                
+                $userCredentials = new User([
+                    "username" => $_POST["username"],
+                    "password" => $_POST["userPassword"]    
+                ]);
+    
+                $userExists = $this->userManager->userExists($userCredentials);
+    
+                // Check validity password
+                $checkPassword = password_verify($userCredentials->getPassword(), $userExists["password"]);
+    
+               if ($userExists === false)
                {
-                   session_start();
-                   $_SESSION['id'] = $userExists['userId'];
-                   $_SESSION['name'] = $userExists['name'];
-                   $_SESSION['lastName'] = $userExists['lastName'];
-                   $_SESSION['username'] = $userExists['username'];
-                   $_SESSION['roleId'] = $userExists['roleId'];
-
-                    // Redirect to the homepage
-                    $homeView = new View("Home");
-                    $homeView->render();
-
+                   $message = "Les identifiants sont incorrects";
                }
-
                else
                {
-                   $message = "Les identifiants sont incorrects.";
+                   if ($checkPassword)
+                   {
+                       session_start();
+                       $_SESSION['id'] = $userExists['userId'];
+                       $_SESSION['name'] = $userExists['name'];
+                       $_SESSION['lastName'] = $userExists['lastName'];
+                       $_SESSION['username'] = $userExists['username'];
+                       $_SESSION['roleId'] = $userExists['roleId'];
+    
+                        // Redirect to the homepage
+                        $homeView = new View("Home");
+                        $homeView->render();
+    
+                   }
+                   else
+                   {
+                       $message = "Les identifiants sont incorrects.";
+                   }
+                   
                }
-               
-           }
+            }
+            else
+            {
+                $connectView = new View("Connect");
+                $connectView->render(array("userInformation"=> $userCredentials, "message" => $message));
+            }
         }
         else
         {
-            $connectView = new View("Connect");
-            $connectView->render(array("userInformation"=> $userCredentials, "message" => $message));
+            echo "Vous êtes déjà identifié.";
         }
+
     }
 
     public function disconnect()
