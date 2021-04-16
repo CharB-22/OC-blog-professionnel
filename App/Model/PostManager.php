@@ -37,7 +37,7 @@ class PostManager extends AbstractManager
 
     public function getPost($id)
     {
-        $sql = "SELECT post.id as id, title, excerpt, content, dateModification, users.name AS authorName, users.lastName AS authorLastName FROM post JOIN users ON post.authorId = users.id WHERE post.id = :id";
+        $sql = "SELECT post.id as id, title, excerpt, content, dateModification, users.name AS authorName, users.lastName AS authorLastName FROM post JOIN users ON post.authorId = users.userId WHERE post.id = :id";
 
         $response = $this->createQuery($sql, array('id' => $id));
 
