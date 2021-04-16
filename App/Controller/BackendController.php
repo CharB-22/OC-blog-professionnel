@@ -145,7 +145,6 @@ class BackendController
                     $adminCreatePostView->render(array("postToUpdate" => $postToUpdate, "message" => $message));
                 }
             }
-
             else
             {
                 echo "Vous n\'avez pas les droits suffisants";
@@ -160,29 +159,42 @@ class BackendController
 
     public function getAdminDeletePost()
     {
+        if (isset($_SESSION["id"]) && isset ($_SESSION["roleId"]))
+        {
+            if ($_SESSION["roleId"] == 1)
+            {
+                if (isset($_POST['deletePost']) && isset($_GET['id']))
+                {
+                    $this->postManager->deletePost($_GET['id']);
+                    
+                    $message = "Le post a été supprimé";
         
-        if (isset($_POST['deletePost']) && isset($_GET['id']))
-        {
-            $this->postManager->deletePost($_GET['id']);
-            
-            $message = "Le post a été supprimé";
-
-            $adminPostList = $this->postManager->getBlogList();
-
-            $adminPostListView = new View("AdminPostList");
-            $adminPostListView->render(array("postList" => $adminPostList, "message" => $message));
-        }
-        else if (isset($_POST['cancelDelete']) && isset($_GET['id']))
-        {
-            $this->getAdminPostList();
+                    $adminPostList = $this->postManager->getBlogList();
+        
+                    $adminPostListView = new View("AdminPostList");
+                    $adminPostListView->render(array("postList" => $adminPostList, "message" => $message));
+                }
+                else if (isset($_POST['cancelDelete']) && isset($_GET['id']))
+                {
+                    $this->getAdminPostList();
+                }
+                else
+                {
+                    // Display the post to delete details.
+                    $postToDelete = $this->postManager->getPost($_GET['id']);
+        
+                    $adminDeletePostView = new View("AdminDeletePost");
+                    $adminDeletePostView->render(array("postToDelete" => $postToDelete));
+                }
+            }
+            else
+            {
+                echo "Vous n\'avez pas les droits suffisants";
+            }
         }
         else
         {
-            // Display the post to delete details.
-            $postToDelete = $this->postManager->getPost($_GET['id']);
-
-            $adminDeletePostView = new View("AdminDeletePost");
-            $adminDeletePostView->render(array("postToDelete" => $postToDelete));
+            echo "Veuillez vous identifier.";
         }
 
     }
