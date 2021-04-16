@@ -71,6 +71,14 @@
             ?>
                 <div class="text-center">
                     <p>Vous êtes connecté en tant que <?= htmlspecialchars($_SESSION['name'])?> <?= htmlspecialchars($_SESSION['lastName'])  ?></p>
+                    <?php
+                        if ($_SESSION['roleId'] == 1)
+                        {
+                    ?>
+                        <a href="index.php?route=adminHome" type="button" class="btn btn-primary">Espace Administration</a>
+                    <?php
+                    }
+                    ?>
                     <a href="index.php?route=disconnect" type="button" class="btn btn-primary">Se déconnecter</a>
                 </div>
             <?php
