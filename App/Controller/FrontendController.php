@@ -71,10 +71,9 @@ class FrontendController
 
     public function connect()
     {
+        $message = "";
         if (!isset($_SESSION["id"]))
         {
-            $userCredentials = null;
-            $message = "";
     
             if (isset($_POST['connect']))
             {
@@ -83,19 +82,19 @@ class FrontendController
                     "username" => $_POST["username"],
                     "password" => $_POST["userPassword"]    
                 ]);
-    
+     
                 $userExists = $this->userManager->userExists($userCredentials);
-    
-                // Check validity password
-                $checkPassword = password_verify($userCredentials->getPassword(), $userExists["password"]);
     
                if ($userExists === false)
                {
-                   $message = "Les identifiants sont incorrects";
+                   $message = "Cet utilisateur n'existe pas.";
                }
                else
                {
-                   if ($checkPassword)
+                    // Check validity password
+                    $checkPassword = password_verify($userCredentials->getPassword(), $userExists["password"]);
+    
+                    if ($checkPassword === true)
                    {
                        session_start();
                        $_SESSION['id'] = $userExists['userId'];
@@ -111,16 +110,14 @@ class FrontendController
                    }
                    else
                    {
-                       $message = "Les identifiants sont incorrects.";
+                       $message = "Le mot de passe est incorrect.";
                    }
                    
                }
             }
-            else
-            {
+
                 $connectView = new View("Connect");
-                $connectView->render(array("userInformation"=> $userCredentials, "message" => $message));
-            }
+                $connectView->render(array("message" => $message));
         }
         else
         {
