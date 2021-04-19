@@ -40,14 +40,28 @@ class FrontendController
                         'role' => 2
                     ]
                     );
+
                     if ($newUser->isValid($message))
                     {
-                        $userToCreate = $this->userManager->createUser($newUser);
-                        $message = "Votre compte a bien été créé. Vous pouvez maintenant vous connecter.";
-                                
-                        // Redirect customer to the connexion page to start session
-                        $connectView = new View("Connect");
-                        $connectView->render(array("message" => $message));
+                        // Make sure the username is unique
+                        $isUsernameAvailable = $this->userManager->userExists($newUser);
+
+                        if ($isUsernameAvailable != null)
+                        {
+                            $message ="Ce nom d'utilisateur existe déja.";
+                            
+                            $registerView = new View("Register");
+                            $registerView->render(array("userInformation"=> $newUser, "message" => $message));
+                        }
+                        else
+                        {
+                            $userToCreate = $this->userManager->createUser($newUser);
+                            $message = "Votre compte a bien été créé. Vous pouvez maintenant vous connecter.";
+                                    
+                            // Redirect customer to the connexion page to start session
+                            $connectView = new View("Connect");
+                            $connectView->render(array("message" => $message));
+                        }
                     }
                     else
                     {
