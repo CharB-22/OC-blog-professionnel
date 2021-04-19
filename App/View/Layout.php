@@ -86,9 +86,9 @@
             else
             {
             ?>
-            <div class="row m-0">
-                <div class="col-xs-12 col-md-6 d-flex justify-content-xs-center justify-content-md-end"><a href="index.php?route=register">S'inscrire</a></div>
-                <div class="col-xs-12 col-md-6 d-flex justify-content-xs-center justify-content-md-start"><a href="index.php?route=connect">Se connecter</a></div>
+            <div class="container-fluid d-flex justify-content-center">
+                <a class="btn btn-secondary m-2" href="index.php?route=register" >S'inscrire</a>
+                <a class="btn btn-secondary m-2" href="index.php?route=connect">Se connecter</a>
             </div>
             <?php
             }
