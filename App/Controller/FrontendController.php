@@ -49,7 +49,7 @@ class FrontendController
                         if ($isUsernameAvailable != null)
                         {
                             $message ="Ce nom d'utilisateur existe déja.";
-                            
+
                             $registerView = new View("Register");
                             $registerView->render(array("userInformation"=> $newUser, "message" => $message));
                         }
@@ -102,6 +102,9 @@ class FrontendController
                if ($userExists === false)
                {
                    $message = "Cet utilisateur n'existe pas.";
+                    
+                    $connectView = new View("Connect");
+                    $connectView->render(array("message" => $message));
                }
                else
                {
@@ -129,9 +132,11 @@ class FrontendController
                    
                }
             }
-
+            else
+            {
                 $connectView = new View("Connect");
                 $connectView->render(array("message" => $message));
+            }
         }
         else
         {
