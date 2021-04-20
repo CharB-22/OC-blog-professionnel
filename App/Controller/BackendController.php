@@ -1,6 +1,6 @@
 <?php
 
-class BackendController
+class BackendController extends AbstractController
 {
     protected $postManager;
     protected $commentManager;
@@ -15,31 +15,25 @@ class BackendController
 
     public function getAdminHome()
     {
-        if (isset($_SESSION["id"]) && isset ($_SESSION["roleId"]))
+        $adminRights = parent::isAuthentificated();
+        
+        if (isset($adminRights) && $adminRights == User::ROLE_ADMIN)
         {
-            if ($_SESSION["roleId"] == 1)
-            {
-                // Insert here authentification control
-                $adminHomeView = new View("AdminHome");
-                $adminHomeView->render();
-            }
-
-            else
-            {
-                echo "Vous n\'avez pas les droits suffisants";
-            }
+            // Insert here authentification control
+            $adminHomeView = new View("AdminHome");
+            $adminHomeView->render();
         }
         else
         {
-            echo "Veuillez vous identifier.";
-        }
+            echo "Vous n'avez pas les droits suffisants.";
+        } 
     }
 
     public function getAdminPostList()
     {
-        if (isset($_SESSION["id"]) && isset ($_SESSION["roleId"]))
-        {
-            if ($_SESSION["roleId"] == 1)
+        $adminRights = parent::isAuthentificated();
+
+            if (isset($adminRights) && $adminRights == User::ROLE_ADMIN)
             {
                 $message = "";
                 $adminPostList = $this->postManager->getBlogList();
@@ -52,19 +46,12 @@ class BackendController
             {
                 echo "Vous n\'avez pas les droits suffisants";
             }
-        }
-        else
-        {
-            echo "Veuillez vous identifier.";
-        }
-
     }
 
     public function getAdminCreatePost()
     {
-        if (isset($_SESSION["id"]) && isset ($_SESSION["roleId"]))
-        {
-            if ($_SESSION["roleId"] == 1)
+        $adminRights = parent::isAuthentificated();
+            if (isset($adminRights) && $adminRights == User::ROLE_ADMIN)
             {
 
                 $newPost = null;
@@ -102,11 +89,6 @@ class BackendController
             {
                 echo "Vous n\'avez pas les droits suffisants";
             }
-        }
-        else
-        {
-            echo "Veuillez vous identifier.";
-        }
     }
 
     public function getAdminUpdatePost()

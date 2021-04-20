@@ -1,7 +1,7 @@
 <?php
 
 
-class FrontendController
+class FrontendController extends AbstractController
 {
     protected $postManager;
     protected $commentManager;
@@ -22,127 +22,125 @@ class FrontendController
 
     public function register()
     {
-        if (!isset($_SESSION["id"]))
+        $authentificated = parent::isAuthentificated();
+
+        // Make sure the user is not already identified
+        if (isset($authentificated))
         {
-            $message = "";
-            $newUser = null;
+            throw new Exception ("Vous êtes déjà identifié.");
+        }
+
+        $message = "";
+        $newUser = null;
     
-            if (isset($_POST['createUser']))
+        if (isset($_POST['createUser']))
+        {
+            // Create user entity
+            $newUser = new User(
+                [
+                    'name' => $_POST['name'],
+                    'lastName' => $_POST['lastName'],
+                    'email' => $_POST['userEmail'],
+                    'username' => $_POST['username'],
+                    'password' => password_hash($_POST['userPassword'], PASSWORD_DEFAULT),
+                    'role' => User::ROLE_VISITOR
+                ]
+                );
+
+            if ($newUser->isValid($message))
             {
-                // Create user entity
-                $newUser = new User(
-                    [
-                        'name' => $_POST['name'],
-                        'lastName' => $_POST['lastName'],
-                        'email' => $_POST['userEmail'],
-                        'username' => $_POST['username'],
-                        'password' => password_hash($_POST['userPassword'], PASSWORD_DEFAULT),
-                        'role' => 2
-                    ]
-                    );
+                // Make sure the username is unique
+                $isUsernameAvailable = $this->userManager->userExists($newUser);
 
-                    if ($newUser->isValid($message))
-                    {
-                        // Make sure the username is unique
-                        $isUsernameAvailable = $this->userManager->userExists($newUser);
-
-                        if ($isUsernameAvailable != null)
-                        {
-                            $message ="Ce nom d'utilisateur existe déja.";
-
-                            $registerView = new View("Register");
-                            $registerView->render(array("userInformation"=> $newUser, "message" => $message));
-                        }
-                        else
-                        {
-                            $userToCreate = $this->userManager->createUser($newUser);
-                            $message = "Votre compte a bien été créé. Vous pouvez maintenant vous connecter.";
-                                    
-                            // Redirect customer to the connexion page to start session
-                            $connectView = new View("Connect");
-                            $connectView->render(array("message" => $message));
-                        }
-                    }
-                    else
-                    {
-                        $registerView = new View("Register");
-                        $registerView->render(array("userInformation"=> $newUser, "message" => $message));
-                    }
-                }
-        
-                else
+                if ($isUsernameAvailable != null)
                 {
+                    $message ="Ce nom d'utilisateur existe déja.";
+
                     $registerView = new View("Register");
                     $registerView->render(array("userInformation"=> $newUser, "message" => $message));
                 }
-        }
-        else
-        {
-            echo "Vous êtes déjà identifié.";
+                else
+                {
+                    $userToCreate = $this->userManager->createUser($newUser);
+                    $message = "Votre compte a bien été créé. Vous pouvez maintenant vous connecter.";
+                                    
+                    // Redirect customer to the connexion page to start session
+                    $connectView = new View("Connect");
+                    $connectView->render(array("message" => $message));
+                }
+            }
+            else
+            {
+                $registerView = new View("Register");
+                $registerView->render(array("userInformation"=> $newUser, "message" => $message));
+            }
         }
         
+        else
+        {
+            $registerView = new View("Register");
+            $registerView->render(array("userInformation"=> $newUser, "message" => $message));
+        }
     }
 
     public function connect()
     {
-        $message = "";
-        if (!isset($_SESSION["id"]))
+        // Make sure the user is not already identified
+        $authentificated = parent::isAuthentificated();
+        if (isset($authentificated))
         {
-    
-            if (isset($_POST['connect']))
-            {
+            throw new Exception ("Vous êtes déjà identifié.");
+        }
+        
+        $message = "";
+        if (isset($_POST['connect']))
+        {
+            
+            $userCredentials = new User([
+                "username" => $_POST["username"],
+                "password" => $_POST["userPassword"]    
+            ]);
+ 
+            $userExists = $this->userManager->userExists($userCredentials);
+
+           if ($userExists === false)
+           {
+               $message = "Cet utilisateur n'existe pas.";
                 
-                $userCredentials = new User([
-                    "username" => $_POST["username"],
-                    "password" => $_POST["userPassword"]    
-                ]);
-     
-                $userExists = $this->userManager->userExists($userCredentials);
-    
-               if ($userExists === false)
+                $connectView = new View("Connect");
+                $connectView->render(array("message" => $message));
+           }
+           else
+           {
+                // Check validity password
+                $checkPassword = password_verify($userCredentials->getPassword(), $userExists["password"]);
+
+                if ($checkPassword === true)
                {
-                   $message = "Cet utilisateur n'existe pas.";
-                    
-                    $connectView = new View("Connect");
-                    $connectView->render(array("message" => $message));
+                   session_start();
+                   $_SESSION['id'] = $userExists['userId'];
+                   $_SESSION['name'] = $userExists['name'];
+                   $_SESSION['lastName'] = $userExists['lastName'];
+                   $_SESSION['username'] = $userExists['username'];
+                   $_SESSION['roleId'] = $userExists['roleId'];
+
+                    // Redirect to the homepage
+                    $homeView = new View("Home");
+                    $homeView->render();
+
                }
                else
                {
-                    // Check validity password
-                    $checkPassword = password_verify($userCredentials->getPassword(), $userExists["password"]);
-    
-                    if ($checkPassword === true)
-                   {
-                       session_start();
-                       $_SESSION['id'] = $userExists['userId'];
-                       $_SESSION['name'] = $userExists['name'];
-                       $_SESSION['lastName'] = $userExists['lastName'];
-                       $_SESSION['username'] = $userExists['username'];
-                       $_SESSION['roleId'] = $userExists['roleId'];
-    
-                        // Redirect to the homepage
-                        $homeView = new View("Home");
-                        $homeView->render();
-    
-                   }
-                   else
-                   {
-                       $message = "Le mot de passe est incorrect.";
-                   }
-                   
+                   $message = "Le mot de passe est incorrect.";
                }
-            }
-            else
-            {
-                $connectView = new View("Connect");
-                $connectView->render(array("message" => $message));
-            }
+               
+           }
         }
         else
         {
-            echo "Vous êtes déjà identifié.";
+            $connectView = new View("Connect");
+            $connectView->render(array("message" => $message));
         }
-
     }
 
     public function disconnect()
@@ -171,11 +169,14 @@ class FrontendController
         $alert = "";
 
         //Check the validity of the id
-        if (isset ($_GET['id']) && $_GET['id'] > 0)
+        if (isset ($_GET['id']))
         {
-            $id = $_GET['id'];
+            throw new Exception("Le post correspondant n'existe pas.");
+        }
 
-            if(isset($_POST['createComment']))
+        $id = $_GET['id'];
+
+        if(isset($_POST['createComment']))
             {
                 if(isset($_SESSION['id']))
                 {
@@ -185,28 +186,29 @@ class FrontendController
                         'commentContent' => $_POST["content"],
                         'commentValidation' => 0,
                         'userId' => $_SESSION['id'] // to be dynamically determined with authentification
-                    ]);
+                        ]);
 
-                    if ($newComment->isValid($message, $alert))
-                    {
-                        $createdComment = $this->commentManager->createComment($newComment);
-                        $message = "Merci pour votre commentaire. Il sera vérifié dans les plus brefs délais.";
-                        $alert = "success";   
-                    }
-
-                }
-                else
+                if ($newComment->isValid($message, $alert))
                 {
-                    $message = "Vous devez être connecté pour laisser un commentaire.";
-                    $alert = "danger";
+                    $createdComment = $this->commentManager->createComment($newComment);
+                    $message = "Merci pour votre commentaire. Il sera vérifié dans les plus brefs délais.";
+                    $alert = "success";   
                 }
-                    // Get the data for the main content
-                    $post = $this->postManager->getPost($id);
-                    $commentsList = $this->commentManager->getCommentsPost($id);
-                
-                    // Get the data for the sidebar
-                    $blogListSidebar = $this->postManager->getBlogListSidebar();
-                }
+
+            }
+            else
+            {
+                $message = "Vous devez être connecté pour laisser un commentaire.";
+                $alert = "danger";
+            }
+            
+                // Get the data for the main content
+                $post = $this->postManager->getPost($id);
+                $commentsList = $this->commentManager->getCommentsPost($id);
+                    
+                // Get the data for the sidebar
+                $blogListSidebar = $this->postManager->getBlogListSidebar();
+            }
 
             // Display the Post content
             // Get the data for the main content
@@ -218,12 +220,6 @@ class FrontendController
 
             //Send all data to the matching view :
             $postView =  new View ("Post");
-            $postView->render(array("post"=>$post, "commentsList"=>$commentsList, "blogListSidebar"=>$blogListSidebar, "message" => $message, "alert" => $alert));          
-
-        }
-        else
-        {
-            echo 'Erreur: aucun identifiant de billet envoyé.';
-        }
+            $postView->render(array("post"=>$post, "commentsList"=>$commentsList, "blogListSidebar"=>$blogListSidebar, "message" => $message, "alert" => $alert));
     }
 }

@@ -11,6 +11,10 @@ class User extends AbstractEntity
     protected $role;
     protected $roleUser;
 
+    const ROLE_ADMIN = 1;
+    const ROLE_VISITOR = 2;
+    const NO_ROLE = 0;
+
     public function __construct(array $userData)
     {
         $this->hydrate($userData);
@@ -141,7 +145,7 @@ class User extends AbstractEntity
     {
         $role = (int) $role;
 
-        if ($role == 1 OR $role == 2)
+        if (in_array($role, [self::ROLE_ADMIN, self::ROLE_VISITOR]))
         {
             $this->role = $role;
         }
