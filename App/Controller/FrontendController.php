@@ -22,13 +22,6 @@ class FrontendController extends AbstractController
 
     public function register()
     {
-        $authentificated = parent::isAuthentificated();
-
-        // Make sure the user is not already identified
-        if (isset($authentificated))
-        {
-            throw new Exception ("Vous êtes déjà identifié.");
-        }
 
         $message = "";
         $newUser = null;
@@ -85,13 +78,7 @@ class FrontendController extends AbstractController
 
     public function connect()
     {
-        // Make sure the user is not already identified
-        $authentificated = parent::isAuthentificated();
-        if (isset($authentificated))
-        {
-            throw new Exception ("Vous êtes déjà identifié.");
-        }
-        
+
         $message = "";
         if (isset($_POST['connect']))
         {
@@ -132,6 +119,8 @@ class FrontendController extends AbstractController
                else
                {
                    $message = "Le mot de passe est incorrect.";
+                   $connectView = new View("Connect");
+                   $connectView->render(array("message" => $message));
                }
                
            }

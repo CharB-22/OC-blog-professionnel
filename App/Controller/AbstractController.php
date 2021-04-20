@@ -25,4 +25,14 @@ abstract class AbstractController
         $role = $_SESSION["roleId"];
         return $role;
     }
+
+    public function checkAdminRights()
+    {
+        $role = $this->isAuthentificated();
+
+        if($role != User::ROLE_ADMIN)
+        {
+            throw new Exception ("Vous n'avez pas les droits suffisants.");
+        }
+    }
 }
