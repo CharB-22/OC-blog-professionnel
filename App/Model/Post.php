@@ -70,8 +70,7 @@ class Post extends AbstractEntity
 
         else
         {
-            trigger_error("Un id doit être un nombre entier positif", E_USER_WARNING);
-            return;
+            throw new Exception ("Un id doit être un nombre entier positif");
         }
     }
 
@@ -84,8 +83,7 @@ class Post extends AbstractEntity
         } 
         else
         {
-            trigger_error("Ce n\'est pas une chaîne de caractère ou il y a trop de caractères", E_USER_WARNING);
-            return;
+            throw new Exception("Ce n'est pas une chaîne de caractère ou il y a trop de caractères");
         }
     }
 
@@ -98,8 +96,7 @@ class Post extends AbstractEntity
         } 
         else
         {
-            trigger_error("Ce n\'est pas une chaîne de caractère ou il y a trop de caractères", E_USER_WARNING);
-            return;
+            throw new Exception ("Ce n'est pas une chaîne de caractère ou il y a trop de caractères");
         }
     }
 
@@ -112,8 +109,7 @@ class Post extends AbstractEntity
         } 
         else
         {
-            trigger_error("Ce n\'est pas une chaîne de caractère", E_USER_WARNING);
-            return;
+            throw new Exception("Ce n'est pas une chaîne de caractère");
         }
     }
 
@@ -133,8 +129,7 @@ class Post extends AbstractEntity
         } 
         else
         {
-            trigger_error("Cet id n\'est pas un nombre entier ou ne donne pas les droits nécessaires.", E_USER_WARNING);
-            return;
+            throw new Exception ("Cet id n\'est pas un nombre entier ou ne donne pas les droits nécessaires.");
         }
     }
 
@@ -147,8 +142,7 @@ class Post extends AbstractEntity
         } 
         else
         {
-            trigger_error("Ce n\'est pas une chaîne de caractère ou le nom est trop long", E_USER_WARNING);
-            return;
+            throw new Exception ("Ce n\'est pas une chaîne de caractère ou le nom est trop long");
         }
     }
 
@@ -161,9 +155,7 @@ class Post extends AbstractEntity
         } 
         else
         {
-            trigger_error("Ce n\'est pas une chaîne de caractère ou le nom est trop long", E_USER_WARNING);
-            return;
-        }
+            throw new Exception ("Ce n\'est pas une chaîne de caractère ou le nom est trop long");        }
     }
 
     public function isValid(&$message)

@@ -73,8 +73,7 @@ class Comment extends AbstractEntity
         }
         else
         {
-            trigger_error("Il faut une chaîne de caractères", E_USER_WARNING);
-            return;
+            throw new Exception ("Il faut une chaîne de caractères");
         }
     }
 
@@ -86,8 +85,7 @@ class Comment extends AbstractEntity
         }
         else
         {
-            trigger_error("Ceci ne respecte pas le format de la date", E_USER_WARNING);
-            return;
+            throw new Exception("Ceci ne respecte pas le format de la date");
         }
     }
 
@@ -101,8 +99,7 @@ class Comment extends AbstractEntity
         }
         else
         {
-            trigger_error("Ceci ne respecte pas le format souhaité", E_USER_WARNING);
-            return;
+            throw new Exception("Ceci ne respecte pas le format souhaité");
         }
     }
 
@@ -116,8 +113,7 @@ class Comment extends AbstractEntity
         }
         else
         {
-            trigger_error("Un id doit être un nombre entier positif", E_USER_WARNING);
-            return;
+            throw new Exception ("Un id doit être un nombre entier positif");
         }
     }
 
@@ -131,8 +127,7 @@ class Comment extends AbstractEntity
         }
         else
         {
-            trigger_error("Un id doit être un nombre entier positif", E_USER_WARNING);
-            return;
+            throw new Exception ("Un id doit être un nombre entier positif");
         }
     }
 
@@ -144,8 +139,7 @@ class Comment extends AbstractEntity
         }
         else
         {
-            trigger_error("Ceci n\'est pas une chaîne de caractère", E_USER_WARNING);
-            return;
+            throw new Exception("Ceci n'est pas une chaîne de caractère");
         }
     }
 
