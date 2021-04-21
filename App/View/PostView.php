@@ -19,7 +19,7 @@
           <hr>
           <div>
             <p class="lead"><?= htmlspecialchars($post->getExcerpt());?></p>
-            <p><?= htmlspecialchars($post->getContent());?></p>
+            <p><?= $post->getContent();?></p>
           </div>
           <div class="card my-4">
             <h5 class="card-header">Leave a Comment:</h5>

@@ -21,8 +21,8 @@
             <textarea class="form-control" id="excerpt" name="excerpt" aria-describedby="postExcerpt"><?= $newPost !== null? htmlspecialchars($newPost->getExcerpt()) : null ?></textarea>
         </div>
         <div class="row m-3">
-            <label for="content" class="form-label">Contenu</label>
-            <textarea class="form-control" id="content" name="content" aria-describedby="Content"><?= $newPost !== null? htmlspecialchars($newPost->getContent()) : null ?></textarea>
+            <label for="editTextArea" class="form-label">Contenu</label>
+            <textarea class="form-control" id="editTextArea" name="content" aria-describedby="Content"><?= $newPost !== null? htmlspecialchars($newPost->getContent()) : null ?></textarea>
         </div>
         <button type="submit" name="createPost" class="btn btn-primary m-3">Créer</button>
         <a href="index.php?route=adminPostList" type="button" class="btn btn-primary">Retour à la liste de posts</a>

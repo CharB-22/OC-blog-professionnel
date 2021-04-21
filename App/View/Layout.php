@@ -19,6 +19,12 @@
         <link href="vendor\fortawesome\font-awesome\css\brands.css" rel="stylesheet">
         <link href="vendor\fortawesome\font-awesome\css\solid.css" rel="stylesheet">
         <title><?= $title ?></title>
+        <script src="vendor\tinymce\tinymce\tinymce.min.js"></script>
+        <script type="text/javascript">
+        tinymce.init({
+            selector: '#editTextArea'
+        });
+        </script>
     </head>
 
     <body>
