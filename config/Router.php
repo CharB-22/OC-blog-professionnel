@@ -62,7 +62,7 @@
                             $this->frontendController->disconnect();
                             break;
                         default:
-                            echo "Cette page n'existe pas";
+                            throw new Exception("Cette page n'existe pas.");
                             break;
                     }
                 }
@@ -74,7 +74,8 @@
             }
             catch(Exception $e)
             {
-                die('Erreur:' . $e->getMessage());
+                $ErrorView = new View("Error");
+                $ErrorView->render(array("errorMessage"=> $e));
             }
         }
     }

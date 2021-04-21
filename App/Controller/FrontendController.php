@@ -28,6 +28,10 @@ class FrontendController extends AbstractController
     
         if (isset($_POST['createUser']))
         {
+            if(isset($_SESSION["id"]))
+            {
+                throw new Exception("Vous êtes déjà identifié.");
+            }
             // Create user entity
             $newUser = new User(
                 [
@@ -78,11 +82,15 @@ class FrontendController extends AbstractController
 
     public function connect()
     {
-
         $message = "";
+
         if (isset($_POST['connect']))
         {
-            
+            if(isset($_SESSION["id"]))
+            {
+                throw new Exception("Vous êtes déjà identifié.");
+            }
+
             $userCredentials = new User([
                 "username" => $_POST["username"],
                 "password" => $_POST["userPassword"]    

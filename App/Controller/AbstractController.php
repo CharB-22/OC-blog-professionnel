@@ -17,13 +17,15 @@ abstract class AbstractController
     {
 
         // Check if user is logged in 
-        if (!isset($_SESSION["roleId"]))
+        if (isset($_SESSION["roleId"]))
+        {
+            $role = $_SESSION["roleId"];
+            return $role;
+        }
+        else
         {
             throw new Exception("Vous devez vous identifiez");
         }
-
-        $role = $_SESSION["roleId"];
-        return $role;
     }
 
     public function checkAdminRights()
@@ -35,4 +37,5 @@ abstract class AbstractController
             throw new Exception ("Vous n'avez pas les droits suffisants.");
         }
     }
+
 }
