@@ -9,6 +9,12 @@ h1, h2, h3, li {
     font-family: 'Oswald', sans-serif;
 }
 
+.footer-link {
+    text-decoration: none!important;
+    font-weight: bold!important; 
+    color: #3C3549!important; 
+}
+
 
 .hero {
     background-image: url("https://cdn.pixabay.com/photo/2014/04/04/21/56/bokeh-313993_1280.jpg");
@@ -34,3 +40,4 @@ h1, h2, h3, li {
     background-color:  #BEAFC2;
     border: none;
 }
+

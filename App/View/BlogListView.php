@@ -1,4 +1,5 @@
-<?php $this->title = "Les Articles Publiés"; ?>
+<?php 
+$this->title = "Les Articles Publiés"; ?>
 
 <h1 class="pt-5 mb-3">Articles Publiés</h1>
 

@@ -13,6 +13,6 @@
     </div>
     <div class="card col-xs-12 col-md-4 d-flex align-items-center">
         <img src="./public/images/admin_users.jpg" class="img-thumbnail my-3">
-        <a href="UserList.php?p=user" class="btn btn-primary my-3">Gérer les utilisateurs</a>
+        <a href="index.php?route=adminUserList" class="btn btn-primary my-3">Gérer les utilisateurs</a>
     </div>
 </div>

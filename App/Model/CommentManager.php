@@ -8,7 +8,7 @@ class CommentManager extends AbstractManager
         
         $sql = "SELECT commentContent, commentDate, users.username
         FROM comments
-        JOIN users ON comments.userId = users.id
+        JOIN users ON comments.userId = users.userId
         WHERE postId = :id
         AND commentValidation = 1";
 
@@ -42,8 +42,7 @@ class CommentManager extends AbstractManager
 
         $sql = "SELECT comments.commentId, commentContent, commentDate, users.username
         FROM comments
-        JOIN users ON comments.userId = users.id
-        WHERE commentValidation = 0";
+        JOIN users ON comments.userId = users.userId";
 
         $response = $this->createQuery($sql);
 
@@ -73,6 +72,15 @@ class CommentManager extends AbstractManager
 
         $response = $this->createQuery($sql, array(
             'commentId' => $commentId
+        ));
+    }
+
+    public function deletePostComments($postId)
+    {
+        $sql = "DELETE FROM comments WHERE postId = :postId";
+
+        $response = $this->createQuery($sql, array(
+            'postId' => $postId
         ));
     }
 }

@@ -127,7 +127,7 @@ class Post extends AbstractEntity
     {
         // Must be an int AND give the valid rights (must be = 1)
         $authorId = (int) $authorId;
-        if ($authorId === 1)
+        if ($authorId > 0)
         {
             $this->authorId = $authorId;
         } 

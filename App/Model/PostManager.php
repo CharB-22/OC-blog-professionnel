@@ -37,7 +37,7 @@ class PostManager extends AbstractManager
 
     public function getPost($id)
     {
-        $sql = "SELECT post.id as id, title, excerpt, content, dateModification, users.name AS authorName, users.lastName AS authorLastName FROM post JOIN users ON post.authorId = users.id WHERE post.id = :id";
+        $sql = "SELECT post.id as id, title, excerpt, content, dateModification, users.name AS authorName, users.lastName AS authorLastName FROM post JOIN users ON post.authorId = users.userId WHERE post.id = :id";
 
         $response = $this->createQuery($sql, array('id' => $id));
 
@@ -50,14 +50,13 @@ class PostManager extends AbstractManager
     {
         // Create the entry in the db with the entity information
             
-        $sql = "INSERT INTO post(title, excerpt, content, dateModification, authorId) VALUES (:title, :excerpt, :content, NOW(), 1)";
+        $sql = "INSERT INTO post(title, excerpt, content, dateModification, authorId) VALUES (:title, :excerpt, :content, NOW(), :authorId)";
         
         $response = $this->createQuery($sql, array(
             'title' => $newPost->getTitle(),
             'excerpt'=> $newPost->getExcerpt(), 
             'content'=> $newPost->getContent(),
-            /*'authorId'=> 1*/)); // Implement dynamic authorId with Authentification
-        
+            'authorId'=> $newPost->getAuthorId())); 
     }
 
     public function updatePost($postUpdated)

@@ -17,7 +17,7 @@ class Comment extends AbstractEntity
 
     public function getCommentId()
     {
-        return $this->id;
+        return $this->commentId;
     }
     
     public function getCommentContent()
@@ -50,13 +50,13 @@ class Comment extends AbstractEntity
         return $this->userName;
     }
 
-    public function setCommentId($id)
+    public function setCommentId($commentId)
     {
-        $id = (int) $id;
+        $commentId = (int) $commentId;
 
-        if ($id > 0)
+        if ($commentId > 0)
         {
-            return $this->id = $id;
+            return $this->commentId = $commentId;
         }
         else
         {
@@ -157,10 +157,10 @@ class Comment extends AbstractEntity
             $message = "Veuillez écrire un message.";
             $alert = "danger";
         }
-
-        /*else if (empty($this->getUserId()))
+        /*
+        else if (empty($this->getUserId()))
         {
-            $message = "Vous devez d'abord vous identifiez.";
+            $message = "Vous devez vous identifiez pour laisser un commentaire.";
         }*/
 
 

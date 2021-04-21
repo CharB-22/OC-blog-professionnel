@@ -49,7 +49,18 @@
                         case 'adminDeletePost':
                             $this->backendController->getAdminDeletePost();
                             break;
-    
+                        case 'adminUserList':
+                            $this->backendController->getAdminUserList();
+                            break;
+                        case 'register':
+                            $this->frontendController->register();
+                            break;
+                        case 'connect':
+                            $this->frontendController->connect();
+                            break;
+                        case 'disconnect':
+                            $this->frontendController->disconnect();
+                            break;
                         default:
                             echo "Cette page n'existe pas";
                             break;

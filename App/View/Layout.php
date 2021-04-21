@@ -63,10 +63,36 @@
 
         <footer class="py-5 bg-light">
             <div class="container">
-                <div class="row m-0">
-                    <div class="col-xs-12 col-md-6 d-flex justify-content-xs-center justify-content-md-end"><a href="index.php?route=adminHome">S'inscrire</a></div>
-                    <div class="col-xs-12 col-md-6 d-flex justify-content-xs-center justify-content-md-start"><a href="index.php?route=adminHome">Se connecter</a></div>
+
+            <?php 
+            // Footer changed if you are connected or not
+                if (isset($_SESSION["id"]))
+                {
+            ?>
+                <div class="text-center">
+                    <p>Vous êtes connecté en tant que <?= htmlspecialchars($_SESSION['name'])?> <?= htmlspecialchars($_SESSION['lastName'])  ?></p>
+                    <?php
+                        if ($_SESSION['roleId'] == 1)
+                        {
+                    ?>
+                        <a href="index.php?route=adminHome" type="button" class="btn btn-primary">Espace Administration</a>
+                    <?php
+                    }
+                    ?>
+                    <a href="index.php?route=disconnect" type="button" class="btn btn-primary">Se déconnecter</a>
                 </div>
+            <?php
+            }
+            else
+            {
+            ?>
+            <div class="container-fluid d-flex justify-content-center">
+                <a class="btn btn-secondary m-2" href="index.php?route=register" >S'inscrire</a>
+                <a class="btn btn-secondary m-2" href="index.php?route=connect">Se connecter</a>
+            </div>
+            <?php
+            }
+            ?>
                 <p class="m-0 text-center">Mentions Légales</p>
                 <p class="m-0 text-center">Copyright &copy; Your Website 2021</p>
             </div>
