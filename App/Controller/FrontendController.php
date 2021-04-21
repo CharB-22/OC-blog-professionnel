@@ -166,7 +166,7 @@ class FrontendController extends AbstractController
         $alert = "";
 
         //Check the validity of the id
-        if (isset ($_GET['id']))
+        if (!isset ($_GET['id']))
         {
             throw new Exception("Le post correspondant n'existe pas.");
         }
