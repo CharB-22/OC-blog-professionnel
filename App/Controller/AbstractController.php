@@ -16,11 +16,11 @@ abstract class AbstractController
     public function isAuthentificated()
     {
 
+        $roleId = $_SESSION["roleId"];
         // Check if user is logged in 
-        if (isset($_SESSION["roleId"]))
+        if (isset($roleId))
         {
-            $role = $_SESSION["roleId"];
-            return $role;
+            return $roleId;
         }
         else
         {
