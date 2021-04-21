@@ -2,15 +2,10 @@
 
 class BackendController extends AbstractController
 {
-    protected $postManager;
-    protected $commentManager;
-    protected $userManager;
 
     public function __construct()
     {
-        $this->postManager = new PostManager();
-        $this->commentManager = new CommentManager();
-        $this->userManager = new UserManager();
+        parent::__construct();
     }
 
     public function getAdminHome()
