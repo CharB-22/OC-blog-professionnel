@@ -8,7 +8,7 @@
         <!-- Import Google fonts-->
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Oswald:wght@300;400;500&display=swap" rel="stylesheet">
-        <link rel="icon"  type="image/png"  href="public\images\code_icon.png">
+        <link rel="shortcut icon"  type="image/png"  href="public\images\code_icon.png">
         <!-- Customized CSS-->
         <link type="text/css" href="Public/css/style.css" rel="stylesheet">
         <!-- Bootstrap CSS -->
