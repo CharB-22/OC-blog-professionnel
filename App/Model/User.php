@@ -71,8 +71,7 @@ class User extends AbstractEntity
 
         else
         {
-            trigger_error("Un id doit être un nombre entier positif", E_USER_WARNING);
-            return;
+            throw new Exception("Un id doit être un nombre entier positif");
         }
     }
 
@@ -84,8 +83,7 @@ class User extends AbstractEntity
         } 
         else
         {
-            trigger_error("Ce n\'est pas une chaîne de caractère ou il y a trop de caractères", E_USER_WARNING);
-            return;
+            throw new Exception ("Ce n'est pas une chaîne de caractère ou il y a trop de caractères");
         }
     }
 
@@ -97,8 +95,7 @@ class User extends AbstractEntity
         } 
         else
         {
-            trigger_error("Ce n\'est pas une chaîne de caractère ou il y a trop de caractères", E_USER_WARNING);
-            return;
+            throw new Exception ("Ce n\'est pas une chaîne de caractère ou il y a trop de caractères");
         }
     }
 
@@ -110,8 +107,7 @@ class User extends AbstractEntity
         } 
         else
         {
-            trigger_error("Cela ne respecte pas le format", E_USER_WARNING);
-            return;
+            throw new Exception("Cela ne respecte pas le format");
         }
     }
 
@@ -123,8 +119,7 @@ class User extends AbstractEntity
         } 
         else
         {
-            trigger_error("Cela ne respecte pas le format", E_USER_WARNING);
-            return;
+            throw new Exception ("Cela ne respecte pas le format");
         }
     }
 
@@ -136,8 +131,7 @@ class User extends AbstractEntity
         } 
         else
         {
-            trigger_error("Ce n\'est pas une chaîne de caractère ou il y a trop de caractères", E_USER_WARNING);
-            return;
+            throw new Exception("Ce n'est pas une chaîne de caractère ou il y a trop de caractères");
         }
     }
 
@@ -159,8 +153,7 @@ class User extends AbstractEntity
         } 
         else
         {
-            trigger_error("Cela ne respecte pas le format", E_USER_WARNING);
-            return;
+            throw new Exception("Cela ne respecte pas le format");
         }
     }
 
