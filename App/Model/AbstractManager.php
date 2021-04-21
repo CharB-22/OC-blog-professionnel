@@ -33,7 +33,7 @@ abstract class AbstractManager
     
     catch (Exception $e)
     {
-      die('Erreur : '.$e->getMessage());
+      throw new Exception($e->getMessage());
     }
   }
 

@@ -41,6 +41,6 @@ class View
         {
             throw new Exception("Le fichier ". $file . " est introuvable.");
         }
-
     }
 }
+?>

@@ -49,7 +49,7 @@ class FrontendController extends AbstractController
                 // Make sure the username is unique
                 $isUsernameAvailable = $this->userManager->userExists($newUser);
 
-                if ($isUsernameAvailable != null)
+                if ($isUsernameAvailable !== null)
                 {
                     $message ="Ce nom d'utilisateur existe déja.";
 
