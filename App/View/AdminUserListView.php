@@ -2,10 +2,10 @@
 <?php 
     if (!empty($message))
     {
-        echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                $message
-                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-             </div>";
+        echo "<div class='alert alert-". $message->getMessageFormat(). " alert-dismissible fade show' role='alert'>"
+        . $message->getMessageContent() .
+             " <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+            </div>";
     }
 ?>
 
@@ -20,6 +20,7 @@
                 <th scope="col">Nom</th>
                 <th scope="col">Username</th>
                 <th scope="col">Email</th>
+                <th scope="col">Statut</th>
                 <th scope="col">Actions</th>
             </tr>
         </thead>
@@ -35,6 +36,7 @@
                 <td><?= htmlspecialchars($user->getLastName());?></td>
                 <td><?= htmlspecialchars($user->getUsername());?></td>
                 <td><?= htmlspecialchars($user->getEmail());?></td>
+                <td><?= htmlspecialchars($user->getRoleUser());?></td>
                 <td>
                     <form method="post" action="index.php?route=adminUserList&userId=<?= htmlspecialchars($user->getUserId());?>" class="d-flex flex-column flex-md-row">
                         <button type="submit" name="deleteUser" class="btn btn-primary m-3">Supprimer</button>

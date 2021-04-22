@@ -163,17 +163,17 @@ class Post extends AbstractEntity
         
         if (empty($this->getTitle()))
         {
-            $message = "Veuillez renseigner le titre.";
+            $message = new UserMessage ("Veuillez renseigner le titre.", "danger");
         }
 
         else if (empty($this->getExcerpt()))
         {
-            $message = "Veuillez écrire une introduction.";
+            $message = new UserMessage("Veuillez écrire une introduction.", "danger");
         }
 
         else if (empty($this->getContent()))
         {
-            $message = "Veuillez écrire le corps de texte.";
+            $message = new UserMessage("Veuillez écrire le corps de texte.", "danger");
         }
 
         if (empty($message))

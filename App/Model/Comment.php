@@ -60,8 +60,7 @@ class Comment extends AbstractEntity
         }
         else
         {
-            trigger_error("Un id doit être un nombre entier positif", E_USER_WARNING);
-            return;
+            throw new Exception("Un id doit être un nombre entier positif");
         }
     }
 
@@ -143,22 +142,15 @@ class Comment extends AbstractEntity
         }
     }
 
-    public function isValid(&$message, &$alert)
+    public function isValid(&$message)
     {
         
         if (empty($this->getCommentContent()))
         {
-            $message = "Veuillez écrire un message.";
-            $alert = "danger";
+            $message = new UserMessage("Veuillez écrire un message.", "danger");
         }
-        /*
-        else if (empty($this->getUserId()))
-        {
-            $message = "Vous devez vous identifiez pour laisser un commentaire.";
-        }*/
 
-
-        if (empty($message) && empty($alert))
+        if (empty($message))
         {
             return true;
         }

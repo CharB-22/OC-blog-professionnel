@@ -3,9 +3,9 @@
 
     if (!empty($message))
     {
-        echo "<div class='alert alert-". $alert . " alert-dismissible fade show' role='alert'>
-                $message
-                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+        echo "<div class='alert alert-". $message->getMessageFormat(). " alert-dismissible fade show' role='alert'>"
+         . $message->getMessageContent() .
+              " <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
              </div>";
     }
 ?>

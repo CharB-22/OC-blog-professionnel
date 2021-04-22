@@ -46,7 +46,7 @@ class FrontendController extends AbstractController
 
                 if ($isUsernameAvailable !== null)
                 {
-                    $message ="Ce nom d'utilisateur existe déja.";
+                    $message = new UserMessage("Ce nom d'utilisateur existe déja.", "danger");
 
                     $registerView = new View("Register");
                     $registerView->render(array("userInformation"=> $newUser, "message" => $message));
@@ -54,7 +54,7 @@ class FrontendController extends AbstractController
                 else
                 {
                     $userToCreate = $this->userManager->createUser($newUser);
-                    $message = "Votre compte a bien été créé. Vous pouvez maintenant vous connecter.";
+                    $message = new UserMessage("Votre compte a bien été créé. Vous pouvez maintenant vous connecter.", "success");
                                     
                     // Redirect customer to the connexion page to start session
                     $connectView = new View("Connect");
@@ -95,7 +95,7 @@ class FrontendController extends AbstractController
 
            if ($userExists === false)
            {
-               $message = "Cet utilisateur n'existe pas.";
+               $message = new UserMessage("Cet utilisateur n'existe pas.", "danger");
                 
                 $connectView = new View("Connect");
                 $connectView->render(array("message" => $message));
@@ -121,7 +121,7 @@ class FrontendController extends AbstractController
                }
                else
                {
-                   $message = "Le mot de passe est incorrect.";
+                   $message = new UserMessage("Le mot de passe est incorrect.", "danger");
                    $connectView = new View("Connect");
                    $connectView->render(array("message" => $message));
                }
@@ -180,18 +180,17 @@ class FrontendController extends AbstractController
                         'userId' => $_SESSION['id'] // to be dynamically determined with authentification
                         ]);
 
-                if ($newComment->isValid($message, $alert))
+                if ($newComment->isValid($message))
                 {
                     $createdComment = $this->commentManager->createComment($newComment);
-                    $message = "Merci pour votre commentaire. Il sera vérifié dans les plus brefs délais.";
-                    $alert = "success";   
+                    $message = new UserMessage ("Merci pour votre commentaire. Il sera vérifié dans les plus brefs délais.","success");   
                 }
 
             }
             else
             {
-                $message = "Vous devez être connecté pour laisser un commentaire.";
-                $alert = "danger";
+                $messageContent = "Vous devez être connecté pour laisser un commentaire.";
+                $message = new UserMessage ($messageContent,"danger");
             }
             
                 // Get the data for the main content
@@ -212,6 +211,6 @@ class FrontendController extends AbstractController
 
             //Send all data to the matching view :
             $postView =  new View ("Post");
-            $postView->render(array("post"=>$post, "commentsList"=>$commentsList, "blogListSidebar"=>$blogListSidebar, "message" => $message, "alert" => $alert));
+            $postView->render(array("post"=>$post, "commentsList"=>$commentsList, "blogListSidebar"=>$blogListSidebar, "message" => $message));
     }
 }

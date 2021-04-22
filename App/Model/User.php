@@ -162,26 +162,26 @@ class User extends AbstractEntity
         
         if (empty($this->getLastName()))
         {
-            $message = "Veuillez renseigner votre nom de famille.";
+            $message = new UserMessage("Veuillez renseigner votre nom de famille.", "danger");
         }
 
         else if (empty($this->getName()))
         {
-            $message = "Veuillez renseignez votre prénom.";
+            $message = new UserMessage ("Veuillez renseignez votre prénom.", "danger");
         }
 
         else if (empty($this->getEmail()))
         {
-            $message = "Veuillez renseigner votre email.";
+            $message = new UserMessage("Veuillez renseigner votre email.", "danger");
         }
 
         else if (empty($this->getUsername()))
         {
-            $message = "Veuillez créer un nom d'utilisateur.";
+            $message = new UserMessage("Veuillez créer un nom d'utilisateur.", "danger");
         }
         else if (empty($this->getPassword()))
         {
-            $message = "Veuillez créer un mot de passe.";
+            $message = new UserMessage("Veuillez créer un mot de passe.", "danger");
         }
 
         if (empty($message))

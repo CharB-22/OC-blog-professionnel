@@ -42,7 +42,8 @@ class CommentManager extends AbstractManager
 
         $sql = "SELECT comments.commentId, commentContent, commentDate, users.username
         FROM comments
-        JOIN users ON comments.userId = users.userId";
+        JOIN users ON comments.userId = users.userId
+        WHERE commentValidation = 0";
 
         $response = $this->createQuery($sql);
 

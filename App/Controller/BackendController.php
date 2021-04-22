@@ -50,11 +50,20 @@ class BackendController extends AbstractController
             if ($newPost->isValid($message))
             {
                 $postToCreate = $this->postManager->createPost($newPost);
-                $message = "Le post a bien été créé";
+                $message = new UserMessage ("Le post a bien été créé", "success");
+
+                $adminPostList = $this->postManager->getBlogList();
+                $adminPostListView = new View("AdminPostList");
+                $adminPostListView->render(array("postList" => $adminPostList, "message" => $message));
             }
+
+            else
+            {
         
-            $adminNewPostView = new View("AdminCreatePost");
-            $adminNewPostView->render(array("newPost" => $newPost, "message" => $message));
+                $adminNewPostView = new View("AdminCreatePost");
+                $adminNewPostView->render(array("newPost" => $newPost, "message" => $message));
+            }
+
         }
         
         else
@@ -84,7 +93,7 @@ class BackendController extends AbstractController
             if ($postUpdated->isValid($message))
             {
                 $postToUpdate= $this->postManager->updatePost($postUpdated);
-                $message = "Mise à jour réussie.";
+                $message = new UserMessage("Mise à jour réussie.", "success");
             }
 
             $adminUpdatePostView = new View("AdminUpdatePost");
@@ -109,7 +118,7 @@ class BackendController extends AbstractController
             $this->commentManager->deletePostComments($_GET['id']);
             $this->postManager->deletePost($_GET['id']);
                     
-            $message = "Le post a été supprimé";
+            $message = new UserMessage("Le post a été supprimé","danger");
         
             $adminPostList = $this->postManager->getBlogList();
         
@@ -144,12 +153,12 @@ class BackendController extends AbstractController
                 ]);
         
             $this->commentManager->approveComment($commentApproved);
-            $message = "Le commentaire a été approuvé.";
+            $message = new UserMessage("Le commentaire a été approuvé.", "success");
         }
         else if(isset($_POST['deleteComment']))
         {
             $this->commentManager->deleteComment($_GET['commentId']);
-            $message = "Le commentaire a été supprimé.";
+            $message = new UserMessage("Le commentaire a été supprimé.", "danger");
         }
         
         $commentsToManage = $this->commentManager->getCommentsToManage();
@@ -170,12 +179,12 @@ class BackendController extends AbstractController
                 ]);
         
             $this->userManager->updateStatus($userToUpdate);
-            $message = "Le statut est devenu administrateur.";
+            $message = new UserMessage("Le changement de statut est actif.", "success");
         }
         else if(isset($_POST['deleteUser']))
         {
             $this->userManager->deleteUser($_GET['userId']);
-            $message = "L'utilisateur a bien été supprimé.";
+            $message = new UserMessage("L'utilisateur a bien été supprimé.", "danger");
         }
         
         $userList = $this->userManager->getUserList();
