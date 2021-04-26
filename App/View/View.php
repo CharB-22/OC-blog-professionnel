@@ -29,7 +29,11 @@ class View
     {
         if(file_exists($file))
         {
-            extract($data);
+            if ($data != null)
+            {
+                extract($data);
+            }
+
 
             ob_start();
 
