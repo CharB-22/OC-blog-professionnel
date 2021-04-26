@@ -5,21 +5,23 @@
 
         protected $frontendController;
         protected $backendController;
+        protected $urlRequest;
 
         public function __construct()
         {
             $this->frontendController = new FrontendController();
             $this->backendController = new BackendController();
+            $this->urlRequest = new UrlRequest();
         }
 
         public function run()
         {
+            $route = $this->urlRequest->getGet()->getParameter('route');
+
             try
             {   
-                if (isset($_GET['route']))
+                if (isset($route))
                 {
-                    $route = $_GET['route'];
-                
                     switch($route)
                     {
                         case 'home':
