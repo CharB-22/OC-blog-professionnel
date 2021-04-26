@@ -2,29 +2,26 @@
 
 class UrlRequest
 {
-  protected $get;
-  protected $post;
-  protected $session;
+    // paramètres de la requête
+    private $parameters;
+  
+    public function __construct($parameters) {
+      $this->parameters = $parameters;
+    }
+  
+    // Renvoie vrai si le paramètre existe dans la requête
+    public function existsParameter($nom) {
+      return (isset($this->parameters[$nom]) && $this->parameters[$nom] != "");
+    }
+  
+    // Renvoie la valeur du paramètre demandé
+    // Lève une exception si le paramètre est introuvable
+    public function getParameter($nom) {
+      if ($this->existsParameter($nom)) {
+        return $this->parameters[$nom];
+      }
+      else
+        throw new Exception("Paramètre '$nom' absent de la requête");
+    }
 
-  public function __construct()
-  {
-    $this->get = new Parameter($_GET);
-    $this->post = new Parameter($_POST);
-    $this->session = $_SESSION;
-  }
-
-  public function getGet()
-  {
-    return $this->get;
-  }
-
-  public function getPost()
-  {
-    return $this->post;
-  }
-
-  public function getSession()
-  {
-    return $this->session;
-  }
 }
