@@ -1,18 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap');
 
-main, footer {
+main, 
+    footer {
     font-family: "Montserrat";
-    color: #3C3549;
+    color: #3c3549;
 }
 
-h1, h2, h3, li {
+h1, 
+    h2, 
+        h3, 
+            li {
     font-family: 'Oswald', sans-serif;
 }
 
 .footer-link {
     text-decoration: none!important;
     font-weight: bold!important; 
-    color: #3C3549!important; 
+    color: #3c3549!important; 
 }
 
 
@@ -32,12 +36,11 @@ h1, h2, h3, li {
 }
 
 .btn.btn-primary {
-    background-color:  #741AAC;
+    background-color:  #741aac;
     border: none;
 }
 
 .btn.btn-primary:hover {
-    background-color:  #BEAFC2;
+    background-color:  #beafc2;
     border: none;
 }
-
