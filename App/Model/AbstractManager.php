@@ -5,7 +5,7 @@ abstract class AbstractManager
 
   protected $db;
 
-  const DB_HOST = 'mysql:host=localhost;dbname=projet5_database';
+  const DB_HOST = 'mysql:host=localhost;dbname=oc-projet5';
   const DB_USER = 'root';
   const DB_PASSWORD = 'root';
 
