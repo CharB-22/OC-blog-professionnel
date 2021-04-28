@@ -2,7 +2,7 @@
 
 class CommentManager extends AbstractManager
 {
-    public function getCommentsPost($id)
+    public function getCommentsPost($postId)
     {
         $commentsList = [];
         
@@ -12,7 +12,7 @@ class CommentManager extends AbstractManager
         WHERE postId = :id
         AND commentValidation = 1";
 
-        $response = $this->createQuery($sql, array("id"=>$id));
+        $response = $this->createQuery($sql, array("id"=>$postId));
 
         while ($commentData = $response->fetch())
         {
@@ -71,7 +71,7 @@ class CommentManager extends AbstractManager
     {
         $sql = "DELETE FROM comments WHERE commentId = :commentId";
 
-        $response = $this->createQuery($sql, array(
+        $this->createQuery($sql, array(
             'commentId' => $commentId
         ));
     }
@@ -80,7 +80,7 @@ class CommentManager extends AbstractManager
     {
         $sql = "DELETE FROM comments WHERE postId = :postId";
 
-        $response = $this->createQuery($sql, array(
+        $this->createQuery($sql, array(
             'postId' => $postId
         ));
     }

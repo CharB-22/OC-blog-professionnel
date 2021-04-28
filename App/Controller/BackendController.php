@@ -10,7 +10,7 @@ class BackendController extends AbstractController
 
     public function getAdminHome()
     {
-        $adminRights = parent::checkAdminRights();
+        parent::checkAdminRights();
 
         $adminHomeView = new View("AdminHome");
         $adminHomeView->render();
@@ -19,7 +19,7 @@ class BackendController extends AbstractController
 
     public function getAdminPostList()
     {
-        $adminRights = parent::checkAdminRights();
+        parent::checkAdminRights();
 
 
         $message = "";
@@ -32,7 +32,7 @@ class BackendController extends AbstractController
 
     public function getAdminCreatePost()
     {
-        $adminRights = parent::checkAdminRights();
+        parent::checkAdminRights();
 
         $newPost = null;
         $message = "";
@@ -49,7 +49,7 @@ class BackendController extends AbstractController
         
             if ($newPost->isValid($message))
             {
-                $postToCreate = $this->postManager->createPost($newPost);
+                $this->postManager->createPost($newPost);
                 $message = new UserMessage ("Le post a bien été créé", "success");
 
                 $adminPostList = $this->postManager->getBlogList();
@@ -76,7 +76,7 @@ class BackendController extends AbstractController
 
     public function getAdminUpdatePost()
     {
-        $adminRights = parent::checkAdminRights();
+        parent::checkAdminRights();
 
         $message = "";
 
@@ -111,7 +111,7 @@ class BackendController extends AbstractController
 
     public function getAdminDeletePost()
     {
-        $adminRights = parent::checkAdminRights();
+        parent::checkAdminRights();
 
         if (isset($_POST['deletePost']) && isset($_GET['id']))
         {
@@ -141,7 +141,7 @@ class BackendController extends AbstractController
 
     public function getCommentsToManage()
     {
-        $adminRights = parent::checkAdminRights();
+        parent::checkAdminRights();
 
         $message = "";
 
@@ -168,7 +168,7 @@ class BackendController extends AbstractController
 
     public function getAdminUserList()
     {
-        $adminRights = parent::checkAdminRights();
+        parent::checkAdminRights();
         $message = "";
 
         if (isset($_POST['updateRole']))

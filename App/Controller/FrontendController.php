@@ -53,7 +53,7 @@ class FrontendController extends AbstractController
                 }
                 else
                 {
-                    $userToCreate = $this->userManager->createUser($newUser);
+                    $this->userManager->createUser($newUser);
                     $message = new UserMessage("Votre compte a bien été créé. Vous pouvez maintenant vous connecter.", "success");
                                     
                     // Redirect customer to the connexion page to start session
@@ -182,7 +182,7 @@ class FrontendController extends AbstractController
 
                 if ($newComment->isValid($message))
                 {
-                    $createdComment = $this->commentManager->createComment($newComment);
+                    $this->commentManager->createComment($newComment);
                     $message = new UserMessage ("Merci pour votre commentaire. Il sera vérifié dans les plus brefs délais.","success");   
                 }
 

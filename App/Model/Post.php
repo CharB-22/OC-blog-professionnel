@@ -59,13 +59,13 @@ class Post extends AbstractEntity
         return $this->authorLastName;
     }
 
-    public function setId($id)
+    public function setId($postId)
     {
-        $id = (int) $id;
+        $id = (int) $postId;
 
         if ($id > 0)
         {
-            $this->id = $id;
+            $this->id = $postId;
         }
 
         else

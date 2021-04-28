@@ -35,11 +35,11 @@ class PostManager extends AbstractManager
         return $postList;
     }
 
-    public function getPost($id)
+    public function getPost($postId)
     {
         $sql = "SELECT post.id as id, title, excerpt, content, dateModification, users.name AS authorName, users.lastName AS authorLastName FROM post JOIN users ON post.authorId = users.userId WHERE post.id = :id";
 
-        $response = $this->createQuery($sql, array('id' => $id));
+        $response = $this->createQuery($sql, array('id' => $postId));
 
         $postData = $response->fetch();
 
@@ -52,7 +52,7 @@ class PostManager extends AbstractManager
             
         $sql = "INSERT INTO post(title, excerpt, content, dateModification, authorId) VALUES (:title, :excerpt, :content, NOW(), :authorId)";
         
-        $response = $this->createQuery($sql, array(
+        $this->createQuery($sql, array(
             'title' => $newPost->getTitle(),
             'excerpt'=> $newPost->getExcerpt(), 
             'content'=> $newPost->getContent(),
@@ -65,7 +65,7 @@ class PostManager extends AbstractManager
         // Update the db with this information
         $sql = "UPDATE post SET title = :title, excerpt = :excerpt, content = :content, dateModification = NOW() WHERE id = :id";
 
-        $response = $this->createQuery($sql, array(
+        $this->createQuery($sql, array(
             'id' => $postUpdated->getId(),
             'title' => $postUpdated->getTitle(),
             'excerpt' => $postUpdated->getExcerpt(),
@@ -74,11 +74,11 @@ class PostManager extends AbstractManager
 
     }
 
-    public function deletePost($id)
+    public function deletePost($postId)
     {
 
         $sql = "DELETE FROM post WHERE id = :id";
 
-        $response = $this->createQuery($sql, array('id' => $id));
+        $this->createQuery($sql, array('id' => $postId));
     }
 }

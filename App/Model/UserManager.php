@@ -50,7 +50,7 @@ class UserManager extends AbstractManager
     public function updateStatus($userToUpdate)
     {
         $sql = "UPDATE users SET roleId = 1 WHERE userId = :userId";
-        $response = $this->createQuery($sql, array(
+        $this->createQuery($sql, array(
             'userId' => $userToUpdate->getUserId()
         ));
     }
@@ -58,7 +58,7 @@ class UserManager extends AbstractManager
     public function deleteUser($userId)
     {
         $sql = "DELETE FROM users WHERE userId = :userId";
-        $response = $this->createQuery($sql, array(
+        $this->createQuery($sql, array(
             'userId' => $userId
         ));
     }
