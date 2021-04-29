@@ -11,8 +11,30 @@ class FrontendController extends AbstractController
 
     public function getHome()
     {
+        $message = "";
+            if (isset($_POST["submitEmail"]))
+            {
+              // corps du message
+              $to = "charlene-openclassrooms@outlook.fr";
+              $subject  = $_POST["emailSubject"];
+              $emailContent = "Vous avez reçu un message de ". $_POST["senderName"] . " "
+              . $_POST["senderLastName"] .
+              "
+              Contenu du message:<br>".
+              $_POST["emailContent"];
+              $headers  = 'From: charlene-openclassrooms@outlook.fr '. "\r\n" .
+            'MIME-Version: 1.0' . "\r\n" .
+            'Content-type: text/html; charset=utf-8';
+
+              if(mail($to, $subject, $emailContent, $headers)){
+                 $message = new UserMessage("Message envoyé.","success");
+              }else{
+                $message = new UserMessage("L'envoi du message a échoué.", "danger");
+              }
+             
+            }
         $homeView = new View("Home");
-        $homeView->render();
+        $homeView->render(array("message" => $message));
     }
 
     public function register()

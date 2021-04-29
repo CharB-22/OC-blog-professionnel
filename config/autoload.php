@@ -20,4 +20,8 @@ spl_autoload_register(function ($class_name) {
     {
         require_once "App/View/" . $class_name . ".php";
     }
+    else if (file_exists("vendor/phpmailer/phpmailer/src/" . $class_name . ".php"))
+    {
+        require_once "vendor/phpmailer/phpmailer/src/" . $class_name . ".php";
+    }
 });

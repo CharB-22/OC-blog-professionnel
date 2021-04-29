@@ -19,33 +19,46 @@
             </div>
         </div>
         <div class="container-fluid d-flex justify-content-evenly py-4">
-            <button type="button" class="btn btn-primary">Télécharger le CV</button>
+            <a href="Public/cv_Charlene_Bennevault.pdf" target="_blank" type="button" class="btn btn-primary">Télécharger CV</a>
             <a href="index.php?route=bloglist" type="button" class="btn btn-primary">Voir les articles</a>
         </div>
     </div>
 
     <div id="contact" class="container my-5">
         <h2 class="my-5">Me contacter</h2>
-        <form>
-            <div class="row mb-3">
-              <div class="form-group col-xs-12 col-md-6">
-                <label for="lastname" class="form-label">Nom</label>
-                <input type="text" class="form-control" id="lastname" name="lastname" aria-describedby="senderLastName">
-              </div>
-              <div class="form-group col-xs-12 col-md-6">
-                <label for="name" class="form-label">Prénom</label>
-                <input type="text" class="form-control" id="name" name="name" aria-describedby="senderName">
-              </div>
+        <form method="post" action="index.php?route=home#contact">
+          <?php
+            if (!empty($message))
+            {
+                echo "<div class='alert alert-". $message->getMessageFormat(). " alert-dismissible fade show' role='alert'>"
+                . $message->getMessageContent() .
+                    " <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                    </div>";
+            }
+          ?>
+          <div class="row mb-3">
+            <div class="form-group col-xs-12 col-md-6">
+              <label for="lastname" class="form-label">Nom</label>
+              <input type="text" class="form-control" id="lastname" name="senderLastName" aria-describedby="senderLastName" required>
             </div>
-            <div class="row mb-3">
-              <label for="email" class="form-label">Email address</label>
-              <input type="email" class="form-control" id="email" name="email" aria-describedby="senderEmail">
+            <div class="form-group col-xs-12 col-md-6">
+              <label for="name" class="form-label">Prénom</label>
+              <input type="text" class="form-control" id="name" name="senderName" aria-describedby="senderName" required>
             </div>
-            <div class="row mb-3">
-              <label for="message" class="form-label">Message</label>
-              <textarea id="message" name="message" rows="4" cols="57"></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary">Envoyer</button>
+          </div>
+          <div class="row mb-3">
+            <label for="email" class="form-label">Adresse Email</label>
+            <input type="email" class="form-control" id="email" name="senderEmail" aria-describedby="senderEmail" required>
+          </div>
+          <div class="row mb-3">
+            <label for="emailSubject" class="form-label">Sujet</label>
+            <input type="text" class="form-control" id="emailSubject" name="emailSubject" aria-describedby="emailSubject" required>
+          </div>
+          <div class="row mb-3">
+            <label for="message" class="form-label">Message</label>
+            <textarea id="message" name="emailContent" rows="4" cols="57" required></textarea>
+          </div>
+          <button type="submit" name="submitEmail" class="btn btn-primary">Envoyer</button>
         </form>
     </div>
 </div>
