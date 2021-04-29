@@ -51,9 +51,9 @@
                     </ul>
                 </div>
                 <div class="navbar-nav d-inline">
-                    <a href="https://github.com/CharB-22" target="_blank"  class="iconLink"><i class="fab fa-github fa-2x m-2" style="color:#3C3549"></i></a>
-                    <a href="https://www.linkedin.com/in/charlène-bennevault-78636361" target="_blank"  class="iconLink"><i class="fab fa-linkedin fa-2x m-2" style="color:#3C3549"></i></a>
-                    <a href="https://twitter.com/Onehummingbird1" target="_blank" class="iconLink"><i class="fab fa-twitter fa-2x m-2" style="color:#3C3549"></i></a>
+                    <a href="https://github.com/CharB-22" target="_blank" ><img src="./public/images/github-icon.png" alt="Icône Github en noir" class="m-2" /></a>
+                    <a href="https://www.linkedin.com/in/charlène-bennevault-78636361" target="_blank"  class="iconLink"><img src="./public/images/linkedin-icon.png" alt="Icône Linkedin en noir" class="m-2"/></a>
+                    <a href="https://twitter.com/Onehummingbird1" target="_blank" class="iconLink"><img src="./public/images/twitter-icon.png" alt="Icône Twitter en noir" class="m-2"/></a>
                 </div>
                 </div>
             </nav>

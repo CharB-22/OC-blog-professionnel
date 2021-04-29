@@ -44,3 +44,7 @@ li {
     background-color:  #beafc2;
     border: none;
 }
+
+.iconLink img{
+    width: 36px;
+}
