@@ -36,12 +36,15 @@ li {
 }
 
 .btn.btn-primary {
-    background-color:  #741aac;
+    background-color:  #49583c;
     border: none;
 }
 
-.btn.btn-primary:hover {
-    background-color:  #beafc2;
+.btn.btn-primary:hover,
+.btn.btn-primary:active,
+.btn.btn-primary:visited {
+    background-color:  #49583c;
+    opacity: 0.6;
     border: none;
 }
 
