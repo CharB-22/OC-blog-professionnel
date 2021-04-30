@@ -24,7 +24,7 @@ class UserManager extends AbstractManager
         $sql = "INSERT INTO users (lastName, name, email, username, password, roleId)
         VALUES (:lastName, :name, :email, :username, :password, :role)";
 
-        $response = $this->createQuery($sql, array(
+        $this->createQuery($sql, array(
             'lastName' => $newUser->getLastName(),
             'name' => $newUser->getName(),
             'email' => $newUser->getEmail(),

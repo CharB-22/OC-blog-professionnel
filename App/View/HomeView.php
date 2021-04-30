@@ -2,8 +2,8 @@
 
 <div class="container"> 
     
-    <div class="hero position-relative">
-        <div class="text-center position-absolute top-50 start-50 translate-middle">
+    <div class="hero">
+        <div class="text-center">
             <h1>I'm Charlène Bennevault<br><em style="text-transform:uppercase">Developper and eCommerce Expert</em></h1>
         </div>
     </div> 

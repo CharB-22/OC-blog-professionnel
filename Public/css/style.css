@@ -3,7 +3,7 @@
 main,
 footer {
     font-family: "Montserrat";
-    color: #3c3549;
+    color: #0f1b07;
 }
 
 h1,
@@ -16,18 +16,18 @@ li {
 .footer-link {
     text-decoration: none!important;
     font-weight: bold!important; 
-    color: #3c3549!important; 
+    color: #c6d166!important; 
 }
 
 
 .hero {
-    background-image: url("https://cdn.pixabay.com/photo/2014/04/04/21/56/bokeh-313993_1280.jpg");
-    /* Center and scale the image nicely */
+    /*    background-image: url("https://cdn.pixabay.com/photo/2014/04/04/21/56/bokeh-313993_1280.jpg");
+
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    height: 70vh;
-    color: #f8f9fa;
+    height: 70vh;*/
+    color: #0f1b07;
 }
 
 .img-thumbnail {
@@ -36,15 +36,14 @@ li {
 }
 
 .btn.btn-primary {
-    background-color:  #49583c;
+    background-color:  #5c821a;
     border: none;
 }
 
 .btn.btn-primary:hover,
 .btn.btn-primary:active,
 .btn.btn-primary:visited {
-    background-color:  #49583c;
-    opacity: 0.6;
+    background-color:  #c6d166;
     border: none;
 }
 
