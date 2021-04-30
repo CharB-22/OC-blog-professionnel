@@ -61,6 +61,9 @@
                         case 'disconnect':
                             $this->frontendController->disconnect();
                             break;
+                        case 'legal':
+                            $this->frontendController->getLegal();
+                                break;
                         default:
                             throw new Exception("Cette page n'existe pas.");
                             break;

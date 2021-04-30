@@ -235,4 +235,10 @@ class FrontendController extends AbstractController
             $postView =  new View ("Post");
             $postView->render(array("post"=>$post, "commentsList"=>$commentsList, "blogListSidebar"=>$blogListSidebar, "message" => $message));
     }
+
+    public function getLegal()
+    {
+        $legalView = new View("Legal");
+        $legalView->render();
+    }
 }
