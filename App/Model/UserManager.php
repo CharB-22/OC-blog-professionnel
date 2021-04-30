@@ -44,7 +44,12 @@ class UserManager extends AbstractManager
 
         $userExists = $response->fetch();
 
-        return $userExists;
+        if (is_array($userExists) && !empty($userExists))
+        {
+            return $userExists;
+        }
+
+        return null;
     }
 
     public function updateStatus($userToUpdate)
