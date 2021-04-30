@@ -19,9 +19,10 @@
             </div>
         </div>
         <div class="container-fluid d-flex justify-content-evenly py-4">
-            <a href="Public/cv_Charlene_Bennevault.pdf" target="_blank" type="button" class="btn btn-primary">Télécharger CV</a>
+            <a href="Public/cv-Charlene_Bennevault.pdf" target="_blank" type="button" class="btn btn-primary">Télécharger CV</a>
             <a href="index.php?route=bloglist" type="button" class="btn btn-primary">Voir les articles</a>
         </div>
+        
     </div>
 
     <div id="contact" class="container my-5">
