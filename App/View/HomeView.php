@@ -59,7 +59,10 @@
             <label for="message" class="form-label">Message</label>
             <textarea id="message" name="emailContent" rows="4" cols="57" required></textarea>
           </div>
-          <button type="submit" name="submitEmail" class="btn btn-primary">Envoyer</button>
+          <div class="text-center">
+            <button type="submit" name="submitEmail" class="btn btn-primary">Envoyer</button>
+          </div>
+
         </form>
     </div>
 </div>
