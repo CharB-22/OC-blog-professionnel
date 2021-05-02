@@ -10,7 +10,7 @@
 ?>
 <div class="d-flex flex-column flex-md-row justify-content-between">
     <h1 class="pt-5 mb-3">Gérer les commentaires</h1>
-    <a href="#" class="btn btn-primary m-5">Gérer les utilisateurs</a>
+    <a href="index.php?route=adminUserList" class="btn btn-primary m-5">Gérer les utilisateurs</a>
 </div>
 
 <!-- Loop through the comments to approve -->

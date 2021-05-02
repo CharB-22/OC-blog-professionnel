@@ -4,7 +4,7 @@
     
     <div class="hero">
         <div class="text-center">
-            <h1>I'm Charlène Bennevault<br><em style="text-transform:uppercase">Developper and eCommerce Expert</em></h1>
+            <h1>I'm Charlène Bennevault<br><em style="text-transform:uppercase; color: #6fbc29">eCommerce expert</em> and <em style="text-transform:uppercase; color: #6fbc29">developper</em></h1>
         </div>
     </div> 
 
