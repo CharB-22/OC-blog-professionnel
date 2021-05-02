@@ -12,6 +12,7 @@ $this->title = "Les Articles Publiés"; ?>
         <div class="card mb-4">
             <div class="card-body">
                 <h2 class="card-title"><?= htmlspecialchars($post->getTitle());?></h2>
+                <p class="card-text">Modifié le : <?= htmlspecialchars($post->getDateModification());?></p>
                 <p class="card-text"><?= htmlspecialchars($post->getExcerpt());?></p>
                 <a href="index.php?route=post&id=<?= htmlspecialchars($post->getId());?>" class="btn btn-primary">Lire l'article &rarr;</a>
             </div>

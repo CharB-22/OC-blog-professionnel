@@ -21,6 +21,7 @@
     <div class="card mb-4">
         <div class="card-body">
             <h2 class="card-title"><?= htmlspecialchars($post->getTitle());?></h2>
+            <p class="card-text">Modifié le : <?= htmlspecialchars($post->getDateModification());?></p>
             <p class="card-text"><?= htmlspecialchars($post->getExcerpt());?></p>
             <div class="d-flex flex-column flex-md-row">
                 <!-- To update with the correct route-->

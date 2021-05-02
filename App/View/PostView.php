@@ -15,7 +15,7 @@
 
       <div class="row col">
         <div class="col-md-8 col-xs-12">
-          <p>Posted <?= htmlspecialchars($post->getDateModification());?></p>
+          <p>Posté le <?= htmlspecialchars($post->getDateModification());?></p>
           <hr>
           <div>
             <p class="lead"><?= htmlspecialchars($post->getExcerpt());?></p>
@@ -38,7 +38,7 @@
           ?>
             <div class="media mb-4">
               <div class="media-body">
-                <h5 class="mt-0"><?= htmlspecialchars($comment->getUserName());?><small><?= htmlspecialchars($comment->getCommentDate());?></small></h5>
+                <h5 class="mt-0"><?= htmlspecialchars($comment->getUserName());?> - écrit le : <small><?= htmlspecialchars($comment->getCommentDate());?></small></h5>
                 <?= htmlspecialchars($comment->getCommentContent());?>
               </div>
             </div>

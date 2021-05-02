@@ -6,7 +6,7 @@ class CommentManager extends AbstractManager
     {
         $commentsList = [];
         
-        $sql = "SELECT commentContent, commentDate, users.username
+        $sql = "SELECT commentContent, DATE_FORMAT(commentDate,'%d/%m/%Y à %Hh%i') AS commentDate, users.username
         FROM comments
         JOIN users ON comments.userId = users.userId
         WHERE postId = :id
@@ -40,7 +40,7 @@ class CommentManager extends AbstractManager
     {
         $commentsToManage = [];
 
-        $sql = "SELECT comments.commentId, commentContent, commentDate, users.username
+        $sql = "SELECT comments.commentId, commentContent, DATE_FORMAT(commentDate,'%d/%m/%Y à %Hh%i') AS commentDate, users.username
         FROM comments
         JOIN users ON comments.userId = users.userId
         WHERE commentValidation = 0";
