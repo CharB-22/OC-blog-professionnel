@@ -33,7 +33,9 @@
             <label for="userPassword" class="form-label">Mot de passe</label>
             <input type="password" class="form-control" id="userPassword" name="userPassword" aria-describedby="userPassword">
         </div>
-        <button type="submit" name="createUser" class="btn btn-primary m-3">S'inscrire</button>
+        <div class="text-center">
+            <button type="submit" name="createUser" class="btn btn-primary m-3">S'inscrire</button>
+        </div>
     </form>
 </div>
 

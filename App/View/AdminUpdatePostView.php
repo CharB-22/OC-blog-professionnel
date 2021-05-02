@@ -25,7 +25,9 @@
             <label for="editTextArea" class="form-label">Contenu</label>
             <textarea class="form-control" id="editTextArea" name="content" rows="10" cols="50" aria-describedby="Content"><?= htmlspecialchars($postToUpdate->getContent());?></textarea>
         </div>
-        <button type="submit" name="updatePost" class="btn btn-primary m-3">Modifier</button>
-        <a href="index.php?route=adminPostList" type="button" class="btn btn-primary">Retour à la liste de posts</a>
+        <div class="text-center">
+            <button type="submit" name="updatePost" class="btn btn-primary m-3">Modifier</button>
+            <a href="index.php?route=adminPostList" type="button" class="btn btn-secondary">Retour à la liste de posts</a>
+        </div>
     </form>
 </div>
