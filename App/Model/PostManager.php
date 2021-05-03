@@ -70,7 +70,7 @@ class PostManager extends AbstractManager
             'title' => $postUpdated->getTitle(),
             'excerpt' => $postUpdated->getExcerpt(),
             'content' => $postUpdated->getContent(),
-            'authorId' => $postUpdated->getAuthorId(),
+            'authorId' => $postUpdated->getAuthorId()
         ));
 
     }
@@ -81,5 +81,12 @@ class PostManager extends AbstractManager
         $sql = "DELETE FROM post WHERE id = :id";
 
         $this->createQuery($sql, array('id' => $postId));
+    }
+
+    public function deleteUserPost($authorId)
+    {   
+        $sql = "DELETE FROM post WHERE authorId = :authorId";
+
+        $this->createQuery($sql, array('authorId' => $authorId));
     }
 }

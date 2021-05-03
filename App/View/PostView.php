@@ -38,7 +38,7 @@
           ?>
             <div class="media mb-4">
               <div class="media-body">
-                <h5 class="mt-0"><?= htmlspecialchars($comment->getUserName());?> - écrit le : <small><?= htmlspecialchars($comment->getCommentDate());?></small></h5>
+                <h5 class="mt-0"><?= htmlspecialchars($comment->getUserName())!== null ? htmlspecialchars($comment->getUserName()): "inconnu";?> - écrit le : <small><?= htmlspecialchars($comment->getCommentDate());?></small></h5>
                 <?= htmlspecialchars($comment->getCommentContent());?>
               </div>
             </div>
