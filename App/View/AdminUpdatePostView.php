@@ -18,6 +18,10 @@
             <input type="text" class="form-control" id="title" name="title" value="<?= htmlspecialchars($postToUpdate->getTitle());?>" aria-describedby="postTitle">
         </div>
         <div class="row m-3">
+            <label for="title" class="form-label">Modifié par</label>
+            <input type="text" class="form-control" id="title" name="author" value="<?= htmlspecialchars($postToUpdate->getAuthorName());?> <?= htmlspecialchars($postToUpdate->getAuthorLastName());?>" aria-describedby="postTitle">
+        </div>
+        <div class="row m-3">
             <label for="excerpt" class="form-label">Introduction</label>
             <textarea class="form-control" id="excerpt" name="excerpt" rows="4" cols="50" aria-describedby="postExcerpt"><?= htmlspecialchars($postToUpdate->getExcerpt());?></textarea>
         </div>

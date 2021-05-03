@@ -63,13 +63,14 @@ class PostManager extends AbstractManager
     {
 
         // Update the db with this information
-        $sql = "UPDATE post SET title = :title, excerpt = :excerpt, content = :content, dateModification = NOW() WHERE id = :id";
+        $sql = "UPDATE post SET title = :title, excerpt = :excerpt, content = :content, dateModification = NOW(), authorId = :authorId WHERE id = :id";
 
         $this->createQuery($sql, array(
             'id' => $postUpdated->getId(),
             'title' => $postUpdated->getTitle(),
             'excerpt' => $postUpdated->getExcerpt(),
-            'content' => $postUpdated->getContent()
+            'content' => $postUpdated->getContent(),
+            'authorId' => $postUpdated->getAuthorId(),
         ));
 
     }
