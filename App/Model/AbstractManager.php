@@ -5,10 +5,6 @@ abstract class AbstractManager
 
   protected $projectDB;
 
-  const DB_HOST = 'mysql:host=localhost;dbname=oc-projet5';
-  const DB_USER = 'root';
-  const DB_PASSWORD = 'root';
-
   private function checkConnection()
   {
     if($this->projectDB === null)
@@ -26,7 +22,7 @@ abstract class AbstractManager
   {
     try
     {
-      $projectDB = new PDO(self::DB_HOST, self::DB_USER, self::DB_PASSWORD);
+      $projectDB = new PDO("mysql:host=" . DB_HOST. ";dbname=". DB_NAME , DB_USER, DB_PASSWORD);
       $projectDB->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
       return $projectDB;
     }
