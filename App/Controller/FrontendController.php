@@ -15,7 +15,7 @@ class FrontendController extends AbstractController
             if (isset($_POST["submitEmail"]))
             {
               // corps du message
-              $sendTo = "charlene-openclassrooms@outlook.fr";
+              $sendTo = EMAIL_TO;
               $subject  = $_POST["emailSubject"];
               $emailContent = "
                 <html>
