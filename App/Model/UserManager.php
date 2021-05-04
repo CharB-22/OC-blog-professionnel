@@ -62,9 +62,11 @@ class UserManager extends AbstractManager
 
     public function deleteUser($userId)
     {
+
         $sql = "DELETE FROM users WHERE userId = :userId";
         $this->createQuery($sql, array(
             'userId' => $userId
         ));
+
     }
 }

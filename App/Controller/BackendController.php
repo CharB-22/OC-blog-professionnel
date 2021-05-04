@@ -87,7 +87,8 @@ class BackendController extends AbstractController
                 'id' => $_GET['id'],
                 'title'=> $_POST['title'],
                 'excerpt' => $_POST['excerpt'],
-                'content' => $_POST['content']
+                'content' => $_POST['content'],
+                'authorId' => $_SESSION['id']
             ]);
 
             if ($postUpdated->isValid($message))
@@ -95,7 +96,7 @@ class BackendController extends AbstractController
                 $postToUpdate= $this->postManager->updatePost($postUpdated);
                 $message = new UserMessage("Mise à jour réussie.", "success");
             }
-
+            $postUpdated = $this->postManager->getPost($_GET['id']);
             $adminUpdatePostView = new View("AdminUpdatePost");
             $adminUpdatePostView->render(array("postToUpdate" => $postUpdated, "message" => $message));
         }
@@ -183,6 +184,8 @@ class BackendController extends AbstractController
         }
         else if(isset($_POST['deleteUser']))
         {
+            $this->commentManager->deleteUserComments($_GET['userId']);
+            $this->postManager->deleteUserPost($_GET['userId']);
             $this->userManager->deleteUser($_GET['userId']);
             $message = new UserMessage("L'utilisateur a bien été supprimé.", "danger");
         }

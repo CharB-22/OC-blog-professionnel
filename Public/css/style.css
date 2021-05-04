@@ -3,7 +3,7 @@
 main,
 footer {
     font-family: "Montserrat";
-    color: #0f1b07;
+    color: #333;
 }
 
 h1,
@@ -36,13 +36,12 @@ li {
 }
 
 .btn.btn-primary {
-    background-color:  #5c821a;
+    background-color:  #6fbc29;
     border: none;
 }
 
 .btn.btn-primary:hover,
-.btn.btn-primary:active,
-.btn.btn-primary:visited {
+.btn.btn-primary:active {
     background-color:  #c6d166;
     border: none;
 }

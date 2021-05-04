@@ -6,7 +6,7 @@ class PostManager extends AbstractManager
     {
         $postList = [];
         
-        $sql = "SELECT id, title, excerpt FROM post";
+        $sql = "SELECT id, title, excerpt, DATE_FORMAT(dateModification, '%d/%m/%Y à %Hh%i') AS dateModification FROM post ORDER BY dateModification DESC";
 
         $response = $this->createQuery($sql);
 
@@ -37,7 +37,7 @@ class PostManager extends AbstractManager
 
     public function getPost($postId)
     {
-        $sql = "SELECT post.id as id, title, excerpt, content, dateModification, users.name AS authorName, users.lastName AS authorLastName FROM post JOIN users ON post.authorId = users.userId WHERE post.id = :id";
+        $sql = "SELECT post.id as id, title, excerpt, content, DATE_FORMAT(dateModification, '%d/%m/%Y à %Hh%i') AS dateModification, users.name AS authorName, users.lastName AS authorLastName FROM post JOIN users ON post.authorId = users.userId WHERE post.id = :id";
 
         $response = $this->createQuery($sql, array('id' => $postId));
 
@@ -63,13 +63,14 @@ class PostManager extends AbstractManager
     {
 
         // Update the db with this information
-        $sql = "UPDATE post SET title = :title, excerpt = :excerpt, content = :content, dateModification = NOW() WHERE id = :id";
+        $sql = "UPDATE post SET title = :title, excerpt = :excerpt, content = :content, dateModification = NOW(), authorId = :authorId WHERE id = :id";
 
         $this->createQuery($sql, array(
             'id' => $postUpdated->getId(),
             'title' => $postUpdated->getTitle(),
             'excerpt' => $postUpdated->getExcerpt(),
-            'content' => $postUpdated->getContent()
+            'content' => $postUpdated->getContent(),
+            'authorId' => $postUpdated->getAuthorId()
         ));
 
     }
@@ -80,5 +81,12 @@ class PostManager extends AbstractManager
         $sql = "DELETE FROM post WHERE id = :id";
 
         $this->createQuery($sql, array('id' => $postId));
+    }
+
+    public function deleteUserPost($authorId)
+    {   
+        $sql = "DELETE FROM post WHERE authorId = :authorId";
+
+        $this->createQuery($sql, array('authorId' => $authorId));
     }
 }

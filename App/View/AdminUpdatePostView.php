@@ -18,6 +18,10 @@
             <input type="text" class="form-control" id="title" name="title" value="<?= htmlspecialchars($postToUpdate->getTitle());?>" aria-describedby="postTitle">
         </div>
         <div class="row m-3">
+            <label for="title" class="form-label">Modifié par</label>
+            <input type="text" class="form-control" id="title" name="author" value="<?= htmlspecialchars($postToUpdate->getAuthorName());?> <?= htmlspecialchars($postToUpdate->getAuthorLastName());?>" aria-describedby="postTitle">
+        </div>
+        <div class="row m-3">
             <label for="excerpt" class="form-label">Introduction</label>
             <textarea class="form-control" id="excerpt" name="excerpt" rows="4" cols="50" aria-describedby="postExcerpt"><?= htmlspecialchars($postToUpdate->getExcerpt());?></textarea>
         </div>
@@ -25,7 +29,9 @@
             <label for="editTextArea" class="form-label">Contenu</label>
             <textarea class="form-control" id="editTextArea" name="content" rows="10" cols="50" aria-describedby="Content"><?= htmlspecialchars($postToUpdate->getContent());?></textarea>
         </div>
-        <button type="submit" name="updatePost" class="btn btn-primary m-3">Modifier</button>
-        <a href="index.php?route=adminPostList" type="button" class="btn btn-primary">Retour à la liste de posts</a>
+        <div class="text-center">
+            <button type="submit" name="updatePost" class="btn btn-primary m-3">Modifier</button>
+            <a href="index.php?route=adminPostList" type="button" class="btn btn-secondary">Retour à la liste de posts</a>
+        </div>
     </form>
 </div>

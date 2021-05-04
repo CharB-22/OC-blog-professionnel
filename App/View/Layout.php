@@ -94,8 +94,10 @@
             <?php
             }
             ?>
-                <a  href="index.php?route=legal">Mentions Légales</a>
-                <p class="m-0 text-center">Copyright &copy; Your Website 2021</p>
+            <div class="m-0 text-center">
+                <a class="text-muted" href="index.php?route=legal">Mentions Légales</a>
+                <p>Copyright &copy; Your Website 2021</p>
+            </div>
             </div>
         </footer>
         
