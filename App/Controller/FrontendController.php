@@ -15,18 +15,23 @@ class FrontendController extends AbstractController
             if (isset($_POST["submitEmail"]))
             {
               // corps du message
-              $to = "charlene-openclassrooms@outlook.fr";
+              $sendTo = "charlene-openclassrooms@outlook.fr";
               $subject  = $_POST["emailSubject"];
-              $emailContent = "Vous avez reçu un message de ". $_POST["senderName"] . " "
-              . $_POST["senderLastName"] .
-              "
-              Contenu du message:<br>".
-              $_POST["emailContent"];
+              $emailContent = "
+                <html>
+                    <body>
+                    <p>Vous avez reçu un message de ". $_POST["senderName"] . " "
+                    . $_POST["senderLastName"] ."</p>
+                    <p>Contenu du message:<p>".
+                    $_POST["emailContent"]."
+                    </body>
+                </html>
+                ";
               $headers  = 'From: charlene-openclassrooms@outlook.fr '. "\r\n" .
             'MIME-Version: 1.0' . "\r\n" .
             'Content-type: text/html; charset=utf-8';
 
-              if(mail($to, $subject, $emailContent, $headers)){
+              if(mail($sendTo, $subject, $emailContent, $headers)){
                  $message = new UserMessage("Message envoyé.","success");
               }else{
                 $message = new UserMessage("L'envoi du message a échoué.", "danger");
