@@ -2,50 +2,39 @@
 
 main,
 footer {
-    font-family: "Montserrat";
-    color: #333;
+  font-family: "Montserrat", sans-serif;
+  color: #333;
 }
 
 h1,
 h2,
 h3,
 li {
-    font-family: 'Oswald', sans-serif;
+  font-family: 'Oswald', sans-serif;
 }
 
 .footer-link {
-    text-decoration: none!important;
-    font-weight: bold!important; 
-    color: #c6d166!important; 
+  text-decoration: none !important;
+  font-weight: bold !important; 
+  color: #c6d166 !important;
 }
 
-
 .hero {
-    /*    background-image: url("https://cdn.pixabay.com/photo/2014/04/04/21/56/bokeh-313993_1280.jpg");
-
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 70vh;*/
-    color: #0f1b07;
+  color: #0f1b07;
 }
 
 .img-thumbnail {
-    height: 400px;
-    width: 400px;
+  height: 400px;
+  width: 400px;
 }
 
 .btn.btn-primary {
-    background-color:  #6fbc29;
-    border: none;
+  background-color: #6fbc29;
+  border: none;
 }
 
 .btn.btn-primary:hover,
 .btn.btn-primary:active {
-    background-color:  #c6d166;
-    border: none;
-}
-
-.iconLink img{
-    width: 36px;
+  background-color:  #c6d166;
+  border: none;
 }
