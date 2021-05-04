@@ -17,11 +17,14 @@ To install the project on your own server:
 php composer.phar install
 
 --> Import the .sql file from the repository in your MySql database.
+
 In order to connect to the database, make sure to update the identifiers in the AbstractManager.php (App\Model\AbstractManager.php):
-    const DB_HOST = 'mysql:host=localhost;dbname=oc-projet5';
-    const DB_USER = 'root';
-    const DB_PASSWORD = 'root';
+
+const DB_HOST = 'mysql:host=localhost;dbname=oc-projet5';
+const DB_USER = 'root';
+const DB_PASSWORD = 'root';
 
 --> Last but not least, in order to access the backend pages, an generic administrator account has been created:
+
 username: Admin1
 password : Administrator1
