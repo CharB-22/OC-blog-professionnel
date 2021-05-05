@@ -26,7 +26,7 @@ To install the project on your own server:
 
 --> Update the _config.php file with your own identifier. 
 
-This file can be found in this folder: config\_config.php 
+This file can be found in this folder: config/_config.php 
 
 Replace the asterisks with the identifiers from your own set up. These changes have to be done in order to connect correctly to the database and to update the email recipient.
 
