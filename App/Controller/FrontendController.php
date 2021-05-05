@@ -217,8 +217,7 @@ class FrontendController extends AbstractController
             }
             else
             {
-                $messageContent = "Vous devez être connecté pour laisser un commentaire.";
-                $message = new UserMessage ($messageContent,"danger");
+                $message = new UserMessage ("Vous devez être connecté pour laisser un commentaire.","danger");
             }
             
                 // Get the data for the main content
