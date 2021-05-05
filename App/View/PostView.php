@@ -15,7 +15,7 @@
 
       <div class="row col">
         <div class="col-md-8 col-xs-12">
-          <p>Posté le <?= htmlspecialchars($post->getDateModification());?></p>
+          <p>Dernière mise à jour le <?= htmlspecialchars($post->getDateModification());?></p>
           <hr>
           <div>
             <p class="lead"><?= htmlspecialchars($post->getExcerpt());?></p>
