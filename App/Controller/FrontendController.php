@@ -114,10 +114,18 @@ class FrontendController extends AbstractController
                 throw new Exception("Vous êtes déjà identifié.");
             }
 
-            $userCredentials = new User([
-                "username" => $_POST["username"],
-                "password" => $_POST["userPassword"]    
-            ]);
+            if(isset($_POST["username"]) && isset($_POST["userPassword"]))
+            {
+                $userCredentials = new User([
+                    "username" => $_POST["username"],
+                    "password" => $_POST["userPassword"]    
+                ]);
+            }
+            else
+            {
+                $message = new UserMessage("Veuillez renseigner un nom d'utlisateur et un mot de passe.");
+            }
+
  
             $userExists = $this->userManager->userExists($userCredentials);
 
@@ -186,7 +194,7 @@ class FrontendController extends AbstractController
     public function getPost()
     {
         $message = "";
-        
+
         //Check the validity of the id
         if (!isset ($_GET['id']))
         {
