@@ -186,8 +186,7 @@ class FrontendController extends AbstractController
     public function getPost()
     {
         $message = "";
-        $alert = "";
-
+        
         //Check the validity of the id
         if (!isset ($_GET['id']))
         {
