@@ -1,6 +1,7 @@
 # Project 5 - Create your own blog, using PHP
 
 Goal : Build a professional blog from scratch, with a section visible to everyone and a section only accessible to specific users.
+This blog has been built using essentially the language PHP without any additional framework.
 For more details go to : https://openclassrooms.com/fr/paths/59/projects/7/assignment
 
 In this repository, you will find:
@@ -13,21 +14,16 @@ To install the project on your own server:
 
 --> Download or Clone the project from Github
 
---> Make sure you have composer installed to be able to download the libraries to be able to correctly run this project. Once this check is done, installed the libraries by using this command in your command line:
+--> Install the needed libraries by using this command in your command line:
 
     php composer.phar install
 
 --> Import the .sql file from the repository in your MySql database.
 
-In order to connect to the database, make sure to update the identifiers in the AbstractManager.php (App\Model\AbstractManager.php):
-    
-    const DB_HOST = 'mysql:host=localhost;dbname=oc-projet5';
-    
-    const DB_USER = 'root';
-    
-    const DB_PASSWORD = 'root';
+--> Update the _config.php file with your own identifier. This file can be found in this folder:
+config\_config.php : replace the asterisks with the identifiers from your own set up. These changes have to be done in order to connect correctly to the database and to update the email recipient.
 
---> Last but not least, in order to access the backend pages, an generic administrator account has been created:
+--> Last but not least, in order to access the backend pages, a generic administrator account has been created (already in the database):
 
     username: Admin1
     

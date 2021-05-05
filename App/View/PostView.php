@@ -22,7 +22,7 @@
             <p><?= $post->getContent();?></p>
           </div>
           <div class="card my-4">
-            <h5 class="card-header">Leave a Comment:</h5>
+            <h5 class="card-header">Laisser un commentaire :</h5>
             <div class="card-body">
               <form method="post" action="index.php?route=post&id=<?= htmlspecialchars($post->getId());?>">
                 <div class="form-group">
