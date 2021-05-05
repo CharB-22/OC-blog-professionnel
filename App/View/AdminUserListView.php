@@ -40,7 +40,12 @@
                 <td>
                     <form method="post" action="index.php?route=adminUserList&userId=<?= htmlspecialchars($user->getUserId());?>" class="d-flex flex-column flex-md-row">
                         <button type="submit" name="deleteUser" class="btn btn-primary m-3">Supprimer</button>
-                        <button type="submit" name="updateRole" class="btn btn-primary m-3">Approuver en tant qu'administrateur</button>
+                        <?php if (htmlspecialchars($user->getRoleUser()) === "visitor") {
+                        ?>
+                         <button type='submit' name='updateRole' class='btn btn-primary m-3'>Approuver en tant qu'administrateur</button>
+                         <?php
+                        }
+                        ?>
                     </form>
                 </td>
             </tr>
