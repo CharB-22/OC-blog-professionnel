@@ -28,7 +28,7 @@ class CommentManager extends AbstractManager
         $sql = "INSERT INTO comments (commentContent, commentDate, commentValidation, postId, userId)
         VALUES (:commentContent, NOW(), :commentValidation, :postId, :userId)";
 
-        $response = $this->createQuery($sql, array(
+        $this->createQuery($sql, array(
             'postId' => $newComment->getPostId(),
             'commentContent' => $newComment->getCommentContent(),
             'commentValidation' => $newComment->getCommentValidation(),

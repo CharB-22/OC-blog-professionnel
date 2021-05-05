@@ -15,7 +15,7 @@ li {
 
 .footer-link {
   text-decoration: none !important;
-  font-weight: bold !important; 
+  font-weight: bold !important;
   color: #c6d166 !important;
 }
 
@@ -35,6 +35,6 @@ li {
 
 .btn.btn-primary:hover,
 .btn.btn-primary:active {
-  background-color:  #c6d166;
+  background-color: #c6d166;
   border: none;
 }

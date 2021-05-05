@@ -2,8 +2,8 @@
 <?php 
     if (!empty($message))
     {
-        echo "<div class='alert alert-". $message->getMessageFormat(). " alert-dismissible fade show' role='alert'>"
-         . $message->getMessageContent() .
+        echo "<div class='alert alert-". htmlspecialchars($message->getMessageFormat()). " alert-dismissible fade show' role='alert'>"
+         . htmlspecialchars($message->getMessageContent()) .
               " <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
              </div>";
     }
