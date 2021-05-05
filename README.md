@@ -22,6 +22,8 @@ To install the project on your own server:
 
     php composer.phar install
 
+* This project needs the upload of the Bootstrap library and TinyMCE extension for an optimal user experience.
+
 --> Import the .sql file from the repository in your MySql database.
 
 --> Update the _config.php file with your own identifier. 
