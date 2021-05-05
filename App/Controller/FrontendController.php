@@ -29,7 +29,8 @@ class FrontendController extends AbstractController
                 ";
               $headers  = 'From: charlene-openclassrooms@outlook.fr '. "\r\n" .
             'MIME-Version: 1.0' . "\r\n" .
-            'Content-type: text/html; charset=utf-8';
+            'Content-type: text/html; charset=utf-8' . "\r\n" .
+            'Reply-To:'. $_POST["senderEmail"] ;
 
               if(mail($sendTo, $subject, $emailContent, $headers)){
                  $message = new UserMessage("Message envoyé.","success");
