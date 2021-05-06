@@ -49,7 +49,6 @@ class UserManager extends AbstractManager
             return $userExists;
         }
 
-        return false;
     }
 
     public function updateStatus($userToUpdate)

@@ -123,7 +123,7 @@ class FrontendController extends AbstractController
             }
             else
             {
-                $message = new UserMessage("Veuillez renseigner un nom d'utlisateur et un mot de passe.");
+                $message = new UserMessage("Veuillez renseigner un nom d'utlisateur et un mot de passe.", "danger");
             }
 
  
