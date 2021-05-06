@@ -20,7 +20,7 @@ To install the project on your own server:
 
 --> Install the needed libraries by using this command in your command line:
 
-    php composer.phar install
+    composer update
 
 * This project needs the upload of the Bootstrap library and TinyMCE extension for an optimal user experience.
 
