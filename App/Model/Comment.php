@@ -60,7 +60,7 @@ class Comment extends AbstractEntity
         }
         else
         {
-            throw new Exception("Un id doit être un nombre entier positif");
+            throw new Exception("Un id doit être un nombre entier positif.");
         }
     }
 
@@ -72,7 +72,7 @@ class Comment extends AbstractEntity
         }
         else
         {
-            throw new Exception ("Il faut une chaîne de caractères");
+            throw new Exception ("Il faut une chaîne de caractères.");
         }
     }
 
@@ -84,7 +84,7 @@ class Comment extends AbstractEntity
         }
         else
         {
-            throw new Exception("Ceci ne respecte pas le format de la date");
+            throw new Exception("Ceci ne respecte pas le format de la date.");
         }
     }
 
@@ -98,7 +98,7 @@ class Comment extends AbstractEntity
         }
         else
         {
-            throw new Exception("Ceci ne respecte pas le format souhaité");
+            throw new Exception("Ceci ne respecte pas le format souhaité.");
         }
     }
 
@@ -112,7 +112,7 @@ class Comment extends AbstractEntity
         }
         else
         {
-            throw new Exception ("Un id doit être un nombre entier positif");
+            throw new Exception ("Un id doit être un nombre entier positif.");
         }
     }
 
@@ -126,7 +126,7 @@ class Comment extends AbstractEntity
         }
         else
         {
-            throw new Exception ("Un id doit être un nombre entier positif");
+            throw new Exception ("Un id doit être un nombre entier positif.");
         }
     }
 

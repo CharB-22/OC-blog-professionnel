@@ -60,7 +60,7 @@ class CommentManager extends AbstractManager
 
         $sql = "UPDATE comments SET commentValidation = :commentValidation WHERE commentId = :commentId";
 
-        $response = $this->createQuery($sql, array(
+        $this->createQuery($sql, array(
             'commentValidation' => $commentApproved->getCommentValidation(),
             'commentId' => $commentApproved->getCommentId()
         ));

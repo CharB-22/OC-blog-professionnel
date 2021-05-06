@@ -129,7 +129,7 @@ class Post extends AbstractEntity
         } 
         else
         {
-            throw new Exception ("Cet id n\'est pas un nombre entier ou ne donne pas les droits nécessaires.");
+            throw new Exception ("Cet id n'est pas un nombre entier ou ne donne pas les droits nécessaires.");
         }
     }
 
@@ -142,7 +142,7 @@ class Post extends AbstractEntity
         } 
         else
         {
-            throw new Exception ("Ce n\'est pas une chaîne de caractère ou le nom est trop long");
+            throw new Exception ("Ce n'est pas une chaîne de caractère ou le nom est trop long");
         }
     }
 
@@ -155,7 +155,7 @@ class Post extends AbstractEntity
         } 
         else
         {
-            throw new Exception ("Ce n\'est pas une chaîne de caractère ou le nom est trop long");        }
+            throw new Exception ("Ce n'est pas une chaîne de caractère ou le nom est trop long");        }
     }
 
     public function isValid(&$message)

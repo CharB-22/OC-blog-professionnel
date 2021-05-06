@@ -71,7 +71,7 @@ class User extends AbstractEntity
 
         else
         {
-            throw new Exception("Un id doit être un nombre entier positif");
+            throw new Exception("Un id doit être un nombre entier positif.");
         }
     }
 
@@ -83,7 +83,7 @@ class User extends AbstractEntity
         } 
         else
         {
-            throw new Exception ("Ce n'est pas une chaîne de caractère ou il y a trop de caractères");
+            throw new Exception ("Ce n'est pas une chaîne de caractère ou il y a trop de caractères.");
         }
     }
 
@@ -95,31 +95,31 @@ class User extends AbstractEntity
         } 
         else
         {
-            throw new Exception ("Ce n\'est pas une chaîne de caractère ou il y a trop de caractères");
+            throw new Exception ("Ce n'est pas une chaîne de caractère ou il y a trop de caractères.");
         }
     }
 
     public function setEmail($email)
     {
-        if (is_string($email)) // add later a regular expression 
+        if (is_string($email)) 
         {
             $this->email = $email;
         } 
         else
         {
-            throw new Exception("Cela ne respecte pas le format");
+            throw new Exception("Cela ne respecte pas le format.");
         }
     }
 
     public function setPassword($password)
     {
-        if (is_string($password)) // add later a regular expression 
+        if (is_string($password))
         {
             $this->password = $password;
         } 
         else
         {
-            throw new Exception ("Cela ne respecte pas le format");
+            throw new Exception ("Cela ne respecte pas le format.");
         }
     }
 
@@ -131,7 +131,7 @@ class User extends AbstractEntity
         } 
         else
         {
-            throw new Exception("Ce n'est pas une chaîne de caractère ou il y a trop de caractères");
+            throw new Exception("Ce n'est pas une chaîne de caractère ou il y a trop de caractères.");
         }
     }
 
@@ -153,7 +153,7 @@ class User extends AbstractEntity
         } 
         else
         {
-            throw new Exception("Cela ne respecte pas le format");
+            throw new Exception("Cela ne respecte pas le format.");
         }
     }
 

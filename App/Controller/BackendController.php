@@ -119,7 +119,7 @@ class BackendController extends AbstractController
             $this->commentManager->deletePostComments($_GET['id']);
             $this->postManager->deletePost($_GET['id']);
                     
-            $message = new UserMessage("Le post a été supprimé","danger");
+            $message = new UserMessage("Le post a été supprimé.","danger");
         
             $adminPostList = $this->postManager->getBlogList();
         
